@@ -13,7 +13,6 @@ const SearchBar = ({ onSearch }) => {
       onSearch(term);
     } else {
       console.log(`Поиск: ${term}`);
-      alert(`🔍 Поиск: ${term}`);
     }
   };
 
