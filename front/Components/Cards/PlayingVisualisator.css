@@ -1,0 +1,65 @@
+.playing-visualisator {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 1px;
+    position: relative;
+    width: 34px;
+    height: 24px;
+    max-width: 34px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.image-container .playing-visualisator {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2px;
+    position: absolute;
+    width: max-content;
+    z-index: 7;
+}
+
+.playing-visualisator .rectangle {
+    flex-shrink: 0;
+    position: relative;
+    width: 4px;
+    height: 19px;
+    background: #93d3e7;
+    z-index: 1;
+}
+
+.playing-visualisator .rectangle-one {
+    flex-shrink: 0;
+    position: relative;
+    width: 4px;
+    height: 4px;
+    background: #93d3e7;
+    z-index: 2;
+}
+
+.playing-visualisator .rectangle-two {
+    flex-shrink: 0;
+    position: relative;
+    width: 4px;
+    height: 5px;
+    background: #93d3e7;
+    z-index: 3;
+}
+
+.playing-visualisator .rectangle-three {
+    flex-shrink: 0;
+    position: relative;
+    width: 4px;
+    height: 18px;
+    background: #93d3e7;
+    z-index: 4;
+}
