@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import Header_bar from "./src/components/header/header";
 
 const API_URL =
   "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
@@ -165,10 +166,7 @@ export default function App() {
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", background: "#121212", color: "#fff", fontFamily: "system-ui, sans-serif" }}>
 
       {/* Header */}
-      <div style={{ padding: "24px 24px 16px", borderBottom: "1px solid #2a2a2a" }}>
-        <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0, letterSpacing: "-0.5px" }}>uwupad</h1>
-        <p style={{ fontSize: 12, color: "#888", margin: "4px 0 0" }}>top · global · all time</p>
-      </div>
+      <Header_bar></Header_bar>
 
       {/* Tracklist */}
       <div style={{ flex: 1, overflowY: "auto" }}>
