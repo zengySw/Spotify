@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Header_bar from "./src/components/header/header";
+import Footer_bar from "./src/components/Footer/footer";
 
 const API_URL =
   "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
@@ -282,6 +283,8 @@ export default function App() {
           </div>
         </div>
       </div>
+      <Footer_bar></Footer_bar>
     </div>
+    
   );
 }
