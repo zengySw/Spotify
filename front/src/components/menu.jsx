@@ -14,10 +14,10 @@ function Sidebar() {
     <div style={sidebarStyle}>
       <h2>Меню</h2>
       <div style={{ borderRadius: "20%" }}>
-        <img src="./src/assets/imgs/Home.svg" alt="Home" />
+        <img src="../assets/imgs/Home.svg" alt="Home" />
         <h3>Головна</h3>
       </div>
-      <img src="./src/assets/imgs/MyMediatek.svg" alt="Library" />
+      <img src="../assets/imgs/MyMediatek.svg" alt="Library" />
       <h3>Моя медіатека</h3>
       
       </div>

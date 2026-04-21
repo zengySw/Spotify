@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import Sidebar from "./components/menu";
+import Sidebar from "../src/components/menu.jsx";
 
 
 const API_URL =
