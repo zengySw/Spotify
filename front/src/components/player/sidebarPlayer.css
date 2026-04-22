@@ -1,0 +1,140 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:wght@400&display=swap');
+
+.sidebar-player {
+  width: 310px;
+  height: 100%;
+  min-height: 0;
+  background: linear-gradient(180deg, rgba(5, 21, 35, 0.82) 0%, rgba(5, 15, 27, 0.9) 100%);
+  border: 1px solid rgba(130, 190, 226, 0.55);
+  border-radius: 12px 12px 0 0;
+  padding: 10px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Шапка */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 9999px;
+}
+
+.radio-title {
+  color: white;
+  font-size: 17px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 24px;
+}
+
+/* Обложка */
+.main-cover img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  object-fit: cover;
+}
+
+/* Инфо о треке */
+.track-info-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(123, 180, 216, 0.25);
+}
+
+.song-title {
+  color: white;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 0 6px 0;
+}
+
+.artist-name {
+  color: #e1eef8;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.track-actions {
+  display: flex;
+  gap: 24px;
+}
+
+/* Карточка артиста */
+.artist-card {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+.artist-photo {
+  width: 100%;
+  aspect-ratio: 382 / 323;
+  object-fit: cover;
+}
+
+.artist-details {
+  padding: 0 8px;
+}
+
+.artist-card-title {
+  color: white;
+  font-size: 30px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.artist-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.monthly-listeners {
+  color: white;
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  max-width: 180px;
+}
+
+.subscribe-btn {
+  background: #3a454c;
+  color: white;
+  border: 1px solid #87b0ce;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 9px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Общие стили для иконок-заглушек */
+.icon {
+  width: 26px;
+  height: 26px;
+  background-color: #7bafdf;
+  opacity: 0.8;
+}

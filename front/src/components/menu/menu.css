@@ -1,0 +1,151 @@
+﻿.menu-sidebar {
+  width: 280px;
+  height: calc(100vh - 64px);
+  position: fixed;
+  top: 64px;
+  left: 0;
+  z-index: 1020;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 14px 8px 18px;
+  color: #dce8f6;
+  border-right: 1px solid rgba(117, 178, 210, 0.45);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 30, 44, 0.58) 0%,
+    rgba(4, 20, 34, 0.56) 40%,
+    rgba(3, 12, 24, 0.62) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-title {
+  margin: 8px 6px 10px;
+  font-size: 35px;
+  line-height: 1;
+  font-weight: 700;
+  color: #f3fbff;
+}
+
+.menu-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #eff6ff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-item-icon {
+  width: 18px;
+  text-align: center;
+  color: #9fdcff;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.menu-item-active {
+  background: rgba(129, 194, 225, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(145, 205, 233, 0.5);
+}
+
+.menu-item-plain {
+  border-radius: 8px;
+  padding-left: 2px;
+}
+
+.menu-divider {
+  margin: 14px 2px;
+  border-bottom: 1px solid rgba(120, 189, 223, 0.4);
+}
+
+.menu-subhead-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.menu-subhead {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #d7e5f6;
+}
+
+.menu-subhead-icon {
+  color: #8ec9ec;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.menu-playlist-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-playlist {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #e8f4ff;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-playlist:hover {
+  background: rgba(120, 162, 198, 0.12);
+}
+
+.menu-playlist-active {
+  background: rgba(93, 129, 166, 0.22);
+}
+
+.menu-playlist-title {
+  font-size: 26px;
+  font-weight: 500;
+  color: #d8f1ff;
+}
+
+.menu-playlist-meta {
+  font-size: 11px;
+  color: #8caec7;
+}
+
+.menu-bottom {
+  padding: 4px 4px 10px;
+}
+
+.menu-clock {
+  width: 62px;
+  height: 62px;
+  margin: 18px auto 0;
+  border-radius: 50%;
+  border: 3px solid rgba(100, 179, 225, 0.55);
+  color: #9ad8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
