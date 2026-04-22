@@ -4,7 +4,7 @@ export default function ArtistCard({ icon, name, followers }) {
     return (
         <div className="artist-card">
             <div className="image-container">
-                <Image src={icon} alt={name} />
+                <img src={icon} alt={name} />
             </div>
             <div className="footer">
                 <span className="artist-name">{name}</span>

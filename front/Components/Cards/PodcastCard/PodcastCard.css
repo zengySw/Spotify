@@ -13,7 +13,7 @@
     border-radius: 10px;
 }
 
-.podcast-card .header {
+.podcast-card .card-header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -23,7 +23,7 @@
     width: 100%;
 }
 
-.podcast-card .header .title {
+.podcast-card .card-header .title {
     align-self: stretch;
     flex-shrink: 0;
     flex-basis: auto;
@@ -40,7 +40,7 @@
     z-index: 1;
 }
 
-.podcast-card .header .episode-container {
+.podcast-card .card-header .episode-container {
     display: flex;
     align-items: flex-start;
     align-self: stretch;
@@ -52,7 +52,7 @@
     z-index: 2;
 }
 
-.podcast-card .header .episode-container .episode {
+.podcast-card .card-header .episode-container .episode {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -71,7 +71,7 @@
     z-index: 3;
 }
 
-.podcast-card .header .episode-container .episode_name {
+.podcast-card .card-header .episode-container .episode_name {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

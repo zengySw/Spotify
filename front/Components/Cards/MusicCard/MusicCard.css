@@ -8,10 +8,10 @@
     flex-basis: 0;
     gap: 8px;
     position: relative;
-    width: clamp(174.4px, 10%, calc(174.4px * 2));
     background: rgba(23, 42, 72, 0.5);
     border-radius: 10px;
     padding: 4px;
+    border: none;
 }
 
 .music-card .image-container {
@@ -20,7 +20,6 @@
     align-self: stretch;
     flex-wrap: nowrap;
     flex-shrink: 0;
-    gap: 10px;
     position: relative;
     z-index: 1;
 }
@@ -30,7 +29,8 @@
     flex-shrink: 0;
     flex-basis: 0;
     position: relative;
-    height: 150px;
+    width: 100%;
+    height: max-content;
     z-index: 2;
     border-radius: 10px;
 }
@@ -61,9 +61,11 @@
     text-align: left;
     white-space: nowrap;
     z-index: 4;
+    width: fit-content;
 }
 
-.music-card .footer .artists {
+.music-card .footer .artists,
+.music-card .footer .group-tracks {
     align-self: stretch;
     flex-shrink: 0;
     flex-basis: auto;
@@ -79,4 +81,5 @@
     white-space: nowrap;
     opacity: 0.8;
     z-index: 5;
+    width: fit-content;
 }
