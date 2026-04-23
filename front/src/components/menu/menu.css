@@ -1,0 +1,55 @@
+.sidebar-style {
+  width: 15%;
+  height: 100vh;
+  background-color: rgba(12, 12, 12, 0.85); /* исправил синтаксис */
+  border: 2px solid rgba(166, 218, 255, 0.8);
+  border-radius: 20px 0 0 20px;
+  margin: 10px;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.menu-item-home {
+  width: 100%;
+  height: 46px;
+  display: flex;          /* ставим элементы в строку */
+  align-items: center;    /* выравниваем по вертикали */
+  gap: 8px;               /* расстояние между картинкой и текстом */
+  margin: 10px 0;         /* отступы между пунктами меню */
+  background-color: rgb(217, 217, 217, 0.2); /* полупрозрачный фон для "Головна" */
+  border: 1px solid rgba(232, 232, 232, 0.4); /* тонкая рамка для "Головна" */
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item {
+  display: flex;          /* ставим элементы в строку */
+  align-items: center;    /* выравниваем по вертикали */
+  gap: 8px;               /* расстояние между картинкой и текстом */
+  margin: 10px 0;   
+  padding: 8px;      /* отступы между пунктами меню */
+}
+
+.img-style {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+#playlist-style {
+  width: "100%";
+  margin-top: "10px";  
+  padding: "10px";
+}
+
+.playlist-item-style {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+
+

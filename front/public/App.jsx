@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import Menu from "./src/components/menu";
+import Menu from "../src/components/menu/menu";
 
 
 function Sidebar() {
