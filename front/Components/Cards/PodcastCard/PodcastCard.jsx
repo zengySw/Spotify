@@ -1,8 +1,9 @@
 import '../PlayingVisualisator.css';
 import './PodcastCard.css';
+import { useState, useEffect } from 'react';
 
 export default function PodcastCard({ id, icon, title, episode_name, date, duration, description, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false }) {
-    const { playingState, setPlayingState } = useState(isPlaying);
+    const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);

@@ -11,6 +11,7 @@
     padding: 21px 20px 21px 20px;
     background: rgba(23, 42, 72, 0.5);
     border-radius: 10px;
+    border: none;
 }
 
 .podcast-card .card-header {
@@ -131,7 +132,9 @@
     overflow: hidden;
 }
 
-.podcast-card .footer .description {
+.podcast-card .footer .description,
+.podcast-card .footer .description>* {
+    display: contents;
     position: relative;
     color: #acb9d7;
     font-family: Open Sans, var(--default-font-family);
@@ -141,4 +144,6 @@
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
+    text-wrap: auto;
+    height: 85px;
 }
