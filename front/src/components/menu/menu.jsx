@@ -45,38 +45,38 @@ function Sidebar() {
       </div>
 
       <div className="menu-item" style={{color: "rgb(191, 237, 253)"}}>
-      <h3>Ваші плейлисти</h3>
+      <h7>Ваші плейлисти</h7>
       <img src={YourPlayListsIcon} alt="" className="img-style" />
       </div>
 
         <div id="playlist-style">
           <div className="playlist-item-style">
           <img src={Lisa} alt="Lisa" />
-          <h4>Плейлист 1</h4>
+          <h6>Плейлист 1</h6>
           <p>Опис плейлиста 1</p>
           </div>
           
           <div className="playlist-item-style">
           <img src={BrunoMars} alt="Bruno Mars" />
-          <h4>Плейлист 2</h4>
+          <h6>Плейлист 2</h6>
           <p>Опис плейлиста 2</p>
           </div>
 
           <div className="playlist-item-style">
           <img src={LadyGaga} alt="Lady Gaga" />
-          <h4>Плейлист 3</h4>
+          <h6>Плейлист 3</h6>
           <p>Опис плейлиста 3</p>
           </div>
 
           <div className="playlist-item-style">
           <img src={LanaDelRey} alt="Lana Del Rey" />
-          <h4>Плейлист 4</h4>
+          <h6>Плейлист 4</h6>
           <p>Опис плейлиста 4</p>
           </div>
 
           <div className="playlist-item-style">
           <img src={BTS} alt="BTS" />
-          <h4>Плейлист 5</h4>
+          <h6>Плейлист 5</h6>
           <p>Опис плейлиста 5</p>
           </div>
         </div>
