@@ -1,5 +1,5 @@
 import { OnePList, RowList } from "./Components/Lists";
-import { MusicCard, GenreCard, ArtistCard, PodcastCard } from "./Components/Cards";
+import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "./Components/Cards";
 
 export default function App() {
   return (
@@ -53,6 +53,11 @@ export default function App() {
         <PodcastCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Wu0dojYbUR.png" title="Частина 10. Тіньові справи" episode_name="Consectetur adipiscing elit quisque faucibus" date="Лип. 2024" duration="5 год. 22 хв." description="«Реальні кримінальні історії, що лякають своєю жорстокістю та загадковістю. Ми аналізуємо резонансні злочини, розбираємо деталі розслідувань і намагаємось зрозуміти, що рухає злочинцями. У кожному випуску — розбір нових справ: від зникнень до серійних убивств.»" key="p2" />,
         <PodcastCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/rr39sNXLJ6.png" title="Частина 1. Теорії змови" episode_name="Consectetur adipiscing elit quisque faucibus" date="Лип. 2024" duration="5 год. 22 хв." description="«Від таємного уряду до фейкової висадки на Місяць. Ми аналізуємо найпопулярніші теорії змови, шукаємо докази та розбираємося, що з цього — реальність, а що — вигадка.»" key="p3" />
       ]} />
+      <OnePList title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>Аудиокниг</span></h4>} childs={[
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Mie3QZhhXd.png" title="Тінь минулого" author="Хоппінс Нілл" genres={["Історичний роман", "Драма"]} description={`Під час холодної осені 1921 року, в невеликому гірському містечку, загубленому серед Карпат, молодий лікар Арсен випадково рятує від смерті незнайому жінку. Вона з'явилася нізвідки, не пам’ятає свого імені, а її руки вкриті старими, ніби ритуальними шрамами. Єдине, що вона вимовляє крізь гарячковий шепіт, — це слова про \"Тінь\", яка прийде за нею.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab1" />,
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-28/nkYeuNvuMn.png" title="Остання надія" author="NewTree" genres={["Драма", "Сучасна проза"]} description={`П’ятеро друзів з дитинства опинилися на життєвому роздоріжжі. Хтось бореться з залежностями, хтось не може пробачити собі старі помилки, а хтось більше не вірить у майбутнє. Але старий лист, знайдений у коробці спогадів, змушує їх знову зібратися разом, щоб відновити те, що вони втратили багато років тому.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab2" />,
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-28/U8UH4ctrZr.png" title="Голоси снів" author="Аманда Т." genres={["Психологічний трилер"]} description={`Психотерапевт Андрій починає чути голоси своїх пацієнтів у снах. Вони розповідають йому про події, які ще не відбулися, але невдовзі стають реальністю. Він розуміє, що його дар — це не благословення, а прокляття, і тепер йому потрібно знайти, хто стоїть за цими жахіттями.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab3" />
+      ]} flexDirection="column" />
     </div>
   );
 }

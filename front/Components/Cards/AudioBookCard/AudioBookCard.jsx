@@ -1,8 +1,9 @@
 import '../PlayingVisualisator.css';
 import './AudioBookCard.css';
+import { useEffect, useState } from 'react';
 
 export default function AudioBookCard({ id, icon, title, author, genres, description, date, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false }) {
-    const { playingState, setPlayingState } = useState(isPlaying);
+    const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);
