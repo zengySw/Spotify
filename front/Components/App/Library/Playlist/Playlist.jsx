@@ -3,12 +3,12 @@ import { MusicSCard } from "../../../Cards";
 
 export default function Playlist({ name, icon, author, tracks = [] }) {
     return (
-        <div className="playlist">
+        <div className="playlist" style={{ width: "1230px" }}>
             <div className="playlist-header" style={{ backgroundImage: `url(${icon})` }}>
                 <p>Плейлист</p>
                 <h3>{name}</h3>
                 <div className="author">
-                    <img src={author.icon} alt={author} />
+                    <img src={author.icon} alt={author.name} />
                     <span>{author.name}</span>
                     <br />
                     <span>{tracks.length} треків</span>

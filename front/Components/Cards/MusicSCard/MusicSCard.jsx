@@ -2,8 +2,8 @@ import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
-export default function MusicSCard({ id, num, icon, title, artists, alboum, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
-    const { playingState, setPlayingState } = useState(isPlaying);
+export default function MusicSCard({ id, num, icon, title, artists, album, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
+    const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);
@@ -31,7 +31,7 @@ export default function MusicSCard({ id, num, icon, title, artists, alboum, list
                         </span>
                     </div>
                     <div className="about">
-                        <span className="alboum">{alboum}</span>
+                        <span className="album">{album}</span>
                         <div className="frame">
                             {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
                             <span className="duration">{duration}</span>
