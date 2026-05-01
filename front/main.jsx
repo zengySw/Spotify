@@ -9,7 +9,7 @@ createRoot(document.getElementById("root")).render(
     {/* <Main /> */}
     <Playlist
       name="Мій плейлист"
-      icon="https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg"
+      icon="/likes_ico.png"
       author={{ name: "Автор плейлиста", icon: "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg" }}
       tracks={[
         { id: 1, num: 1, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-29/vG4wFeyyZv.png", title: "ВИМОЛИВ", artists: ["Jerry Heil", "MONATIK", "Evgeny Khmara"], album: "Вимолв", listenCount: null, duration: "3:02", addDate: "Сьогодні" },

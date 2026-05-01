@@ -32,10 +32,8 @@ export default function MusicSCard({ id, num, icon, title, artists, album, liste
                     </div>
                     <div className="about">
                         <span className="album">{album}</span>
-                        <div className="frame">
-                            {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
-                            <span className="duration">{duration}</span>
-                        </div>
+                        {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
+                        <span className="duration">{duration}</span>
                     </div>
                 </div>
             </div>
