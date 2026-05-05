@@ -1,0 +1,176 @@
+.audio-book-card {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.audio-book-card img {
+    flex-shrink: 0;
+    position: relative;
+    height: 100%;
+    background: rgba(0, 122, 193, 0.2) url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-15/zejUD1isoV.png) no-repeat center;
+    background-size: cover;
+    border-radius: 7px;
+}
+
+.audio-book-card .frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    position: relative;
+    width: max-content;
+    z-index: 1;
+}
+
+.audio-book-card .frame .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 5px;
+    position: relative;
+    min-width: 0;
+    z-index: 2;
+}
+
+.audio-book-card .frame .text-container .naming {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 7px;
+    position: relative;
+    width: 231px;
+    z-index: 3;
+}
+
+.audio-book-card .frame .text-container .naming .title {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 19px;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 4;
+}
+
+.audio-book-card .frame .text-container .naming .separator {
+    flex-shrink: 0;
+    position: relative;
+    width: 0.5px;
+    height: 12.5px;
+    background: url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-15/ODReBmQo5w.png) no-repeat center;
+    background-size: cover;
+    z-index: 5;
+}
+
+.audio-book-card .frame .text-container .naming .author {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 19px;
+    color: #acb9d7;
+    font-family: Inter, var(--default-font-family);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 6;
+}
+
+.audio-book-card .frame .text-container .genre {
+    align-self: stretch;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 17px;
+    color: #d8e4ff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.943px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 7;
+    overflow: hidden;
+}
+
+.audio-book-card .text-container .description {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    width: 100%;
+    color: #acb9d7;
+    font-family: Open Sans, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.065px;
+    text-align: left;
+    text-overflow: ellipsis;
+    z-index: 8;
+    overflow: hidden;
+}
+
+.audio-book-card .frame .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    position: relative;
+    width: 89px;
+    z-index: 9;
+}
+
+.audio-book-card .frame .footer .date {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Open Sans, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.audio-book-card .frame .footer .duration {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Open Sans, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 11;
+}
