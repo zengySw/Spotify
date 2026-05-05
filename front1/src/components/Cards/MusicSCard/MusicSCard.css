@@ -1,0 +1,190 @@
+.music-s-card {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px 0 16px;
+}
+
+.music-s-card .card {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 52px;
+    position: relative;
+    width: 1447px;
+    z-index: 5;
+}
+
+.music-s-card .card .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 6;
+}
+
+.music-s-card .card .image-container img {
+    flex-shrink: 0;
+    position: relative;
+    height: 100%;
+    z-index: 6;
+}
+
+.music-s-card .card .image-container .playing-visualisator {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2px;
+    position: absolute;
+    width: max-content;
+    z-index: 7;
+}
+
+.music-s-card .card .frame {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 220px;
+    position: relative;
+    width: 100%;
+    z-index: 7;
+}
+
+.music-s-card .card .frame .naming {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 6px;
+    position: relative;
+    width: 279px;
+    z-index: 8;
+}
+
+.music-s-card .card .frame .naming .title {
+    align-self: stretch;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    min-width: 0;
+    height: 24px;
+    color: #effff3;
+    font-family: Maven Pro, var(--default-font-family);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.5px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 9;
+}
+
+.music-s-card .card .frame .naming .artists {
+    align-self: stretch;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    min-width: 0;
+    height: 16px;
+    color: #7e93a1;
+    font-family: Maven Pro, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.music-s-card .card .frame .about {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 101px;
+    position: relative;
+    min-width: 0;
+    z-index: 12;
+}
+
+.music-s-card .card .frame .about .alboum {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    width: 300px;
+    height: 24px;
+    color: #effaff;
+    font-family: Maven Pro, var(--default-font-family);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.5px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 13;
+    overflow: hidden;
+    max-width: 300px;
+    max-height: 24px;
+}
+
+.music-s-card .card .frame .about .frame {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 160px;
+    position: relative;
+    width: 414px;
+    z-index: 14;
+}
+
+.music-s-card .card .frame .about .frame .add-date,
+.music-s-card .card .frame .about .frame .listen-count {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    width: 180px;
+    height: 24px;
+    color: #effaff;
+    font-family: Maven Pro, var(--default-font-family);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.5px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 15;
+    max-width: 180px;
+}
+
+.music-s-card .card .frame .about .frame .duration {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 24px;
+    color: #effaff;
+    font-family: Maven Pro, var(--default-font-family);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23.5px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 16;
+}

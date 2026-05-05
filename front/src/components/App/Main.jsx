@@ -1,3 +1,4 @@
+import "./Main.css";
 import { OnePList, RowList } from "../Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../Cards";
 
