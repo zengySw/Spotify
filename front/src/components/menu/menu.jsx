@@ -10,6 +10,8 @@ import BrunoMars from "../../assets/imgs/BrunoMars.svg";
 import LadyGaga from "../../assets/imgs/LadyGaga.svg";
 import LanaDelRey from "../../assets/imgs/LanaDelRey.svg";
 import BTS from "../../assets/imgs/BTS.svg";
+import SAD from "../../assets/imgs/sad.svg"
+import Stream from "../../assets/imgs/List--Streamline-Mynaui.svg.svg"
 
 
 
@@ -81,6 +83,9 @@ function Sidebar() {
           </div>
         </div>
         <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
+        <h7 id="MenuEnd">Нещодавно прослуханi</h7>
+        <img id="Stream" src={Stream} alt="" />
+        <img id="SAD" src={SAD} alt="" />
     </div>
   );
 }
