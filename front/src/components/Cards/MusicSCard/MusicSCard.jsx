@@ -1,9 +1,9 @@
-import './PlayingVisualisator.css';
+import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
-export default function MusicSCard({ id, num, icon, title, artists, alboum, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
-    const { playingState, setPlayingState } = useState(isPlaying);
+export default function MusicSCard({ id, num, icon, title, artists, album, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
+    const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);
@@ -21,7 +21,7 @@ export default function MusicSCard({ id, num, icon, title, artists, alboum, list
                         <div className="rectangle-one" />
                         <div className="rectangle-two" />
                         <div className="rectangle-three" /></span> : null}
-                    <Image src={icon} alt={title} />
+                    <img src={icon} alt={title} />
                 </div>
                 <div className="frame">
                     <div className="naming">
@@ -31,11 +31,9 @@ export default function MusicSCard({ id, num, icon, title, artists, alboum, list
                         </span>
                     </div>
                     <div className="about">
-                        <span className="alboum">{alboum}</span>
-                        <div className="frame">
-                            {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
-                            <span className="duration">{duration}</span>
-                        </div>
+                        <span className="album">{album}</span>
+                        {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
+                        <span className="duration">{duration}</span>
                     </div>
                 </div>
             </div>

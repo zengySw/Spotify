@@ -1,6 +1,6 @@
 import './MediaListP.css';
-import { MusicCard } from '../../../Cards';
-import { RowList } from '../../../Lists';
+import { MusicCard } from '../../Cards';
+import { RowList } from '../../Lists';
 
 export default function MediaListP({ title, props }) {
     return (

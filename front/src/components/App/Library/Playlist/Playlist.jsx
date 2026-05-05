@@ -1,5 +1,5 @@
 import "./Playlist.css";
-import { MusicSCard } from "../../../Cards";
+import { MusicSCard } from "../../../../Cards";
 import { useState } from "react";
 
 export default function Playlist({ name, icon, author, tracks = [] }) {
