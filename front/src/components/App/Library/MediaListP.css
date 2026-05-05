@@ -1,0 +1,20 @@
+.media-list-p {
+    display: flex;
+    flex-direction: column;
+    gap: 78px;
+    padding: 66px;
+    border: #A6DAFF 0.5px solid;
+    border-radius: 2%;
+}
+
+.media-list-p .media-lists {
+    display: flex;
+    flex-direction: column;
+    gap: 87px;
+}
+
+.media-list-p h2 {
+    color: #fff;
+    font-family: "Maven Pro", sans-serif;
+    font-size: 48px;
+}

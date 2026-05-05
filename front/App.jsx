@@ -1,10 +1,14 @@
-﻿import { useState, useEffect, useRef } from "react";
+﻿import "./style.css";
+
+import { useState, useEffect, useRef } from "react";
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
 import Player from "./src/components/player/player.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
 import Main from "./src/components/App/Main.jsx";
+import PlaylistP from "./src/components/App/Library/PlaylistP/PlaylistP.jsx";
+import MediaListP from "./src/components/App/Library/MediaListP.jsx";
 import { OnePList, RowList } from "./src/components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "./src/components/Cards";
 
@@ -173,8 +177,54 @@ export default function App() {
       <HeaderBar />
       <Menu />
 
-      <div>
-        <Main />
+      <div className="Main" style={{ width: '100%' }}>
+        {/* <Main /> */}
+        <MediaListP title="Моя медіатека" props={{
+          likedTracks: [
+            { id: 1, title: "Die with a smile", artists: ["Lady Gaga", "Bruno Mars"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" },
+            { id: 2, title: "Глубоко", artists: ["Monatik", "Надія Дорофєєва"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" },
+            { id: 3, title: "Superman", artists: ["Eminiem"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" },
+            { id: 4, title: "Sweater Weather", artists: ["The Neighberhood"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" },
+            { id: 5, title: "Cry Me A River", artists: ["Justin Timberlake"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" },
+            { id: 6, title: "Die with a smile", artists: ["Lady Gaga", "Bruno Mars"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" },
+            { id: 7, title: "Глубоко", artists: ["Monatik", "Надія Дорофєєва"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" },
+            { id: 8, title: "Superman", artists: ["Eminiem"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" },
+            { id: 9, title: "Sweater Weather", artists: ["The Neighberhood"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" },
+            { id: 10, title: "Cry Me A River", artists: ["Justin Timberlake"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" },
+          ],
+          likedAlbums: [
+            { id: 1, title: "On The Floor", artists: ["JLO"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/6y5vGRyAum.png", groupTracks: 19 },
+            { id: 2, title: "Reputation", artists: ["Taylor Swift"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/wqhKCqFkk3.png", groupTracks: 10 },
+            { id: 3, title: "Yours Truly", artists: ["Ariana Grande"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/7b6RVkNZTT.png", groupTracks: 5 },
+            { id: 4, title: "Маргарита", artists: ["Michelle Andrade"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/ndLwq4S0j7.png", groupTracks: 7 },
+            { id: 5, title: "30 Vinyl", artists: ["Adele"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/PWUvYeX7uv.png", groupTracks: 7 },
+            { id: 6, title: "On The Floor", artists: ["JLO"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/6y5vGRyAum.png", groupTracks: 19 },
+            { id: 7, title: "Reputation", artists: ["Taylor Swift"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/wqhKCqFkk3.png", groupTracks: 10 },
+            { id: 8, title: "Yours Truly", artists: ["Ariana Grande"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/7b6RVkNZTT.png", groupTracks: 5 },
+            { id: 9, title: "Маргарита", artists: ["Michelle Andrade"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/ndLwq4S0j7.png", groupTracks: 7 },
+            { id: 10, title: "30 Vinyl", artists: ["Adele"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/PWUvYeX7uv.png", groupTracks: 7 },
+          ],
+          likedArtists: [
+            { id: 1, name: "Lady Gaga", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" },
+            { id: 2, name: "Monatik", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" },
+            { id: 3, name: "Eminiem", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" },
+            { id: 4, name: "The Neighberhood", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" },
+            { id: 5, name: "Justin Timberlake", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" },
+            { id: 6, name: "Lady Gaga", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" },
+            { id: 7, name: "Monatik", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" },
+            { id: 8, name: "Eminiem", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" },
+            { id: 9, name: "The Neighberhood", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" },
+            { id: 10, name: "Justin Timberlake", icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" },
+          ],
+          likedPodcasts: [
+            { id: 1, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/OE8kDcEH8q.png", title: "Частина 1. Хроніки майбутнього", episode_name: "Consectetur adipiscing elit quisque faucibus", date: "Лип. 2024", duration: "5 год. 22 хв.", description: "«Яким буде світ за 50 років? Чи станемо ми кіборгами? Чи можлива колонізація Марса? Ми розбираємо найновіші відкриття, дослідження та гіпотези, які можуть зробити майбутнє ще більш непередбачуваним..»" },
+            { id: 2, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Wu0dojYbUR.png", title: "Частина 10. Тіньові справи", episode_name: "Consectetur adipiscing elit quisque faucibus", date: "Лип. 2024", duration: "5 год. 22 хв.", description: "«Реальні кримінальні історії, що лякають своєю жорстокістю та загадковістю. Ми аналізуємо резонансні злочини, розбираємо деталі розслідувань і намагаємось зрозуміти, що рухає злочинцями. У кожному випуску — розбір нових справ: від зникнень до серійних убивств.»" },
+            { id: 3, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/rr39sNXLJ6.png", title: "Частина 1. Теорії змови", episode_name: "Consectetur adipiscing elit quisque faucibus", date: "Лип. 2024", duration: "5 год. 22 хв.", description: "«Від таємного уряду до фейкової висадки на Місяць. Ми аналізуємо найпопулярніші теорії змови, шукаємо докази та розбираємося, що з цього — реальність, а що — вигадка.»" }
+          ],
+          likedAudiobooks: [
+            { id: 1, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Mie3QZhhXd.png", title: "Тінь минулого", author: "Хоппінс Нілл", genres: ["Історичний роман", "Драма"], description: `Під час холодної осені 1921 року, в невеликому гірському містечку, загубленому серед Карпат, молодий лікар Арсен випадково рятує від смерті незнайому жінку. Вона з'явилася нізвідки, не пам’ятає свого імені, а її руки вкриті старими, ніби ритуальними шрамами. Єдине, що вона вимовляє крізь гарячковий шепіт, — це слова про "Тінь", яка прийде за нею.`, date: "Серп. 2023", duration: "12 год. 22 хв." },
+          ]
+        }} />
         {/* <Playlist
           name="Мій плейлист"
           icon="/likes_ico.png"

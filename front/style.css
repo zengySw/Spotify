@@ -3,3 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.app-shell {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+}
