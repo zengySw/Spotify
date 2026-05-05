@@ -1,4 +1,4 @@
-import './PlayingVisualisator.css';
+import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
@@ -21,7 +21,7 @@ export default function MusicSCard({ id, num, icon, title, artists, alboum, list
                         <div className="rectangle-one" />
                         <div className="rectangle-two" />
                         <div className="rectangle-three" /></span> : null}
-                    <Image src={icon} alt={title} />
+                    <img src={icon} alt={title} />
                 </div>
                 <div className="frame">
                     <div className="naming">

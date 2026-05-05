@@ -1,0 +1,86 @@
+﻿.sidebar-style {
+  inline-size: 15%;
+  block-size: 100vh;
+  background-color: rgba(12, 12, 12, 0.1);
+  /* исправил синтаксис */
+  border: 2px solid rgba(166, 218, 255, 0.8);
+  border-radius: 20px 0 0 20px;
+  margin-block-start: 62px;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+.menu-sidebar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1020;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 14px 8px 18px;
+  display: flex;
+  flex-direction: column;
+  color: #dce8f6;
+  border-right: 1px solid rgba(117, 178, 210, 0.45);
+  background: linear-gradient(180deg,
+      rgba(6, 30, 44, 0.58) 0%,
+      rgba(4, 20, 34, 0.56) 40%,
+      rgba(3, 12, 24, 0.62) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(130, 190, 226, 0.55);
+  border-radius: 12px;
+
+}
+
+.menu-item-home {
+  inline-size: 100%;
+  block-size: 46px;
+  display: flex;
+  /* ставим элементы в строку */
+  align-items: center;
+  /* выравниваем по вертикали */
+  gap: 8px;
+  /* расстояние между картинкой и текстом */
+  margin: 10px 0;
+  /* отступы между пунктами меню */
+  background-color: rgb(217, 217, 217, 0.2);
+  /* полупрозрачный фон для "Головна" */
+  border: 1px solid rgba(232, 232, 232, 0.4);
+  /* тонкая рамка для "Головна" */
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item {
+  display: flex;
+  /* ставим элементы в строку */
+  align-items: center;
+  /* выравниваем по вертикали */
+  gap: 8px;
+  /* расстояние между картинкой и текстом */
+  margin: 10px 0;
+  padding: 8px;
+  /* отступы между пунктами меню */
+}
+
+.img-style {
+  inline-size: 24px;
+  block-size: 24px;
+  margin-inline-end: 10px;
+}
+
+#playlist-style {
+  inline-size: "100%";
+  margin-block-start: "10px";
+  padding: "10px";
+}
+
+.playlist-item-style {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
