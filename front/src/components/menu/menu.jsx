@@ -17,9 +17,9 @@ import BTS from "../../assets/imgs/BTS.svg";
 function Sidebar() {
   return (
     <div className="sidebar-style">
-      <h3>Меню</h3>
+      <h4 id="menu-title">Меню</h4>
       <div className="menu-item-home">
-        <img src={HomeIcon} style={{marginLeft: "12px"}} />
+        <img id="HomeIcon" src={HomeIcon}/>
         <h7>Головна</h7>
       </div>
 
@@ -30,7 +30,7 @@ function Sidebar() {
 
       <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
       
-      <div className="menu-item">
+      <div className="menu-item-playlists">
       <h4 >Плейлисти</h4>
       </div>
       
@@ -44,42 +44,43 @@ function Sidebar() {
       <h7>Створити плейлист</h7>
       </div>
 
-      <div className="menu-item" style={{color: "rgb(191, 237, 253)"}}>
+      <div className="menu-item-your-playlists">
       <h7>Ваші плейлисти</h7>
-      <img src={YourPlayListsIcon} alt="" className="img-style" />
+      <img src={YourPlayListsIcon} alt="" className="img-style-your-playlists" />
       </div>
 
         <div id="playlist-style">
           <div className="playlist-item-style">
           <img src={Lisa} alt="Lisa" />
-          <h6>Плейлист 1</h6>
-          <p>Опис плейлиста 1</p>
+          <h4>Lisa</h4>
+          <p>Виконавець</p>
           </div>
           
           <div className="playlist-item-style">
           <img src={BrunoMars} alt="Bruno Mars" />
-          <h6>Плейлист 2</h6>
-          <p>Опис плейлиста 2</p>
-          </div>
+          <h4>Bruno Mars</h4>
+          <p>Виконавець</p>
+          </div>  
 
           <div className="playlist-item-style">
           <img src={LadyGaga} alt="Lady Gaga" />
-          <h6>Плейлист 3</h6>
-          <p>Опис плейлиста 3</p>
+          <h4>Lady Gaga</h4>
+          <p>Виконавець</p>
           </div>
 
           <div className="playlist-item-style">
           <img src={LanaDelRey} alt="Lana Del Rey" />
-          <h6>Плейлист 4</h6>
-          <p>Опис плейлиста 4</p>
+          <h4>Lana Del Rey</h4>
+          <p>Виконавець</p>
           </div>
 
           <div className="playlist-item-style">
           <img src={BTS} alt="BTS" />
-          <h6>Плейлист 5</h6>
-          <p>Опис плейлиста 5</p>
+          <h4>BTS</h4>
+          <p>Виконавець</p>
           </div>
         </div>
+        <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
     </div>
   );
 }
