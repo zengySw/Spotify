@@ -1,9 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
 import Player from "./src/components/player/player.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
+import Main from "./src/components/App/Main.jsx";
+import { OnePList, RowList } from "./src/components/Lists";
+import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "./src/components/Cards";
+
 
 const API_URL =
   "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
@@ -165,192 +169,88 @@ export default function App() {
   const getTags = (t) => t?.tags?.slice(0, 2).map((g) => g.name).join(" | ") || "";
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#01060f",
-        backgroundImage: `
-          radial-gradient(30% 18% at 10% 8%, rgba(90, 169, 204, 0.35) 0%, rgba(90, 169, 204, 0) 100%),
-          radial-gradient(28% 20% at 52% 16%, rgba(42, 84, 176, 0.28) 0%, rgba(42, 84, 176, 0) 100%),
-          radial-gradient(26% 20% at 82% 12%, rgba(39, 154, 154, 0.25) 0%, rgba(39, 154, 154, 0) 100%),
-          radial-gradient(24% 18% at 18% 44%, rgba(34, 103, 187, 0.24) 0%, rgba(34, 103, 187, 0) 100%),
-          radial-gradient(28% 20% at 72% 42%, rgba(26, 104, 157, 0.24) 0%, rgba(26, 104, 157, 0) 100%),
-          radial-gradient(25% 20% at 12% 74%, rgba(44, 127, 120, 0.22) 0%, rgba(44, 127, 120, 0) 100%),
-          radial-gradient(30% 20% at 78% 76%, rgba(32, 131, 173, 0.2) 0%, rgba(32, 131, 173, 0) 100%),
-          linear-gradient(180deg, #020913 0%, #01050d 58%, #00040a 100%)
-        `,
-        backgroundRepeat: "no-repeat",
-        color: "#fff",
-        fontFamily: "system-ui, sans-serif",
-        paddingTop: 64,
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="app-shell">
       <HeaderBar />
-      <Menu />
-
-      <div
-        style={{
-          marginLeft: 280,
-          paddingBottom: 88,
-          paddingRight: 16,
-          minHeight: "calc(100vh - 64px)",
-          display: "flex",
-          flexDirection: "column",
-        }}
+      <Main
+        menu={<Menu />}
+        sidebar={
+          <SidebarPlayer
+            track={currentTrack}
+            onTogglePlay={togglePlay}
+            onPrev={playPrev}
+            onNext={playNext}
+          />
+        }
       >
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: "flex", gap: 10, padding: "12px 18px 10px" }}>
-              {["Всі", "Треки", "Інше"].map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  style={{
-                    minWidth: 68,
-                    height: 28,
-                    borderRadius: 6,
-                    border: "1px solid rgba(132, 184, 220, 0.45)",
-                    background: "rgba(33, 56, 77, 0.55)",
-                    color: "#d8ebfb",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+      <OnePList
+        title={<h4>Саундтреки на основі твого <span style={{ color: '#40a2ff' }}>настрою</span></h4>}
+        childs={[
+          <GenreCard title="Хеппi" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/9uWZmwDx2G.png" key="g1" />,
+          <GenreCard title="Меланхолія" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/V9KLw2OTh0.png" key="g2" />,
+          <GenreCard title="Романтика" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/rkGP1NG2sw.png" key="g3" />,
+          <GenreCard title="Драйв" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/03b67rx1We.png" key="g4" />,
+          <GenreCard title="Туса" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png" key="g5" />
+        ]} />
+      <RowList title={<h4>Топ ВАША <span style={{ color: '#40a2ff' }}>музика</span> сьогодні!</h4>} prevCount={5} childs={[
+        <MusicCard title="Die with a smile" artists={["Lady Gaga", "Bruno Mars"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" key="t1" />,
+        <MusicCard title="Глубоко" artists={["Monatik", "Надія Дорофєєва"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" key="t2" />,
+        <MusicCard title="Superman" artists={["Eminiem"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" key="t3" />,
+        <MusicCard title="Sweater Weather" artists={["The Neighberhood"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" key="t4" />,
+        <MusicCard title="Cry Me A River" artists={["Justin Timberlake"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" key="t5" />,
+        <MusicCard title="Die with a smile" artists={["Lady Gaga", "Bruno Mars"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" key="t6" />,
+        <MusicCard title="Глубоко" artists={["Monatik", "Надія Дорофєєва"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/SkKXoD6JkK.png" key="t7" />,
+        <MusicCard title="Superman" artists={["Eminiem"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/1ZYeYLp7r9.png" key="t8" />,
+        <MusicCard title="Sweater Weather" artists={["The Neighberhood"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/DktLLitmTE.png" key="t9" />,
+        <MusicCard title="Cry Me A River" artists={["Justin Timberlake"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/W1sgeXF7XM.png" key="t10" />,
+      ]} continueLink="/top-music" />
 
-            {loading && (
-              <div style={{ padding: 40, textAlign: "center", color: "#666" }}>Loading tracks...</div>
-            )}
-            {error && <div style={{ padding: 40, textAlign: "center", color: "#e55" }}>{error}</div>}
-
-            {tracks.map((t, i) => {
-              const active = i === currentIdx;
-              const cover = getCover(t);
-
-              return (
-                <div
-                  key={t.id}
-                  onClick={() => playTrack(i)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    padding: "8px 24px",
-                    cursor: "pointer",
-                    borderBottom: "1px solid rgba(39, 88, 130, 0.45)",
-                    background: active ? "#1e1e1e" : "transparent",
-                    transition: "background 0.1s",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!active) e.currentTarget.style.background = "#181818";
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) e.currentTarget.style.background = "transparent";
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 12,
-                      color: active ? "#1db954" : "#555",
-                      width: 20,
-                      textAlign: "right",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {active && isPlaying ? "||" : i + 1}
-                  </span>
-
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 4,
-                      background: "#282828",
-                      flexShrink: 0,
-                      overflow: "hidden",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {cover ? (
-                      <img
-                        src={cover}
-                        alt=""
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <MusicNote />
-                    )}
-                  </div>
-
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 500,
-                        color: active ? "#1db954" : "#fff",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {getTitle(t)}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 12,
-                        color: "#888",
-                        marginTop: 2,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {getArtist(t)}
-                      {getTags(t) && <span style={{ color: "#555", marginLeft: 8 }}>{getTags(t)}</span>}
-                    </div>
-                  </div>
-
-                  <span style={{ fontSize: 12, color: "#555", flexShrink: 0 }}>{fmt(t.duration)}</span>
-                </div>
-              );
-            })}
-          </div>
-
-          <div style={{ width: 310, flexShrink: 0, position: "sticky", top: 64 }}>
-            <SidebarPlayer track={currentTrack} onTogglePlay={togglePlay} onPrev={playPrev} onNext={playNext} />
-          </div>
-        </div>
-
-        {/* Progress + volume */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 11, color: "#888", width: 30 }}>{fmt(currentTime)}</span>
-          <div
-            onClick={seekTo}
-            style={{ flex: 1, height: 4, background: "#404040", borderRadius: 2, cursor: "pointer", position: "relative" }}
-          >
-            <div style={{ width: `${progress}%`, height: "100%", background: "#1db954", borderRadius: 2 }} />
-          </div>
-          <span style={{ fontSize: 11, color: "#888", width: 30, textAlign: "right" }}>{fmt(duration)}</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, marginLeft: 8 }}>
-            <span style={{ color: "#888" }}><VolumeIcon /></span>
-            <input
-              type="range" min="0" max="100" value={Math.round(volume * 100)}
-              onChange={e => setVolume(e.target.value / 100)}
-              style={{ width: 70, accentColor: "#1db954" }}
-            />
-          </div>
-        </div>
-      </div>
+      <RowList title={<h4>Нові <span style={{ color: '#40a2ff' }}>музичні</span> релізи</h4>} prevCount={5} childs={[
+        <MusicCard title="On The Floor" artists={["JLO"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/6y5vGRyAum.png" groupTracks={19} key="t1" />,
+        <MusicCard title="Reputation" artists={["Taylor Swift"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/wqhKCqFkk3.png" groupTracks={10} key="t2" />,
+        <MusicCard title="Yours Truly" artists={["Ariana Grande"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/7b6RVkNZTT.png" groupTracks={5} key="t3" />,
+        <MusicCard title="Маргарита" artists={["Michelle Andrade"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/ndLwq4S0j7.png" groupTracks={7} key="t4" />,
+        <MusicCard title="30 Vinyl" artists={["Adele"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/PWUvYeX7uv.png" groupTracks={7} key="t5" />,
+        <MusicCard title="On The Floor" artists={["JLO"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/6y5vGRyAum.png" groupTracks={19} key="t6" />,
+        <MusicCard title="Reputation" artists={["Taylor Swift"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/wqhKCqFkk3.png" groupTracks={10} key="t7" />,
+        <MusicCard title="Yours Truly" artists={["Ariana Grande"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/7b6RVkNZTT.png" groupTracks={5} key="t8" />,
+        <MusicCard title="Маргарита" artists={["Michelle Andrade"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/ndLwq4S0j7.png" groupTracks={7} key="t9" />,
+        <MusicCard title="30 Vinyl" artists={["Adele"]} icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/PWUvYeX7uv.png" groupTracks={7} key="t10" />,
+      ]} continueLink="/new-music" />
+      <RowList title={<h4>Твої улюблені <span style={{ color: '#40a2ff' }}>виконавці</span></h4>} prevCount={4} childs={[
+        <ArtistCard name="Lana Del Rey" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png" followers="4 690 563" key="a1" />,
+        <ArtistCard name="Lady Gaga" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/n8SOennME3.png" followers="4 690 563" key="a2" />,
+        <ArtistCard name="Shakira" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/aXe0vJZ72q.png" followers="4 690 563" key="a3" />,
+        <ArtistCard name="Jennifer Lopez" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png" followers="4 690 563" key="a4" />,
+        <ArtistCard name="Lana Del Rey" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png" followers="4 690 563" key="a5" />,
+        <ArtistCard name="Lady Gaga" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/n8SOennME3.png" followers="4 690 563" key="a6" />,
+        <ArtistCard name="Shakira" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/aXe0vJZ72q.png" followers="4 690 563" key="a7" />,
+        <ArtistCard name="Jennifer Lopez" icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png" followers="4 690 563" key="a8" />,
+      ]} />
+      <OnePList title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>подкастів</span></h4>} childs={[
+        <PodcastCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/OE8kDcEH8q.png" title="Частина 1. Хроніки майбутнього" episode_name="Consectetur adipiscing elit quisque faucibus" date="Лип. 2024" duration="5 год. 22 хв." description="«Яким буде світ за 50 років? Чи станемо ми кіборгами? Чи можлива колонізація Марса? Ми розбираємо найновіші відкриття, дослідження та гіпотези, які можуть зробити майбутнє ще більш непередбачуваним..»" key="p1" />,
+        <PodcastCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Wu0dojYbUR.png" title="Частина 10. Тіньові справи" episode_name="Consectetur adipiscing elit quisque faucibus" date="Лип. 2024" duration="5 год. 22 хв." description="«Реальні кримінальні історії, що лякають своєю жорстокістю та загадковістю. Ми аналізуємо резонансні злочини, розбираємо деталі розслідувань і намагаємось зрозуміти, що рухає злочинцями. У кожному випуску — розбір нових справ: від зникнень до серійних убивств.»" key="p2" />,
+        <PodcastCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/rr39sNXLJ6.png" title="Частина 1. Теорії змови" episode_name="Consectetur adipiscing elit quisque faucibus" date="Лип. 2024" duration="5 год. 22 хв." description="«Від таємного уряду до фейкової висадки на Місяць. Ми аналізуємо найпопулярніші теорії змови, шукаємо докази та розбираємося, що з цього — реальність, а що — вигадка.»" key="p3" />
+      ]} />
+      <OnePList title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>Аудиокниг</span></h4>} childs={[
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Mie3QZhhXd.png" title="Тінь минулого" author="Хоппінс Нілл" genres={["Історичний роман", "Драма"]} description={`Під час холодної осені 1921 року, в невеликому гірському містечку, загубленому серед Карпат, молодий лікар Арсен випадково рятує від смерті незнайому жінку. Вона з'явилася нізвідки, не пам’ятає свого імені, а її руки вкриті старими, ніби ритуальними шрамами. Єдине, що вона вимовляє крізь гарячковий шепіт, — це слова про \"Тінь\", яка прийде за нею.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab1" />,
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-28/nkYeuNvuMn.png" title="Остання надія" author="NewTree" genres={["Драма", "Сучасна проза"]} description={`П’ятеро друзів з дитинства опинилися на життєвому роздоріжжі. Хтось бореться з залежностями, хтось не може пробачити собі старі помилки, а хтось більше не вірить у майбутнє. Але старий лист, знайдений у коробці спогадів, змушує їх знову зібратися разом, щоб відновити те, що вони втратили багато років тому.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab2" />,
+        <AudioBookCard icon="https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-28/U8UH4ctrZr.png" title="Голоси снів" author="Аманда Т." genres={["Психологічний трилер"]} description={`Психотерапевт Андрій починає чути голоси своїх пацієнтів у снах. Вони розповідають йому про події, які ще не відбулися, але невдовзі стають реальністю. Він розуміє, що його дар — це не благословення, а прокляття, і тепер йому потрібно знайти, хто стоїть за цими жахіттями.`} date="Серп. 2023" duration="12 год. 22 хв." key="ab3" />
+      ]} flexDirection="column" />
+      </Main>
+      <FooterBar />
+      <Player
+        track={currentTrack}
+        isPlaying={isPlaying}
+        currentTime={currentTime}
+        duration={duration}
+        progress={progress}
+        volume={volume}
+        onTogglePlay={togglePlay}
+        onPrev={playPrev}
+        onNext={playNext}
+        onSeekPercent={setSeekByPercent}
+        onVolumeChange={setVolume}
+      />
     </div>
   );
 }
