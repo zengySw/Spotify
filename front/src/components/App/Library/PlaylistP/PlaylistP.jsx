@@ -1,8 +1,8 @@
-import "./Playlist.css";
-import { MusicSCard } from "../../../../Cards";
+import "./PlaylistP.css";
+import { MusicSCard } from "../../../Cards";
 import { useState } from "react";
 
-export default function Playlist({ name, icon, author, tracks = [] }) {
+export default function PlaylistP({ name, icon, author, tracks = [] }) {
     const [sortBy, setSortBy] = useState("date");
     const sortOptions = [
         { value: "date", label: "Дата додавання" },
@@ -28,7 +28,7 @@ export default function Playlist({ name, icon, author, tracks = [] }) {
                 <button onClick={() => { }}><img src="/rand.svg" alt="Random" /></button>
                 <button onClick={() => { }}><img src="/download.svg" alt="Download" /></button>
                 <div className="frame">
-                    <button onClick={() => {}}><img src="/search.svg" alt="Search" /></button>
+                    <button onClick={() => { }}><img src="/search.svg" alt="Search" /></button>
                     <button onClick={() => { }}>{sortOptions.find((option) => option.value === sortBy)?.label || "Сортувати за" + ' '}<img src="/menuList.svg" alt="Sort by" /></button>
                 </div>
             </div>
