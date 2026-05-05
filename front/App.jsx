@@ -178,7 +178,7 @@ export default function App() {
       <Menu />
 
       <div className="Main" style={{ width: '100%' }}>
-        {/* <Main /> */}
+        <Main />
         <MediaListP title="Моя медіатека" props={{
           likedTracks: [
             { id: 1, title: "Die with a smile", artists: ["Lady Gaga", "Bruno Mars"], icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/yaScAQqSUg.png" },
@@ -225,7 +225,7 @@ export default function App() {
             { id: 1, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Mie3QZhhXd.png", title: "Тінь минулого", author: "Хоппінс Нілл", genres: ["Історичний роман", "Драма"], description: `Під час холодної осені 1921 року, в невеликому гірському містечку, загубленому серед Карпат, молодий лікар Арсен випадково рятує від смерті незнайому жінку. Вона з'явилася нізвідки, не пам’ятає свого імені, а її руки вкриті старими, ніби ритуальними шрамами. Єдине, що вона вимовляє крізь гарячковий шепіт, — це слова про "Тінь", яка прийде за нею.`, date: "Серп. 2023", duration: "12 год. 22 хв." },
           ]
         }} />
-        {/* <Playlist
+        <PlaylistP
           name="Мій плейлист"
           icon="/likes_ico.png"
           author={{ name: "Автор плейлиста", icon: "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg" }}
@@ -249,7 +249,7 @@ export default function App() {
             { id: 17, num: 17, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-29/k36MLZyxCE.png", title: "Rockstar", artists: ["LISA"], album: "Alter Ego", listenCount: null, duration: "2:46", addDate: "14.02.2024" },
             { id: 18, num: 18, icon: "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-29/6EJOz3XAFz.png", title: "Thunder", artists: ["LISA"], album: "Alter Ego", listenCount: null, duration: "2:42", addDate: "14.02.2024" },
           ]}
-        /> */}
+        />
 
         <FooterBar />
       </div>
