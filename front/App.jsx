@@ -173,7 +173,7 @@ export default function App() {
       <HeaderBar />
       <Menu />
 
-      <div style={contentStyle}>
+      <div>
         <Main />
         {/* <Playlist
           name="Мій плейлист"
