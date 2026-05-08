@@ -1,9 +1,8 @@
-﻿import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import "./foundPage.css";
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
-import Player from "./src/components/player/player.jsx";
-import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
 
 
 

@@ -54,32 +54,42 @@ function Sidebar() {
         <div id="playlist-style">
           <div className="playlist-item-style">
           <img src={Lisa} alt="Lisa" />
+          <div className="playlist-text">
           <h4>Lisa</h4>
           <p>Виконавець</p>
+          </div>
           </div>
           
           <div className="playlist-item-style">
           <img src={BrunoMars} alt="Bruno Mars" />
+          <div className="playlist-text">
           <h4>Bruno Mars</h4>
           <p>Виконавець</p>
           </div>  
+          </div>
 
           <div className="playlist-item-style">
           <img src={LadyGaga} alt="Lady Gaga" />
+          <div className="playlist-text">
           <h4>Lady Gaga</h4>
           <p>Виконавець</p>
+          </div>
           </div>
 
           <div className="playlist-item-style">
           <img src={LanaDelRey} alt="Lana Del Rey" />
+          <div className="playlist-text">
           <h4>Lana Del Rey</h4>
           <p>Виконавець</p>
+          </div>
           </div>
 
           <div className="playlist-item-style">
           <img src={BTS} alt="BTS" />
+          <div className="playlist-text">
           <h4>BTS</h4>
           <p>Виконавець</p>
+          </div>
           </div>
         </div>
         <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
