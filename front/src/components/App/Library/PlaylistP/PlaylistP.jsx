@@ -12,7 +12,7 @@ export default function PlaylistP({ name, icon, author, tracks = [] }) {
     ];
 
     return (
-        <div className="playlist" style={{ width: "1230px" }}>
+        <div className="playlist">
             <div className="playlist-header" style={{ backgroundImage: `url(${icon})` }}>
                 <p>Плейлист</p>
                 <h3>{name}</h3>

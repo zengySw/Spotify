@@ -4,7 +4,7 @@ import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "..
 
 export default function Main() {
     return (
-        <div className="main" style={{ width: "1230px" }}>
+        <div className="main-page">
             <OnePList
                 title={<h4>Саундтреки на основі твого <span style={{ color: '#40a2ff' }}>настрою</span></h4>}
                 childs={[
