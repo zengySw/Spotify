@@ -1,6 +1,6 @@
 import './MediaListP.css';
-import { MusicCard, ArtistCard, PodcastCard, AudioBookCard } from '../../Cards';
-import { RowList } from '../../Lists';
+import { MusicCard, ArtistCard, PodcastCard, AudioBookCard } from '../../components/Cards';
+import { RowList } from '../../components/Lists';
 
 export default function MediaListP({ title, props = { likedTracks: [], likedAlbums: [], likedArtists: [], likedMixes: [], likedPodcasts: [], likedAudiobooks: [] } }) {
     return (

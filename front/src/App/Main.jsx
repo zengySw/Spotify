@@ -1,6 +1,6 @@
 import "./Main.css";
-import { OnePList, RowList } from "../Lists";
-import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../Cards";
+import { OnePList, RowList } from "../components/Lists";
+import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
 
 export default function Main() {
     return (
