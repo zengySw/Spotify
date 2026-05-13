@@ -1,9 +1,8 @@
-import '../PlayingVisualisator.css';
+import './PlayingVisualisator.css';
 import './PodcastCard.css';
-import { useState, useEffect } from 'react';
 
 export default function PodcastCard({ id, icon, title, episode_name, date, duration, description, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false }) {
-    const [playingState, setPlayingState] = useState(isPlaying);
+    const { playingState, setPlayingState } = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);
@@ -11,7 +10,7 @@ export default function PodcastCard({ id, icon, title, episode_name, date, durat
 
     return (
         <button className="podcast-card" onClick={onClick(id, playingState)} onDoubleClick={onDoubleClick(id, playingState)}>
-            <div className="card-header">
+            <div className="header">
                 <span className="title">
                     {title}
                 </span>
@@ -27,7 +26,7 @@ export default function PodcastCard({ id, icon, title, episode_name, date, durat
                     <div className="rectangle-one" />
                     <div className="rectangle-two" />
                     <div className="rectangle-three" /></span> : null}
-                <img src={icon} alt={title} />
+                <Image src={icon} alt={title} />
             </div>
             <div className="footer">
                 <span className="date-long">{date} • {duration} • </span>

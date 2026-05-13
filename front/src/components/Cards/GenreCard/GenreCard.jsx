@@ -1,11 +1,10 @@
 import './GenreCard.css';
-import { Link } from 'react-router-dom';
 
-export default function GenreCard({ title, icon, link = null }) {
+export default function GenreCard({ icon, genre }) {
     return (
-        <a className="genre-card" href={link}>
-            <div className='image-container'><img src={icon} alt={title} /></div>
-            <span>{title}</span>
-        </a>
+        <div className="genre-card">
+            <span>{genre}</span>
+            <Image src={icon} alt={genre} />
+        </div>
     )
 }
