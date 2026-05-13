@@ -1,6 +1,7 @@
 import "./PlaylistP.css";
 import { MusicSCard } from "../../../components/Cards";
 import { useState } from "react";
+import { getTrackById } from "../../../hooks/dataHooks";
 
 export default function PlaylistP({ name, icon, author, tracks = [] }) {
     const [sortBy, setSortBy] = useState("date");
@@ -39,9 +40,21 @@ export default function PlaylistP({ name, icon, author, tracks = [] }) {
                     <span>Час</span>
                 </div>
                 <div className="playlist-tracks-list">
-                    {tracks.map((track, index) => (
-                        <MusicSCard key={index} {...track} />
-                    ))}
+                    {tracks.map((track, index) => {
+                        const currentTrack = getTrackById(track.trackId)
+
+                        if (!currentTrack) return null
+
+                        return (
+                            <MusicSCard
+                                key={currentTrack.id}
+                                num={index + 1}
+                                {...currentTrack}
+                                artists={currentTrack.artists}
+                                addDate={track.addDate}
+                            />
+                        )
+                    })}
                 </div>
             </div>
         </div>

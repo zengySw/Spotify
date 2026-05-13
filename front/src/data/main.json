@@ -1,0 +1,89 @@
+{
+    "mainPage": {
+        "moodGenres": [
+            {
+                "id": 1,
+                "title": "Хеппi",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/9uWZmwDx2G.png"
+            },
+            {
+                "id": 2,
+                "title": "Меланхолія",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/V9KLw2OTh0.png"
+            },
+            {
+                "id": 3,
+                "title": "Романтика",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/rkGP1NG2sw.png"
+            },
+            {
+                "id": 4,
+                "title": "Драйв",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/03b67rx1We.png"
+            },
+            {
+                "id": 5,
+                "title": "Туса",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png"
+            }
+        ],
+        "topMusicToday": {
+            "title": "Топ ВАША музика сьогодні!",
+            "continueLink": "/top-music",
+            "tracks": [
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107
+            ]
+        },
+        "newMusicReleases": {
+            "title": "Нові музичні релізи",
+            "continueLink": "/new-music",
+            "albums": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        },
+        "topArtists": {
+            "title": "Твої улюблені виконавці",
+            "artists": [
+                1,
+                2,
+                3,
+                4,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        "newPodcasts": {
+            "title": "Нові релізи подкастів",
+            "podcasts": [
+                1,
+                2,
+                3
+            ]
+        },
+        "newAudiobooks": {
+            "title": "Нові релізи Аудіокниг",
+            "audiobooks": [
+                1,
+                2,
+                3
+            ]
+        }
+    }
+}

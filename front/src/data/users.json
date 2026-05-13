@@ -1,0 +1,62 @@
+{
+    "users": [
+        {
+            "id": 0,
+            "username": "stealbe",
+            "displayName": "Stealbe",
+            "avatar": "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg",
+            "banner": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "bio": "Music lover & playlist curator",
+            "followers": 1284,
+            "following": 342,
+            "verified": true,
+            "mediaLibrary": {
+                "likedTracks": [
+                    101,
+                    102,
+                    103,
+                    104,
+                    105,
+                    106,
+                    107,
+                    108,
+                    109,
+                    110
+                ],
+                "likedAlbums": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "likedArtists": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    1,
+                    2,
+                    3
+                ],
+                "likedPodcasts": [
+                    1,
+                    2,
+                    3
+                ],
+                "likedAudiobooks": [
+                    1
+                ]
+            },
+            "playlists": [
+                1,
+                2
+            ]
+        }
+    ]
+}

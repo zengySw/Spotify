@@ -1,0 +1,126 @@
+{
+    "playlists": [
+        {
+            "id": 1,
+            "name": "Мій плейлист",
+            "description": "Улюблені треки користувача",
+            "icon": "/likes_ico.png",
+            "author": {
+                "id": 1,
+                "name": "Stealbe",
+                "icon": "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg"
+            },
+            "tracks": [
+                {
+                    "trackId": 101,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 102,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 103,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 105,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 107,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 109,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 110,
+                    "addDate": "2025-03-23"
+                },
+                {
+                    "trackId": 111,
+                    "addDate": "2025-03-23"
+                },
+                {
+                    "trackId": 112,
+                    "addDate": "2025-03-22"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 114,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 116,
+                    "addDate": "2024-03-12"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2024-02-14"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2024-02-14"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Night Drive",
+            "description": "Synthwave & chill vibes",
+            "icon": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "author": {
+                "id": 1,
+                "name": "Stealbe",
+                "icon": "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg"
+            },
+            "tracks": [
+                {
+                    "trackId": 103,
+                    "addDate": "2025-04-20"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-04-18"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-04-15"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-04-14"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-04-10"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2025-04-08"
+                }
+            ]
+        }
+    ]
+}

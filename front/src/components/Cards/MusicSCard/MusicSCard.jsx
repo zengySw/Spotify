@@ -2,7 +2,7 @@ import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
-export default function MusicSCard({ id, num, icon, title, artists, album, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
+export default function MusicSCard({ id, num, icon, title, artists, album, duration, listenCount = null, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
     const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {

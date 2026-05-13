@@ -1,0 +1,34 @@
+{
+    "podcasts": [
+        {
+            "id": 1,
+            "title": "Частина 1. Хроніки майбутнього",
+            "episodeName": "Consectetur adipiscing elit quisque faucibus",
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/OE8kDcEH8q.png",
+            "date": "Лип. 2024",
+            "duration": "5 год. 22 хв.",
+            "description": "«Яким буде світ за 50 років? Чи станемо ми кіборгами? Чи можлива колонізація Марса? Ми розбираємо найновіші відкриття, дослідження та гіпотези, які можуть зробити майбутнє ще більш непередбачуваним..»",
+            "audio": "https://example.com/podcasts/future-chronicles.mp3"
+        },
+        {
+            "id": 2,
+            "title": "Частина 10. Тіньові справи",
+            "episodeName": "Consectetur adipiscing elit quisque faucibus",
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/Wu0dojYbUR.png",
+            "date": "Лип. 2024",
+            "duration": "5 год. 22 хв.",
+            "description": "«Реальні кримінальні історії, що лякають своєю жорстокістю та загадковістю. Ми аналізуємо резонансні злочини, розбираємо деталі розслідувань і намагаємось зрозуміти, що рухає злочинцями. У кожному випуску — розбір нових справ: від зникнень до серійних убивств.»",
+            "audio": "https://example.com/podcasts/shadow-cases.mp3"
+        },
+        {
+            "id": 3,
+            "title": "Частина 1. Теорії змови",
+            "episodeName": "Consectetur adipiscing elit quisque faucibus",
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/rr39sNXLJ6.png",
+            "date": "Лип. 2024",
+            "duration": "5 год. 22 хв.",
+            "description": "«Від таємного уряду до фейкової висадки на Місяць. Ми аналізуємо найпопулярніші теорії змови, шукаємо докази та розбираємося, що з цього — реальність, а що — вигадка.»",
+            "audio": "https://example.com/podcasts/conspiracy.mp3"
+        }
+    ]
+}
