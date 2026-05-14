@@ -8,6 +8,27 @@ import data from "../data/main.json";
 export default function Main() {
     return (
         <div className="main-page">
+            <div style={{ display: "flex", gap: 10, padding: "12px 18px 10px" }}>
+                {["Всі", "Треки", "Інше"].map((label) => (
+                    <button
+                        key={label}
+                        type="button"
+                        style={{
+                            minWidth: 68,
+                            height: 28,
+                            borderRadius: 6,
+                            border: "1px solid rgba(132, 184, 220, 0.45)",
+                            background: "rgba(33, 56, 77, 0.55)",
+                            color: "#d8ebfb",
+                            fontSize: 12,
+                            fontWeight: 700,
+                            cursor: "pointer",
+                        }}
+                    >
+                        {label}
+                    </button>
+                ))}
+            </div>
             <OnePList
                 title={<h4>Саундтреки на основі твого <span style={{ color: '#40a2ff' }}>настрою</span></h4>}
                 childs={
@@ -19,9 +40,7 @@ export default function Main() {
                             link={`/genre/${genre.id}`}
                         />
                     ))
-                }
-            />
-
+                } />
             <RowList
                 title={<h4>Топ ВАША <span style={{ color: '#40a2ff' }}>музика</span> сьогодні!</h4>}
                 prevCount={5}
@@ -39,9 +58,7 @@ export default function Main() {
                         )
                     })
                 }
-                continueLink={data.mainPage.topMusicToday.continueLink}
-            />
-
+                continueLink={data.mainPage.topMusicToday.continueLink} />
             <RowList
                 title={<h4>Нові <span style={{ color: '#40a2ff' }}>музичні</span> релізи</h4>}
                 prevCount={5}
@@ -59,9 +76,7 @@ export default function Main() {
                         )
                     })
                 }
-                continueLink={data.mainPage.newMusicReleases.continueLink}
-            />
-
+                continueLink={data.mainPage.newMusicReleases.continueLink} />
             <RowList
                 title={<h4>Твої улюблені <span style={{ color: '#40a2ff' }}>виконавці</span></h4>}
                 prevCount={4}
@@ -79,9 +94,7 @@ export default function Main() {
                             />
                         )
                     })
-                }
-            />
-
+                } />
             <OnePList
                 title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>подкастів</span></h4>}
                 childs={
@@ -97,9 +110,7 @@ export default function Main() {
                             />
                         )
                     })
-                }
-            />
-
+                } />
             <OnePList
                 title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>Аудиокниг</span></h4>}
                 childs={
