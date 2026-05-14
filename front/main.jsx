@@ -12,8 +12,8 @@ import {
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
-import Player from "./src/components/player/player.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
+import Player from "./src/components/player/player.jsx";
 import Main from "./src/App/Main.jsx";
 import PlaylistP from "./src/App/Library/PlaylistP/PlaylistP.jsx";
 import MediaListP from "./src/App/Library/MediaListP.jsx";
@@ -191,6 +191,9 @@ const Root = () => {
         <main className="main-layout__content">
           <Outlet />
         </main>
+        <div style={{ width: 310, flexShrink: 0, position: "sticky", top: 64 }}>
+          <SidebarPlayer track={currentTrack} onTogglePlay={togglePlay} onPrev={playPrev} onNext={playNext} />
+        </div>
         <FooterBar />
       </section>
 
