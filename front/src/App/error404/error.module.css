@@ -1,0 +1,226 @@
+.errorPage {
+  width: 100%;
+  height: 1246px;
+  position: relative;
+  background: black;
+  overflow: hidden;
+}
+
+.circlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  transform-origin: top left;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.overlay {
+  width: 100%;
+  height: 1246px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.19);
+  pointer-events: none;
+}
+
+.header {
+  width: 100%;
+  height: 64px;
+  padding: 0 37px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: #061420;
+  border-bottom: 0.5px solid #A6DAFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-content: center;
+  position: relative;
+}
+
+.glow {
+  width: 50.38px;
+  height: 50.38px;
+  background: rgba(0, 174.25, 255, 0.14);
+  box-shadow: 24px 24px 24px;
+  border-radius: 9999px;
+  filter: blur(12px);
+  position: absolute;
+}
+
+.logoSvg {
+  width: 62px;
+  height: 56.19px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoText {
+  margin-left: -500px;
+}
+
+.nav {
+  display: flex;
+  gap: 96px;
+}
+
+.nav a {
+  color: #88BCD6;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
+  text-decoration: none;
+}
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.phoneIcon {
+  width: 24px;
+  height: 24px;
+  background: #88BCD6;
+}
+
+.phone span {
+  color: #88BCD6;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.content {
+  width: 944px;
+  height: 944px;
+  left: 30px;
+  top: 168px;
+  position: absolute;
+  border-radius: 20px;
+}
+
+.errorNumber {
+  left: 107px;
+  top: 227px;
+  position: absolute;
+  opacity: 0.10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #23F8F8;
+  font-size: 404px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.textBlock {
+  width: 720px;
+  padding: 24px 0;
+  left: 112px;
+  top: 237px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 79px;
+}
+
+.textBlock h1 {
+  margin: 0;
+  color: #AFF0F2;
+  font-size: 60px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.textBlock p {
+  margin: 0;
+  color: #73ADC4;
+  font-size: 32px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.homeButton {
+  width: 310px;
+  height: 68px;
+  padding: 10px 24px;
+  background: rgba(0, 27.81, 52.14, 0.20);
+  border-radius: 10px;
+  outline: 1.5px solid rgba(145, 208.70, 236, 0.58);
+  outline-offset: -1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: none;
+  cursor: pointer;
+  color: #73ADC4;
+  font-size: 24px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.buttonLine {
+  width: 10px;
+  height: 20px;
+  background: #91D8EC;
+  border-radius: 1px;
+  outline: 3px solid #91D8EC;
+  outline-offset: -1.5px;
+}
+
+.homeButton div {
+  color: #91D8EC;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* Декоративное изображение справа */
+.decorImage {
+  width: 1100px;
+  height: 1188px;
+  left: 991px;
+  top: 108px;
+  position: absolute;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+
+.bottomSpacer {
+  width: 1920px;
+  height: 80px;
+  left: 0;
+  top: 1167px;
+  position: absolute;
+  background: transparent;
+}
