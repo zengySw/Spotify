@@ -6,9 +6,9 @@ export const Header_bar = () => {
   return (
     <div style={{ 
       width: '100%',
-      height: 64,
-      paddingLeft: 37, 
-      paddingRight: 37, 
+      height: 'var(--app-header-height)',
+      paddingLeft: 'clamp(12px, 3vw, 37px)', 
+      paddingRight: 'clamp(12px, 3vw, 37px)', 
       background: 'rgba(0, 18, 33, 0.80)', 
       borderBottom: '0.50px #A6DAFF solid', 
       justifyContent: 'space-between', 
@@ -23,11 +23,11 @@ export const Header_bar = () => {
     }}>
 
       <div style={{ 
-        paddingLeft: 16, 
-        paddingRight: 16, 
+        paddingLeft: 'clamp(8px, 2vw, 16px)', 
+        paddingRight: 'clamp(8px, 2vw, 16px)', 
         justifyContent: 'flex-start', 
         alignItems: 'center', 
-        gap: 20, 
+        gap: 'clamp(8px, 2vw, 20px)', 
         display: 'flex', 
         flexWrap: 'wrap', 
         alignContent: 'center' 
@@ -38,21 +38,21 @@ export const Header_bar = () => {
       <SearchBar />
 
       <div style={{ 
-        width: 119, 
-        height: 56, 
-        paddingLeft: 10, 
-        paddingRight: 10, 
-        paddingTop: 7, 
-        paddingBottom: 7, 
+        width: 'clamp(72px, 10vw, 119px)', 
+        height: 'clamp(40px, 6vw, 56px)', 
+        paddingLeft: 'clamp(6px, 1.5vw, 10px)', 
+        paddingRight: 'clamp(6px, 1.5vw, 10px)', 
+        paddingTop: 'clamp(4px, 1vw, 7px)', 
+        paddingBottom: 'clamp(4px, 1vw, 7px)', 
         borderRadius: 40, 
         justifyContent: 'center', 
         alignItems: 'center', 
-        gap: 5, 
+        gap: 'clamp(4px, 1vw, 5px)', 
         display: 'flex' 
       }}>
-        <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'flex' }}>
-          <div data-property-1="выкл" style={{ padding: 7, justifyContent: 'flex-start', alignItems: 'center', gap: 10, display: 'flex' }}>
-            <div style={{ width: 26, height: 28, position: 'relative', overflow: 'hidden' }} />
+        <div style={{ justifyContent: 'flex-start', alignItems: 'center', gap: 'clamp(8px, 2vw, 16px)', display: 'flex' }}>
+          <div data-property-1="выкл" style={{ padding: 'clamp(6px,1vw,7px)', justifyContent: 'flex-start', alignItems: 'center', gap: 'clamp(6px,1vw,10px)', display: 'flex' }}>
+            <div style={{ width: 'clamp(18px,3vw,26px)', height: 'clamp(18px,3vw,28px)', position: 'relative', overflow: 'hidden' }} />
           </div>
           <img src="././src/components/header/img/msg.svg" alt="logo" />
           <img src="././src/components/header/img/user.svg" alt="logo" />

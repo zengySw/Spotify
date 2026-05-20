@@ -2,9 +2,110 @@
 :root {
   --app-header-height: 64px;
   --app-footer-height: 78px;
+  --bp-lg: 1280px;
+  --bp-md: 900px;
+  --bp-sm: 640px;
+  --sidebar-min: 200px;
+  --sidebar-max-left: 280px;
+  --sidebar-max-right: 310px;
 }
+<<<<<<< Updated upstream
 body { background: #121212; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
 input[type=range] { cursor: pointer; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+=======
+
+body {
+  background: #121212;
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+input[type=range] {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-layout {
+  min-height: calc(100vh - var(--app-footer-height));
+  padding: var(--app-header-height) 16px calc(var(--app-footer-height) + 16px);
+  display: grid;
+  grid-template-columns: clamp(var(--sidebar-min), 18vw, var(--sidebar-max-left)) minmax(0, 1fr) clamp(var(--sidebar-min), 20vw, var(--sidebar-max-right));
+  gap: 16px;
+  box-sizing: border-box;
+  background-color: #01060f;
+  background-image:
+    radial-gradient(30% 18% at 10% 8%, rgba(90, 169, 204, 0.35) 0%, rgba(90, 169, 204, 0) 100%),
+    radial-gradient(28% 20% at 52% 16%, rgba(42, 84, 176, 0.28) 0%, rgba(42, 84, 176, 0) 100%),
+    radial-gradient(26% 20% at 82% 12%, rgba(39, 154, 154, 0.25) 0%, rgba(39, 154, 154, 0) 100%),
+    linear-gradient(180deg, #020913 0%, #01050d 58%, #00040a 100%);
+  background-repeat: no-repeat;
+}
+
+.main-layout__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.main-layout__menu,
+.main-layout__sidebar {
+  position: sticky;
+  top: var(--app-header-height);
+  height: calc(100vh - var(--app-header-height) - var(--app-footer-height));
+  align-self: start;
+}
+
+.main-layout__menu {
+  max-width: var(--sidebar-max-left);
+  width: 100%;
+}
+
+.main-layout__sidebar {
+  max-width: var(--sidebar-max-right);
+  width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .main-layout {
+    padding-top: calc(var(--app-header-height) + 12px);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .main-layout__menu,
+  .main-layout__sidebar {
+    position: static;
+    height: auto;
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-layout {
+    padding: calc(var(--app-header-height) + 8px) 12px calc(var(--app-footer-height) + 8px);
+  }
+}
+>>>>>>> Stashed changes
