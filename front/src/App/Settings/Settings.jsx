@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './setings.module.css';
-import Header_bar from "../header/header.jsx";
-import Footer_bar from "../Footer/footer.jsx";
+import Header_bar from "../../components/header/header";
+import Footer_bar from "../../components/Footer/footer";
 
 export const Seting = () => {
   // Состояния для переключателей
