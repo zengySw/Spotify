@@ -4,7 +4,8 @@ import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
 import Player from "./src/components/player/player.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
-
+import FoundPage from "./src/components/foundPage/foundPage.jsx";
+import TrackPage from "./src/components/Track/TrackPage.jsx";
 
 
 const API_URL =
@@ -37,6 +38,7 @@ function MusicNote() {
 
 export default function App() {
   const [tracks, setTracks] = useState([]);
+  const [view, setView] = useState("tracks");
   const [currentIdx, setCurrentIdx] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -189,152 +191,17 @@ export default function App() {
       }}
     >
       <HeaderBar />
-      <Menu />
-
-      <div
-        style={{
-          marginLeft: 280,
-          paddingBottom: 88,
-          paddingRight: 16,
-          minHeight: "calc(100vh - 64px)",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: "flex", gap: 10, padding: "12px 18px 10px" }}>
-              {["Всі", "Треки", "Інше"].map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  style={{
-                    minWidth: 68,
-                    height: 28,
-                    borderRadius: 6,
-                    border: "1px solid rgba(132, 184, 220, 0.45)",
-                    background: "rgba(33, 56, 77, 0.55)",
-                    color: "#d8ebfb",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-
-            {loading && (
-              <div style={{ padding: 40, textAlign: "center", color: "#666" }}>Loading tracks...</div>
-            )}
-            {error && <div style={{ padding: 40, textAlign: "center", color: "#e55" }}>{error}</div>}
-
-            {tracks.map((t, i) => {
-              const active = i === currentIdx;
-              const cover = getCover(t);
-
-              return (
-                <div
-                  key={t.id}
-                  onClick={() => playTrack(i)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    padding: "8px 24px",
-                    cursor: "pointer",
-                    borderBottom: "1px solid rgba(39, 88, 130, 0.45)",
-                    background: active ? "#1e1e1e" : "transparent",
-                    transition: "background 0.1s",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!active) e.currentTarget.style.background = "#181818";
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) e.currentTarget.style.background = "transparent";
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: 12,
-                      color: active ? "#1db954" : "#555",
-                      width: 20,
-                      textAlign: "right",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {active && isPlaying ? "||" : i + 1}
-                  </span>
-
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 4,
-                      background: "#282828",
-                      flexShrink: 0,
-                      overflow: "hidden",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {cover ? (
-                      <img
-                        src={cover}
-                        alt=""
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <MusicNote />
-                    )}
-                  </div>
-
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 500,
-                        color: active ? "#1db954" : "#fff",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {getTitle(t)}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 12,
-                        color: "#888",
-                        marginTop: 2,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {getArtist(t)}
-                      {getTags(t) && <span style={{ color: "#555", marginLeft: 8 }}>{getTags(t)}</span>}
-                    </div>
-                  </div>
-
-                  <span style={{ fontSize: 12, color: "#555", flexShrink: 0 }}>{fmt(t.duration)}</span>
-                </div>
-              );
-            })}
-          </div>
-
-          <div style={{ width: 310, flexShrink: 0, position: "sticky", top: 64 }}>
-            <SidebarPlayer track={currentTrack} onTogglePlay={togglePlay} onPrev={playPrev} onNext={playNext} />
-          </div>
-        </div>
-
-        <FooterBar />
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(240px, 15%) 1fr",
+        alignItems: "start",
+        boxSizing: "border-box",
+      }}>
+        <Menu onSelectView={setView} />
+        {view === "found" ? <FoundPage /> : <TrackPage />}
       </div>
+      
+      <FooterBar />
 
       <Player
         track={currentTrack}

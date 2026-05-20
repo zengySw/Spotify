@@ -1,0 +1,261 @@
+.found-Page-style {
+    border: 1px solid rgba(166, 218, 255, 0.8);
+    border-radius: 20px;
+    background-color: rgba(12, 12, 12, 0.1);
+    padding: 16px;
+    min-height: 1200px;
+    color: #d8ebfb;
+    margin-top: 1vh;
+    min-width: none;
+    max-width: 170vh;
+    margin-left: 1vh;
+}
+
+.found-Page-style .best-result {
+    width: 60vh;
+    height: 65vh;
+    /* background-color: rgb(195, 30, 24); */
+    background-color: rgba(12, 12, 12, 0.4);
+    border-radius: 20px;
+}
+
+.found-Page-style .best-result h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-left: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.found-Page-style .best-result img {
+    border-radius: 20px;
+    margin-left: 2vh;
+}
+
+.found-Page-style .best-result-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    margin-block-start: -210px;
+    gap: 30px;
+}
+
+.found-Page-style .best-result-text p {
+    color: #93A1B8;
+    font-size: 1.5vh;
+}
+
+.found-Page-style .best-result-text h1 {
+    color: #FFFFFF;
+    font-size: 9vh;
+}
+
+.found-Page-style .best-result-text h4 {
+    color: #FFFFFF;
+    font-size: 1.5vh;
+}
+
+.found-Page-style .best-result h3 {
+    color: #A2B4C5;
+    margin-top: 5vh;
+    width: 480px;
+    padding: 10px;
+    font-size: 2.5vh;
+    font-weight: 300;
+}
+
+.found-Page-style .tracks {
+    display: flex;
+    margin-left: 480px;
+    width: 98vh;
+    height: 65vh;
+    /* background-color: rgb(210, 60, 26); */
+    background-color: rgba(12, 12, 12, 0.4);
+    border-radius: 20px;
+    margin-top: -65vh;
+}
+
+.found-Page-style .tracks h2 {
+    font-size: 24px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-left: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    color: #BFEDFD;
+}
+
+.found-Page-style .tracks button {
+    margin-block-start: 60vh;
+    margin-left: -9vh;
+    max-width: 15vh;
+    max-height: 3vh;
+    font-Weight: "700";
+    font-Size: "12px";
+    color: #93A1B8;
+    border: 0cap;
+    background-color: rgba(147, 161, 184, 0.0);
+}
+
+.found-Page-style #albums-text {
+    padding-top: 15vh;
+    padding-left: 2vh;
+}
+
+
+.found-Page-style .albums-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    padding: 18px 2vh 32px;
+}
+
+.found-Page-style .albums-container .album-card {
+    background: rgba(24, 43, 73, 0.502);
+    border: 1px solid rgba(132, 184, 220, 0.25);
+    border-radius: 18px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+}
+
+.found-Page-style .albums-container .album-card img {
+    width: 190px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;    
+    margin-left: -13px;
+    margin-top: -20px;
+}
+
+.found-Page-style .albums-container .album-card-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.found-Page-style .albums-container .album-card-author {
+    color: #93A1B8;
+    font-size: 12px;
+}
+
+.found-Page-style #authors-text {
+    padding-top: 15vh;
+    padding-left: 2vh;
+}
+
+.found-Page-style .authors-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15vh;
+    padding: 20px 2vh 32px;
+    margin-left: 10vh;
+}
+
+.found-Page-style .authors-container .author-card {
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    gap: 10px;
+}
+
+.found-Page-style .authors-container .author-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid rgba(132, 184, 220, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.found-Page-style .authors-container .author-card-name {
+    color: #d8ebfb;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+
+.found-Page-style #podcasts-text {
+    padding-top: 15vh;
+    padding-left: 2vh;
+}
+
+.found-Page-style .podcasts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    padding: 18px 2vh 32px;
+}
+
+.found-Page-style .podcasts-container .podcast-card {
+    background: rgba(24, 43, 73, 0.502);
+    border: 1px solid rgba(132, 184, 220, 0.25);
+    border-radius: 18px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.found-Page-style .podcasts-container .podcast-card img {
+    width: 190px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;    
+    margin-left: -13px;
+    margin-top: -20px;
+}
+
+.found-Page-style .podcasts-container .podcast-card .podcasts-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.found-Page-style #profile-text {
+    padding-top: 15vh;
+    padding-left: 2vh;
+}
+
+.found-Page-style .profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15vh;
+    padding: 20px 2vh 32px;
+    margin-left: 10vh;
+}
+
+.found-Page-style .profile-container .profile-card {
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    gap: 10px;
+}
+
+.found-Page-style .profile-container .profile-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px solid rgba(132, 184, 220, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}

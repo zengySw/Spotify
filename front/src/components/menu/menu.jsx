@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import HomeIcon from "../../assets/imgs/Home.svg";
 import MyMediatekIcon from "../../assets/imgs/MyMediatek.svg";
@@ -16,18 +16,37 @@ import Stream from "../../assets/imgs/List--Streamline-Mynaui.svg.svg"
 
 
 
-function Sidebar() {
+function Sidebar({ onSelectView }) {
+  const [active, setActive] = useState("home");
+
+  const handleSelect = (key, view) => {
+    setActive(key);
+    if (view && onSelectView) onSelectView(view);
+  };
+
   return (
     <div className="sidebar-style">
       <h4 id="menu-title">Меню</h4>
-      <div className="menu-item-home">
+      <div
+        className={`menu-item-home ${active === "home" ? "active" : ""}`}
+        role="button"
+        tabIndex={0}
+        onClick={() => handleSelect("home")}
+        onKeyPress={(e) => { if (e.key === 'Enter') handleSelect("home"); }}
+      >
         <img id="HomeIcon" src={HomeIcon}/>
-        <h7>Головна</h7>
+        <h5>Головна</h5>
       </div>
 
-      <div className="menu-item">
-      <img src={MyMediatekIcon} alt="Library" className="img-style" />
-      <h7>Моя медіатека</h7>
+      <div
+        className={`menu-item ${active === "found" ? "active" : ""}`}
+        role="button"
+        tabIndex={0}
+        onClick={() => handleSelect("found", "found")}
+        onKeyPress={(e) => { if (e.key === 'Enter') handleSelect("found", "found"); }}
+      >
+        <img src={MyMediatekIcon} alt="Library" className="img-style" />
+        <h5>Моя медіатека</h5>
       </div>
 
       <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
@@ -36,18 +55,24 @@ function Sidebar() {
       <h4 >Плейлисти</h4>
       </div>
       
-      <div className="menu-item">
-      <img src={HeartIcon} alt="Playlist" className="img-style" />
-      <h7>Улюблені треки</h7>
+      <div
+        className={`menu-item ${active === "tracks" ? "active" : ""}`}
+        role="button"
+        tabIndex={0}
+        onClick={() => handleSelect("tracks", "tracks")}
+        onKeyPress={(e) => { if (e.key === 'Enter') handleSelect("tracks", "tracks"); }}
+      >
+        <img src={HeartIcon} alt="Playlist" className="img-style" />
+        <h5>Улюблені треки</h5>
       </div>
       
       <div className="menu-item">
       <img src={PlaylistIcon} alt="Heart" className="img-style" />
-      <h7>Створити плейлист</h7>
+      <h5>Створити плейлист</h5>
       </div>
 
       <div className="menu-item-your-playlists">
-      <h7>Ваші плейлисти</h7>
+      <h5>Ваші плейлисти</h5>
       <img src={YourPlayListsIcon} alt="" className="img-style-your-playlists" />
       </div>
 
@@ -93,7 +118,7 @@ function Sidebar() {
           </div>
         </div>
         <div style={{height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
-        <h7 id="MenuEnd">Нещодавно прослуханi</h7>
+        <h5 id="MenuEnd">Нещодавно прослуханi</h5>
         <img id="Stream" src={Stream} alt="" />
         <img id="SAD" src={SAD} alt="" />
     </div>

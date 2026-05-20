@@ -1,0 +1,13 @@
+.track-Page-style {
+    border: 1px solid rgba(166, 218, 255, 0.8);
+    border-radius: 20px;
+    background-color: rgba(12, 12, 12, 0.1);
+    padding: 16px;
+    min-height: 1200px;
+    color: #d8ebfb;
+    margin-top: 1vh;
+    min-width: none;
+    max-width: 170vh;
+    margin-left: 1vh;
+}
+
