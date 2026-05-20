@@ -63,3 +63,65 @@
     background: #93d3e7;
     z-index: 4;
 }
+
+@media (max-width: 768px) {
+    .playing-visualisator {
+        width: 28px;
+        height: 20px;
+        max-width: 28px;
+    }
+
+    .playing-visualisator .rectangle,
+    .playing-visualisator .rectangle-one,
+    .playing-visualisator .rectangle-two,
+    .playing-visualisator .rectangle-three {
+        width: 3px;
+    }
+
+    .playing-visualisator .rectangle {
+        height: 16px;
+    }
+
+    .playing-visualisator .rectangle-one {
+        height: 3px;
+    }
+
+    .playing-visualisator .rectangle-two {
+        height: 4px;
+    }
+
+    .playing-visualisator .rectangle-three {
+        height: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .playing-visualisator {
+        width: 24px;
+        height: 18px;
+        max-width: 24px;
+    }
+
+    .playing-visualisator .rectangle,
+    .playing-visualisator .rectangle-one,
+    .playing-visualisator .rectangle-two,
+    .playing-visualisator .rectangle-three {
+        width: 2px;
+    }
+
+    .playing-visualisator .rectangle {
+        height: 14px;
+    }
+
+    .playing-visualisator .rectangle-one {
+        height: 3px;
+    }
+
+    .playing-visualisator .rectangle-two {
+        height: 4px;
+    }
+
+    .playing-visualisator .rectangle-three {
+        height: 13px;
+    }
+}

@@ -152,3 +152,63 @@
   justify-content: center;
   font-size: 30px;
 }
+
+@media (max-width: 768px) {
+  .menu-sidebar {
+    padding: 10px 6px 14px;
+    border-radius: 8px;
+  }
+
+  .menu-title {
+    font-size: 28px;
+    margin: 6px 4px 8px;
+  }
+
+  .menu-item {
+    font-size: 14px;
+    padding: 7px 8px;
+  }
+
+  .menu-item-icon {
+    width: 16px;
+    font-size: 13px;
+  }
+
+  .menu-playlist-title {
+    font-size: 22px;
+  }
+
+  .menu-playlist-meta {
+    font-size: 10px;
+  }
+
+  .menu-clock {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-sidebar {
+    padding: 8px 4px 12px;
+  }
+
+  .menu-title {
+    font-size: 24px;
+  }
+
+  .menu-item {
+    font-size: 13px;
+    padding: 6px 7px;
+    gap: 8px;
+  }
+
+  .menu-subhead {
+    font-size: 12px;
+  }
+
+  .menu-playlist-title {
+    font-size: 18px;
+  }
+}

@@ -36,3 +36,35 @@
     height: 60%;
     box-sizing: content-box;
 }
+
+@media (max-width: 768px) {
+    .genre-card {
+        width: 150px;
+    }
+
+    .genre-card .image-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .genre-card span {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .genre-card {
+        width: 120px;
+    }
+
+    .genre-card .image-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .genre-card span {
+        font-size: 16px;
+        line-height: 22px;
+    }
+}

@@ -173,3 +173,87 @@
     white-space: nowrap;
     z-index: 11;
 }
+
+@media (max-width: 768px) {
+    .audio-book-card {
+        gap: 15px;
+    }
+
+    .audio-book-card img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .audio-book-card .frame {
+        height: 180px;
+    }
+
+    .audio-book-card .frame .text-container .naming .title,
+    .audio-book-card .frame .text-container .naming .author {
+        font-size: 14px;
+        height: 17px;
+        line-height: 17px;
+    }
+
+    .audio-book-card .frame .text-container .genre {
+        font-size: 12px;
+        height: 15px;
+        line-height: 15px;
+    }
+
+    .audio-book-card .text-container .description {
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .audio-book-card .frame .footer .date,
+    .audio-book-card .frame .footer .duration {
+        font-size: 12px;
+        line-height: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .audio-book-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .audio-book-card img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .audio-book-card .frame {
+        height: auto;
+        min-height: 150px;
+    }
+
+    .audio-book-card .frame .text-container .naming .title,
+    .audio-book-card .frame .text-container .naming .author {
+        font-size: 13px;
+        height: 16px;
+        line-height: 16px;
+        white-space: normal;
+    }
+
+    .audio-book-card .frame .text-container .genre {
+        font-size: 11px;
+        height: 14px;
+        line-height: 14px;
+    }
+
+    .audio-book-card .text-container .description {
+        font-size: 12px;
+        line-height: 17px;
+        -webkit-line-clamp: 3;
+    }
+
+    .audio-book-card .frame .footer .date,
+    .audio-book-card .frame .footer .duration {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}

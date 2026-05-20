@@ -240,3 +240,43 @@
     margin-left: auto;
   }
 }
+
+@media (max-width: 480px) {
+  .player-bar {
+    padding: 8px 10px;
+  }
+
+  .album-art {
+    width: 36px;
+    height: 36px;
+  }
+
+  .track-title {
+    font-size: 11px;
+  }
+
+  .artist-name {
+    font-size: 10px;
+  }
+
+  .play-button {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .icon-placeholder.secondary {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+
+  .volume-slider {
+    width: 70px;
+  }
+
+  .time {
+    width: 28px;
+    font-size: 9px;
+  }
+}

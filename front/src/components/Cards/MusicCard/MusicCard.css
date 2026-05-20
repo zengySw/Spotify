@@ -83,3 +83,42 @@
     z-index: 5;
     width: fit-content;
 }
+
+@media (max-width: 768px) {
+    .music-card {
+        padding: 3px;
+        border-radius: 8px;
+    }
+
+    .music-card .footer .song-title {
+        font-size: 14px;
+        height: 20px;
+        line-height: 19px;
+    }
+
+    .music-card .footer .artists,
+    .music-card .footer .group-tracks {
+        font-size: 9px;
+        height: 12px;
+        line-height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-card {
+        padding: 2px;
+    }
+
+    .music-card .footer .song-title {
+        font-size: 12px;
+        height: 18px;
+        line-height: 17px;
+    }
+
+    .music-card .footer .artists,
+    .music-card .footer .group-tracks {
+        font-size: 8px;
+        height: 11px;
+        line-height: 11px;
+    }
+}

@@ -71,3 +71,56 @@
     white-space: nowrap;
     z-index: 2;
 }
+
+@media (max-width: 768px) {
+    .artist-card {
+        width: 25%;
+    }
+
+    .artist-card .image-container {
+        width: 160px;
+        height: 160px;
+        border-radius: 160px;
+    }
+
+    .artist-card .footer .artist-name {
+        font-size: 16px;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .artist-card .footer .followers {
+        font-size: 12px;
+        height: 16px;
+        line-height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-card {
+        width: 30%;
+    }
+
+    .artist-card .image-container {
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+    }
+
+    .artist-card .footer {
+        gap: 1px;
+        margin: 8px 0 0 0;
+    }
+
+    .artist-card .footer .artist-name {
+        font-size: 14px;
+        height: 18px;
+        line-height: 18px;
+    }
+
+    .artist-card .footer .followers {
+        font-size: 11px;
+        height: 14px;
+        line-height: 14px;
+    }
+}

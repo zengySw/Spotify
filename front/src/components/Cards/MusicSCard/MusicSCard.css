@@ -188,3 +188,180 @@
     white-space: nowrap;
     z-index: 16;
 }
+
+@media (max-width: 1024px) {
+    .music-s-card .card {
+        width: 100%;
+        gap: 30px;
+    }
+
+    .music-s-card .card .frame {
+        gap: 120px;
+    }
+
+    .music-s-card .card .frame .naming {
+        width: 220px;
+    }
+
+    .music-s-card .card .frame .naming .title {
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+    .music-s-card .card .frame .naming .artists {
+        font-size: 13px;
+    }
+
+    .music-s-card .card .frame .about {
+        gap: 60px;
+    }
+
+    .music-s-card .card .frame .about .alboum {
+        width: 240px;
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+    .music-s-card .card .frame .about .frame {
+        gap: 100px;
+        width: 320px;
+    }
+
+    .music-s-card .card .frame .about .frame .add-date,
+    .music-s-card .card .frame .about .frame .listen-count {
+        width: 140px;
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+    .music-s-card .card .frame .about .frame .duration {
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
+
+@media (max-width: 768px) {
+    .music-s-card {
+        padding: 0 10px;
+    }
+
+    .music-s-card .card {
+        gap: 20px;
+    }
+
+    .music-s-card .card .frame {
+        gap: 80px;
+    }
+
+    .music-s-card .card .frame .naming {
+        width: 180px;
+    }
+
+    .music-s-card .card .frame .naming .title {
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .music-s-card .card .frame .naming .artists {
+        font-size: 12px;
+    }
+
+    .music-s-card .card .frame .about {
+        gap: 40px;
+    }
+
+    .music-s-card .card .frame .about .alboum {
+        width: 180px;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .music-s-card .card .frame .about .frame {
+        gap: 60px;
+        width: 260px;
+    }
+
+    .music-s-card .card .frame .about .frame .add-date,
+    .music-s-card .card .frame .about .frame .listen-count {
+        width: 110px;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .music-s-card .card .frame .about .frame .duration {
+        font-size: 16px;
+        line-height: 19px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-s-card {
+        padding: 0 8px;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .music-s-card .card {
+        width: 100%;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .music-s-card .card .image-container img {
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .music-s-card .card .frame {
+        gap: 20px;
+        width: 100%;
+    }
+
+    .music-s-card .card .frame .naming {
+        width: 100%;
+    }
+
+    .music-s-card .card .frame .naming .title {
+        font-size: 14px;
+        line-height: 17px;
+        white-space: normal;
+    }
+
+    .music-s-card .card .frame .naming .artists {
+        font-size: 11px;
+    }
+
+    .music-s-card .card .frame .about {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .music-s-card .card .frame .about .alboum {
+        width: 100%;
+        max-width: 150px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .music-s-card .card .frame .about .frame {
+        gap: 30px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .music-s-card .card .frame .about .frame .add-date,
+    .music-s-card .card .frame .about .frame .listen-count {
+        width: auto;
+        flex: 1;
+        min-width: 0;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    .music-s-card .card .frame .about .frame .duration {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

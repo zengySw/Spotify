@@ -37,3 +37,44 @@
     gap: 16px;
     width: 100%;
 }
+
+@media (max-width: 768px) {
+    .one-p-list {
+        gap: 20px;
+    }
+
+    .one-p-list>p,
+    .one-p-list>h1,
+    .one-p-list>h2,
+    .one-p-list>h3,
+    .one-p-list>h4 {
+        width: 100%;
+        font-size: 20px;
+        line-height: 24px;
+        white-space: normal;
+    }
+
+    .one-p-list .list {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .one-p-list {
+        gap: 16px;
+    }
+
+    .one-p-list>p,
+    .one-p-list>h1,
+    .one-p-list>h2,
+    .one-p-list>h3,
+    .one-p-list>h4 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .one-p-list .list {
+        gap: 10px;
+    }
+}

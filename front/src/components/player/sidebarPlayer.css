@@ -140,3 +140,69 @@
   background-color: #7bafdf;
   opacity: 0.8;
 }
+
+@media (max-width: 768px) {
+  .sidebar-player {
+    padding: 8px 8px 12px;
+    border-radius: 10px;
+  }
+
+  .radio-title {
+    font-size: 15px;
+  }
+
+  .song-title {
+    font-size: 18px;
+  }
+
+  .artist-card-title {
+    font-size: 24px;
+  }
+
+  .main-cover img,
+  .artist-photo {
+    aspect-ratio: 1 / 1;
+  }
+
+  .subscribe-btn {
+    font-size: 8px;
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-player {
+    padding: 6px 6px 10px;
+    gap: 8px;
+  }
+
+  .sidebar-header {
+    padding: 6px 10px;
+  }
+
+  .radio-title {
+    font-size: 13px;
+  }
+
+  .song-title {
+    font-size: 16px;
+  }
+
+  .track-info-section {
+    padding: 6px 8px;
+  }
+
+  .artist-card-title {
+    font-size: 20px;
+  }
+
+  .monthly-listeners {
+    font-size: 11px;
+    max-width: 140px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+}
