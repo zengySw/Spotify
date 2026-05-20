@@ -47,10 +47,11 @@ function Sidebar() {
         <h3>Улюблені треки</h3>
       </NavLink>
 
-      <div className="menu-item ">
+      <NavLink to="/404" className={({ isActive }) =>
+        isActive ? "menu-item Selected-item" : "menu-item"}>
         <img src={PlaylistIcon} alt="Heart" className="img-style" />
         <h3>Створити плейлист</h3>
-      </div>
+      </NavLink>
 
       <div className="menu-item-your-playlists">
         <h3>Ваші плейлисти</h3>

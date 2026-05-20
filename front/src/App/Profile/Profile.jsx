@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import HeaderBar from "./src/components/header/header.jsx";
-import FooterBar from "./src/components/Footer/footer.jsx";
-import Menu from "./src/components/menu/menu.jsx";
-import Player from "./src/components/player/player.jsx";
-import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
+import HeaderBar from "../../components/header/header";
+import FooterBar from "../../components/Footer/footer";
+import Menu from "../../components/menu/menu.jsx";
+import Player from "../../components/player/player.jsx";
 
 const API_URL =
   "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";

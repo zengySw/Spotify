@@ -1,9 +1,11 @@
-import React from 'react';
-import styles from './ForgotPass.module.css';
+import React, { useState } from 'react';
+import styles from './NewPass.module.css';
+import {Link} from 'react-router-dom';
 
 export const ForgotPass = () => {
+
   return (
-    <div className={styles.loginPage}>
+    <div className={styles.page}>
       <div className={styles.bgCircles}>
         <div className={styles.circle} style={{ width: 286, height: 286, left: 288.09, top: 1953.89, transform: 'rotate(165deg)', background: '#04142D' }} />
         <div className={styles.circle} style={{ width: 286, height: 286, left: 35.58, top: 1873.50, transform: 'rotate(165deg)', background: '#52B9F4' }} />
@@ -15,7 +17,7 @@ export const ForgotPass = () => {
         <div className={styles.circle} style={{ width: 486.91, height: 490.15, left: 1802.33, top: 1754.72, transform: 'rotate(172deg)', background: 'rgba(47, 111, 243, 0.43)' }} />
         <div className={styles.circle} style={{ width: 410.41, height: 413.14, left: 1738.94, top: 170.46, transform: 'rotate(172deg)', background: 'rgba(47, 243, 180.93, 0.60)' }} />
         <div className={styles.circle} style={{ width: 410.41, height: 413.14, left: 302.71, top: 1831.26, transform: 'rotate(172deg)', background: 'rgba(47, 243, 180.93, 0.26)' }} />
-        <div className={styles.circle} style={{ width: 486.91, height: 490.15, left: 522.73, top: 636.39, transform: 'rotate(172deg)', background: 'rgba(47, 138.47, 243, 0.43)' }} />
+        <div className={styles.circle} style={{ width: 486.91, height: 490.15, left: 522.74, top: 636.39, transform: 'rotate(172deg)', background: 'rgba(47, 138.47, 243, 0.43)' }} />
         <div className={styles.circle} style={{ width: 486.91, height: 490.15, left: 1878.38, top: 1103.79, transform: 'rotate(172deg)', background: 'rgba(47, 135.20, 243, 0.43)' }} />
         <div className={styles.circle} style={{ width: 625.68, height: 625.68, left: 1324.62, top: 582.58, transform: 'rotate(172deg)', background: 'rgba(47, 111, 243, 0.73)' }} />
         <div className={styles.circle} style={{ width: 625.68, height: 625.68, left: 2071.80, top: 605.29, transform: 'rotate(172deg)', background: 'rgba(47, 174.40, 243, 0.45)' }} />
@@ -39,29 +41,48 @@ export const ForgotPass = () => {
       <div className={styles.overlay} />
 
       <div className={styles.formContainer}>
-        <a href="/login" className={styles.backLink}>Назад</a>
-        <div className={styles.logoWrapper}>
-          <img src="./src/components/pages/Login/img/logo.svg" alt="logo" />
-        </div>
-        <div className={styles.formWrapper}>
-          <div>
-            <h2 className={styles.title}>Забули пароль?</h2>
-            <p className={styles.description}>
-              Введіть 6-значный код, який ми відправили вам на адресу G*****2@G*l.com
-            </p>
+        <Link to={{pathname: "/",}} className={styles.backLink}>Назад</Link>
 
-            <div className={styles.codeField}>
-              <label className={styles.codeLabel}>Код</label>
-              <input className={styles.codeInput} type="text" placeholder="000-00" />
+        <div className={styles.formWrapper}>
+          <div className={styles.logoWrapper}>
+            <img src="./src/components/pages/Login/img/logo.svg" alt="logo" />
+          </div>
+          <h2 className={styles.title}>Придумайте новий пароль</h2>
+
+          <div className={styles.inputGroup}>
+            <div className={styles.passwordField}>
+              <label className={styles.passwordLabel}>Пароль</label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  className={styles.passwordInput}
+                  placeholder="*************"
+                  type='password'
+                />
+                <img
+                  src={`./src/components/pages/Register/img/visibility_off.svg`} className={styles.eyeIcon}
+                />
+              </div>
+            </div>
+
+            <div className={styles.passwordField}>
+              <label className={styles.passwordLabel}>Повторіть пароль</label>
+              <div className={styles.passwordWrapper}>
+                <input
+                  className={styles.passwordInput}
+                  placeholder="*************"
+                  type='password'
+
+                />
+                <img src={`./src/components/pages/Register/img/visibility_off.svg`} className={styles.eyeIcon}
+                />
+              </div>
             </div>
           </div>
-          <div className={styles.continueButton}>
-            <a href="/new-passord">Продовжити</a>
-          </div>
+
+          <a href="/login" className={styles.changeButton}>Змінити пароль</a>
 
           <div className={styles.orDivider}>або</div>
-
-          <button className={styles.resendButton}>Отримайте новий код</button>
+          <a href="/forgot-password" className={styles.resendButton}>Отримайте новий код</a>
 
           <div className={styles.loginLinkRow}>
             <span>Згадали пароль?</span>

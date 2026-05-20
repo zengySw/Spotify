@@ -14,9 +14,17 @@ import FooterBar from "./src/components/Footer/footer.jsx";
 import Menu from "./src/components/menu/menu.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
 import Player from "./src/components/player/player.jsx";
+/* pages */
 import Main from "./src/App/Main.jsx";
 import PlaylistP from "./src/App/Library/PlaylistP/PlaylistP.jsx";
 import MediaListP from "./src/App/Library/MediaListP.jsx";
+import Profile from "./src/App/Profile/Profile.jsx";
+import Login from "./src/App/Login/Login.jsx";
+import Register from "./src/App/Register/Register.jsx";
+import Settings from "./src/App/Settings/Settings.jsx";
+import Error from "./src/App/error404/error.jsx";
+import NewPass from "./src/App/ForgotPass/newPass.jsx";
+import ForgotPass from "./src/App/ForgotPass/ForgotPass.jsx";
 
 import { getPlaylistById } from './src/hooks/dataHooks.js';
 
@@ -217,6 +225,14 @@ const router = createBrowserRouter(
       <Route index element={<Main />} />
       <Route path='media' element={<MediaListP title="Моя медіатека" userId={0} />} />
       <Route path="playlist" element={<PlaylistP {...getPlaylistById(1)} />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="Login" element={<Login />} />
+      <Route path="Register" element={<Register />} />
+      <Route path="Settings" element={<Settings />} />
+      <Route path="404" element={<Error />} />
+      <Route path="forgot-password" element={<ForgotPass />} />
+      <Route path="NewPass" element={<NewPass />} />
+
     </Route>
   )
 );
