@@ -1,0 +1,8 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+  gap: 78px;
+  padding: 66px;
+  border: #A6DAFF 0.5px solid;
+  border-radius: 20px;
+}

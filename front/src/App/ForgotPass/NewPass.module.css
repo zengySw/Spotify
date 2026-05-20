@@ -1,0 +1,317 @@
+/* NewPass.module.css */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: black;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgCircles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  transform-origin: top left;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.19);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formContainer {
+  width: 600px;
+  max-width: calc(100% - 40px);
+  margin-top: 132px;
+  margin-bottom: 60px;
+  background: #001527;
+  border-color: #A6DAFF;
+  border-width: 0.5px;
+  border-style: solid;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.backLink {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  padding: 10px;
+  border-bottom: 1px solid #93B7FF;
+  color: #93B7FF;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 548px;
+  margin: 0 auto;
+  padding: 40px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.title {
+  color: #F0F0F0;
+  font-size: 32px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 26px 0;
+}
+
+.inputGroup {
+  width: 100%;
+  max-width: 408px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.passwordField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passwordLabel {
+  padding-left: 10px;
+  color: #F0F0F0;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 11px 40px 11px 20px;
+  background: #001527;
+  border-radius: 10px;
+  outline: 1px solid rgba(146.71, 182.80, 255, 0.50);
+  outline-offset: -1px;
+  border: none;
+  color: #56688D;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.eyeIcon:hover {
+  opacity: 1;
+}
+
+.changeButton {
+  width: 100%;
+  max-width: 352px;
+  margin: 0 auto;
+  padding: 10px;
+  background: #00A6FF;
+  border-radius: 10px;
+  border: none;
+  color: #000311;
+  font-size: 20px;
+  font-family: 'Core Sans A 55 Medium', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orDivider {
+  text-align: center;
+  color: rgba(136.08, 221.31, 255, 0.50);
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 10px 0;
+}
+
+.resendButton {
+  width: 100%;
+  max-width: 356px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  background: rgba(0, 27.81, 52.14, 0.20);
+  border-radius: 10px;
+  outline: 1.5px solid #496999;
+  outline-offset: -1.5px;
+  border: none;
+  color: #496999;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  text-align: center;
+}
+
+.loginLinkRow {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 27px;
+}
+
+.loginLinkRow span {
+  color: rgba(146.71, 182.80, 255, 0.70);
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.loginLinkRow a {
+  color: #93B7FF;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .formContainer {
+    margin-top: 80px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .passwordLabel {
+    font-size: 18px;
+  }
+  .changeButton {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    margin-top: 60px;
+    border-radius: 16px;
+  }
+  .backLink {
+    left: 20px;
+    top: 20px;
+    font-size: 14px;
+  }
+  .formWrapper {
+    padding: 60px 16px 30px;
+    gap: 30px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .passwordLabel {
+    font-size: 16px;
+  }
+  .passwordInput {
+    font-size: 14px;
+    height: 38px;
+    padding: 8px 36px 8px 16px;
+  }
+  .changeButton {
+    font-size: 16px;
+    padding: 8px;
+  }
+  .resendButton {
+    font-size: 14px;
+  }
+  .loginLinkRow span,
+  .loginLinkRow a {
+    font-size: 12px;
+  }
+  /* Скрываем круги на мобильных */
+  .bgCircles .circle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    margin-top: 30px;
+    border-radius: 12px;
+  }
+  .backLink {
+    left: 12px;
+    top: 12px;
+    font-size: 12px;
+  }
+  .formWrapper {
+    padding: 50px 12px 20px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .passwordLabel {
+    font-size: 14px;
+    padding-left: 5px;
+  }
+  .passwordInput {
+    font-size: 13px;
+    height: 36px;
+    padding: 6px 32px 6px 12px;
+  }
+  .changeButton {
+    font-size: 14px;
+  }
+}
