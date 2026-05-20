@@ -12,6 +12,7 @@
     background: rgba(23, 42, 72, 0.5);
     border-radius: 10px;
     padding: 4px;
+    border: none;
 }
 
 .music-card .image-container {

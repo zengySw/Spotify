@@ -80,7 +80,7 @@
 }
 
 /* Карточка артиста */
-.artist-card {
+.sidebar-player .artist-card {
   background: rgba(20, 20, 20, 0.95);
   border-radius: 6px;
   display: flex;
@@ -89,18 +89,18 @@
   padding-bottom: 16px;
 }
 
-.artist-photo {
+.sidebar-player .artist-photo {
   width: 100%;
   aspect-ratio: 382 / 323;
   
   object-fit: cover;
 }
 
-.artist-details {
+.sidebar-player .artist-details {
   padding: 0 8px;
 }
 
-.artist-card-title {
+.sidebar-player .artist-card-title {
   color: white;
   font-size: 30px;
   font-family: 'Inter', sans-serif;
@@ -108,7 +108,7 @@
   margin: 0 0 8px 0;
 }
 
-.artist-stats {
+.sidebar-player .artist-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;

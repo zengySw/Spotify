@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-const API_URL =
-  "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
+const env = import.meta.env;
+
+const API_URL = '/jamendo/tracks';
+const CLIENT_ID = env.VITE_USER_ID;
 
 function normalizeTracks(data) {
   if (Array.isArray(data)) return data;
-  return data?.data || data?.items || data?.tracks || [];
+  return data?.results || data?.tracks || [];
 }
 
 export default function useMusicPlayer() {
@@ -21,7 +23,13 @@ export default function useMusicPlayer() {
   const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    fetch(API_URL)
+    const params = new URLSearchParams({
+      client_id: CLIENT_ID,
+      format: "json",
+      limit: 50,
+    });
+
+    fetch(`${API_URL}/?${params}`)
       .then((r) => r.json())
       .then((data) => {
         setTracks(normalizeTracks(data));
@@ -32,6 +40,7 @@ export default function useMusicPlayer() {
         setLoading(false);
       });
   }, []);
+
 
   useEffect(() => {
     const audio = audioRef.current;

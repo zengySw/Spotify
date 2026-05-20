@@ -1,9 +1,15 @@
 import "./PlaylistP.css";
 import { MusicSCard } from "../../../components/Cards";
-import { useState } from "react";
-import { getTrackById } from "../../../hooks/dataHooks";
+import { useState, useEffect } from "react";
+import { getTrackById, getPlaylistById } from "../../../hooks/dataHooks";
+import { useParams } from "react-router-dom";
 
-export default function PlaylistP({ name, icon, author, tracks = [] }) {
+export default function PlaylistP() {
+    const { id } = useParams();
+
+    const [playlist, setPlaylist] = useState(null);
+    const [tracks, setTracks] = useState([]);
+
     const [sortBy, setSortBy] = useState("date");
     const sortOptions = [
         { value: "date", label: "Дата додавання" },
@@ -12,16 +18,43 @@ export default function PlaylistP({ name, icon, author, tracks = [] }) {
         { value: "album", label: "Альбом" },
     ];
 
+    useEffect(() => {
+        const loadPlaylist = async () => {
+            const data = await getPlaylistById(id);
+            if (!data) return;
+            setPlaylist(data);
+        };
+        loadPlaylist();
+    }, [id]);
+
+    useEffect(() => {
+        if (!playlist) return;
+
+        const loadTracks = async () => {
+            const results = await Promise.all(
+                playlist.tracks.map(id => getTrackById(id))
+            );
+
+            setTracks(results.filter(Boolean));
+        };
+
+        loadTracks();
+    }, [playlist]);
+
+    if (!playlist) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="playlist">
-            <div className="playlist-header" style={{ backgroundImage: `url(${icon})` }}>
+            <div className="playlist-header" style={{ backgroundImage: `url(${playlist.icon})` }}>
                 <p>Плейлист</p>
-                <h3>{name}</h3>
+                <h3>{playlist.name}</h3>
                 <div className="author">
-                    <img src={author.icon} alt={author.name} />
-                    <span>{author.name}</span>
+                    <img src={playlist.author.icon} alt={playlist.author.name} />
+                    <span>{playlist.author.name}</span>
                     <br />
-                    <span>{tracks.length} треків</span>
+                    <span>{playlist.tracks.length} треків</span>
                 </div>
             </div>
             <div className="controls">
@@ -41,17 +74,11 @@ export default function PlaylistP({ name, icon, author, tracks = [] }) {
                 </div>
                 <div className="playlist-tracks-list">
                     {tracks.map((track, index) => {
-                        const currentTrack = getTrackById(track.trackId)
-
-                        if (!currentTrack) return null
-
                         return (
                             <MusicSCard
-                                key={currentTrack.id}
+                                key={index}
                                 num={index + 1}
-                                {...currentTrack}
-                                artists={currentTrack.artists}
-                                addDate={track.addDate}
+                                {...track}
                             />
                         )
                     })}
