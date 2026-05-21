@@ -1,7 +1,7 @@
 import "./Main.css";
 import { OnePList, RowList } from "../components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
-import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById, getArtistById } from "../hooks/dataHooks";
+import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
 import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
@@ -25,8 +25,6 @@ export default function Main() {
 
         getMyArtists(8)
             .then(results => setTopArtists(results));
-
-        getArtistById("2z20q6EEfm6w6PiIKsgtb3").then(data => { console.log(data) });
 
     }, []);
 

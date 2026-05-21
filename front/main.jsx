@@ -1,6 +1,5 @@
 ﻿import ReactDOM from 'react-dom/client';
 import './index.css';
-import { StrictMode, useState, useEffect, useRef } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -55,7 +54,6 @@ function MusicNote() {
     </svg>
   );
 }
-
 
 const Root = () => {
 
