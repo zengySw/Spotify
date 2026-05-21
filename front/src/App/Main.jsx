@@ -26,7 +26,7 @@ export default function Main() {
         getMyArtists(8)
             .then(results => setTopArtists(results));
 
-        getArtistById("4MCBfE4596Uoi2O4DtmEMz").then(data => { console.log(data) });
+        getArtistById("2z20q6EEfm6w6PiIKsgtb3").then(data => { console.log(data) });
 
     }, []);
 
