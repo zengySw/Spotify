@@ -48,42 +48,40 @@
             "title": "Топ ВАША музика сьогодні!",
             "continueLink": "/media/playlist/3",
             "tracks": [
-                168,
-                169,
-                170,
-                171,
-                172,
-                173,
-                174
+                "2Nti2yhOJ8iEgFAfcXPhBU",
+                "2bbda52278e5473a",
+                "2f0354d99ca94593",
+                "955a08f2dd2b47d4",
+                "436966d11d9f4dc6",
+                "76bb09f05b2d4c33",
+                "cf9ff74dc82841e3"
             ]
         },
         "newMusicReleases": {
             "title": "Нові музичні релізи",
             "continueLink": "/media/playlist/4",
             "albums": [
-                24,
-                25,
-                28,
-                31,
-                32,
-                33,
-                35,
-                36,
-                43,
-                44
+                "6ul9rF8H5L4cO2zyY6FWN8",
+                "7aPqnYaDN3HVZdvIAIXLhF",
+                "5S59FQyN8TvyRXD63fCc4j",
+                "3Mp2TOTZpTGvU1cExaHs7w",
+                "6ul9rF8H5L4cO2zyY6FWN8",
+                "7aPqnYaDN3HVZdvIAIXLhF",
+                "5S59FQyN8TvyRXD63fCc4j",
+                "3Mp2TOTZpTGvU1cExaHs7w"
             ]
         },
         "topArtists": {
             "title": "Твої улюблені виконавці",
             "artists": [
-                5,
-                6,
-                7,
-                9,
-                13,
-                14,
-                16,
-                15
+                "4MCBfE4596Uoi2O4DtmEMz",
+                "2z20q6EEfm6w6PiIKsgtb3",
+                "2ye2Wgw4gimLv2eAKyk1NB",
+                "5gL5FGeuSIhu0iNFC22UyY",
+                "4MCBfE4596Uoi2O4DtmEMz",
+                "2z20q6EEfm6w6PiIKsgtb3",
+                "2ye2Wgw4gimLv2eAKyk1NB",
+                "5gL5FGeuSIhu0iNFC22UyY"
             ]
         },
         "newPodcasts": {

@@ -9,6 +9,8 @@ const USER_ID = env.VITE_USER_ID;
 const MAX_TRACKS = env.VITE_MAX_TRACKS;
 const API_KEY = env.VITE_API_KEY;
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const apiRequest = async (endpoint, params = {}) => {
     const query = new URLSearchParams({
         client_id: USER_ID,
@@ -28,6 +30,71 @@ const apiRequest = async (endpoint, params = {}) => {
     return data.results || [];
 };
 
+let cachedToken = null;
+let tokenExpiry = 0;
+
+const getToken = async () => {
+    if (cachedToken && Date.now() < tokenExpiry) return cachedToken;
+    const res = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: "Basic " + btoa(`${import.meta.env.VITE_SPOTIFY_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_CLIENT_SECRET}`)
+        },
+        body: new URLSearchParams({
+            grant_type: "refresh_token",
+            refresh_token: import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
+        })
+    });
+    const data = await res.json();
+    cachedToken = data.access_token;
+    tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
+    return cachedToken;
+};
+
+const spotifyApiRequest = async (endpoint, params = {}) => {
+    const query = new URLSearchParams(params);
+    const url = `/spotify/${endpoint}?${query.toString()}`;
+
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${await getToken()}`,
+        },
+    });
+
+    if (!res.ok) {
+        const text = await res.text();
+        console.error("Spotify error:", res.status, text);
+        throw new Error(text);
+    }
+
+    return await res.json();
+};
+
+const mapTrack = (result) => ({
+    id: result.id,
+    title: result.name,
+    artists: (result.artists || []).map(a => a.name),
+    icon: result.album?.images?.[0]?.url || "/default-avatar.jpg",
+    album: result.album?.name || "",
+    duration: result.duration_ms,
+    addDate: null
+});
+
+const mapArtist = (artist) => ({
+    ...artist,
+    icon: artist.images?.[0]?.url || "/default-avatar.jpg",
+    followers: artist.followers?.total || Math.floor(Math.random() * 50000) + 1000
+});
+
+const mapAlbum = (album) => ({
+    ...album,
+    title: album.name,
+    artists: album.artists?.map(a => a.name) || [],
+    icon: album.images?.[0]?.url || "",
+    groupTracks: album.total_tracks || 0
+});
+
 const getInfoByName = async (endpoint, params = {}) => {
     const query = new URLSearchParams({
         api_key: API_KEY,
@@ -46,73 +113,85 @@ const getInfoByName = async (endpoint, params = {}) => {
 };
 
 export const getTrackById = async (id) => {
-    const results = await apiRequest("tracks", {
-        id,
-    });
-
-    const info = await getInfoByName("track", {
-        artist: results[0]?.artist_name,
-        track: results[0]?.name,
-    });
-
-    results.map(track => {
-        track.title = track.name;
-        track.artists = Array.isArray(track.artist_name) ? track.artist_name : [track.artist_name];
-        track.icon = track.image;
-        track.album = track.album_name;
-        track.addDate = track.releasedate;
-    });
-
-    return results[0] || null;
+    const cleanId = id.split("?")[0];
+    const result = await spotifyApiRequest(`tracks/${cleanId}`, { market: "UA" });
+    return result ? mapTrack(result) : null;
 };
 
 export const getArtistById = async (id) => {
-    const results = await apiRequest("artists", {
-        id,
-    });
-
-    const info = await getInfoByName("artist", {
-        artist: results[0]?.name,
-    });
-
-    results.map(artist => {
-        artist.icon = artist.image;
-        artist.followers = Number(info?.artist?.stats?.listeners) || 0;
-    });
-
-    return results[0] || null;
+    const result = await spotifyApiRequest(`artists/${id.split("?")[0]}`);
+    return result ? mapArtist(result) : null;
 };
 
 export const getAlbumById = async (id) => {
-    const results = await apiRequest("albums", {
-        id,
-    });
-
-    const info = await getInfoByName("album", {
-        artist: results[0]?.artist_name,
-        album: results[0]?.name,
-    });
-
-    results.map(album => {
-        album.title = album.name;
-        album.artists = Array.isArray(album.artist_name) ? album.artist_name : [album.artist_name];
-        album.icon = album.image;
-        album.groupTracks = Number(info?.album?.tracks?.track?.length) || 0;
-    });
-
-    return results[0] || null;
+    const result = await spotifyApiRequest(`albums/${id.split("?")[0]}`, { market: "UA" });
+    return result ? mapAlbum(result) : null;
 };
 
-export const getTracks = async () => {
-    return await apiRequest("tracks");
+export const getRecommendations = async (max = 100, { genres = [] } = {}) => {
+    const playlist = await getPlaylistById("3f2LmvIeHgvY8UKJPUbhR9", { limit: max });
+    return playlist?.tracks || [];
 };
 
-export const getArtists = async () => {
-    return await apiRequest("artists");
+export const getTracksByIds = async (ids) => {
+    const uniqueIds = [...new Set(ids.map(id => id.split("?")[0]))];
+    const results = [];
+    for (const id of uniqueIds) {
+        try {
+            const track = await getTrackById(id);
+            if (track) results.push(track);
+        } catch { }
+        await delay(300);
+    }
+    return results;
 };
 
-export const getAlbums = async () => {
-    return await apiRequest("albums");
+export const getArtistsByIds = async (ids) => {
+    const uniqueIds = [...new Set(ids.map(id => id.split("?")[0]))];
+    const results = [];
+    for (const id of uniqueIds) {
+        try {
+            const artist = await getArtistById(id);
+            if (artist) results.push(artist);
+        } catch { }
+        await delay(300);
+    }
+    return results;
+};
+
+export const getAlbumsByIds = async (ids) => {
+    const uniqueIds = [...new Set(ids.map(id => id.split("?")[0]))];
+    const results = [];
+    for (const id of uniqueIds) {
+        try {
+            const album = await getAlbumById(id);
+            if (album) results.push(album);
+        } catch { }
+        await delay(300);
+    }
+    return results;
+};
+
+export const getMyAlbums = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/albums", {
+        limit,
+        offset,
+        market: "UA",
+    });
+
+    return (result.items || []).map(item => mapAlbum(item.album));
+};
+
+export const getMyArtists = async (limit = 50) => {
+    const result = await spotifyApiRequest("me/following", {
+        limit: limit,
+        market: "UA",
+        type: "artist"
+    });
+
+    console.log(result)
+
+    return (result?.artists?.items || []).map(item => mapArtist(item));
 };
 
 export const searchTracks = async (search) => {
@@ -145,28 +224,39 @@ export const getAudiobookById = (id) => {
     );
 };
 
-export const getPlaylistById = async (id) => {
-    const results = await apiRequest("playlists", {
-        id,
+export const getPlaylistById = async (id, { limit = 100 } = {}) => {
+    const playlist = await spotifyApiRequest(`playlists/${id}`);
+    if (!playlist) return null;
+
+    const tracksRes = await spotifyApiRequest(`playlists/${id}/items`, {
+        offset: playlist.items.total ? playlist.items.total - 100 : 0,
+        limit: limit,
+        market: "EU",
+        fields: "items(added_at,item(id,name,album(name,images), duration_ms, artists(name)))"
     });
 
-    if (!results[0]) return null;
+    return {
+        id: playlist.id,
+        name: playlist.name,
+        icon: playlist.images?.[0]?.url || "",
 
-    const tracks = await apiRequest("playlists/tracks", {
-        id,
-    });
+        author: {
+            name: playlist.owner?.display_name || "Unknown",
+            icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
+        },
 
-    const user = await getUserById(results[0].user_id);
-
-    results.map(playlist => {
-        playlist.icon = playlist.image;
-        playlist.tracks = tracks[0].tracks.map(track => track.id);
-        playlist.author = user ? { name: user.username, icon: user.avatar } : { name: "Unknown", icon: "" };
-    });
-
-    console.log(results[0]);
-
-    return results[0];
+        tracks: (tracksRes.items || [])
+            .filter(item => item?.item)
+            .map(item => ({
+                id: item.item.id,
+                title: item.item.name,
+                icon: item.item.album?.images?.[0]?.url || "",
+                album: item.item.album?.name || "",
+                duration: item.item.duration_ms,
+                artists: (item.item.artists || []).map(a => a.name),
+                addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
+            }))
+    };
 };
 
 export const getUserById = async (id) => {

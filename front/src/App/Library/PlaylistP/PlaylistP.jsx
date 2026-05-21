@@ -1,16 +1,16 @@
 import "./PlaylistP.css";
 import { MusicSCard } from "../../../components/Cards";
 import { useState, useEffect } from "react";
-import { getTrackById, getPlaylistById } from "../../../hooks/dataHooks";
+import { getPlaylistById } from "../../../hooks/dataHooks";
 import { useParams } from "react-router-dom";
 
 export default function PlaylistP() {
     const { id } = useParams();
 
     const [playlist, setPlaylist] = useState(null);
-    const [tracks, setTracks] = useState([]);
 
     const [sortBy, setSortBy] = useState("date");
+
     const sortOptions = [
         { value: "date", label: "Дата додавання" },
         { value: "name", label: "Назва" },
@@ -19,31 +19,16 @@ export default function PlaylistP() {
     ];
 
     useEffect(() => {
-        const loadPlaylist = async () => {
+        const load = async () => {
             const data = await getPlaylistById(id);
             if (!data) return;
             setPlaylist(data);
         };
-        loadPlaylist();
+
+        load();
     }, [id]);
 
-    useEffect(() => {
-        if (!playlist) return;
-
-        const loadTracks = async () => {
-            const results = await Promise.all(
-                playlist.tracks.map(id => getTrackById(id))
-            );
-
-            setTracks(results.filter(Boolean));
-        };
-
-        loadTracks();
-    }, [playlist]);
-
-    if (!playlist) {
-        return <div>Loading...</div>;
-    }
+    if (!playlist) return <div>Loading...</div>;
 
     return (
         <div className="playlist">
@@ -73,15 +58,13 @@ export default function PlaylistP() {
                     <span>Час</span>
                 </div>
                 <div className="playlist-tracks-list">
-                    {tracks.map((track, index) => {
-                        return (
-                            <MusicSCard
-                                key={index}
-                                num={index + 1}
-                                {...track}
-                            />
-                        )
-                    })}
+                    {playlist.tracks.map((track, index) => (
+                        <MusicSCard
+                            key={track.id}
+                            num={index + 1}
+                            {...track}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 const env = import.meta.env;
 
-const API_URL = '/jamendo/tracks';
-const CLIENT_ID = env.VITE_USER_ID;
+const API_URL = '' | '/spotify/tracks';
+const CLIENT_ID = env.VITE_SPOTIFY_CLIENT_ID;
 
 function normalizeTracks(data) {
   if (Array.isArray(data)) return data;

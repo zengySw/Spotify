@@ -1,7 +1,7 @@
 import "./Main.css";
 import { OnePList, RowList } from "../components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
-import { getTrackById, getAlbumById, getArtistById, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
+import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
 import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
@@ -17,18 +17,17 @@ export default function Main() {
     const [topArtists, setTopArtists] = useState([]);
 
     useEffect(() => {
-        Promise.all(
-            data.mainPage.topMusicToday.tracks.map(id => getTrackById(id))
-        ).then(results => setTopTracks(results.filter(Boolean)));
+        getRecommendations(8, { tracks: ["2Nti2yhOJ8iEgFAfcXPhBU"] })
+            .then(results => setTopTracks(results));
 
-        Promise.all(
-            data.mainPage.newMusicReleases.albums.map(id => getAlbumById(id))
-        ).then(results => setNewAlbums(results.filter(Boolean)));
+        getMyAlbums(8)
+            .then(results => setNewAlbums(results));
 
-        Promise.all(
-            data.mainPage.topArtists.artists.map(id => getArtistById(id))
-        ).then(results => setTopArtists(results.filter(Boolean)));
+        getMyArtists(8)
+            .then(results => setTopArtists(results));
     }, []);
+
+
 
     return (
         <div className="main-page">
@@ -100,7 +99,6 @@ export default function Main() {
                         <ArtistCard
                             key={artist.id}
                             {...artist}
-                            icon={artist.image}
                         />
                     ))}
                 />

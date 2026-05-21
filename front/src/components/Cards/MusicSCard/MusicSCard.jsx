@@ -35,7 +35,7 @@ export default function MusicSCard({ id, num, icon, title, album, duration, arti
                     <div className="about">
                         <span className="album">{album}</span>
                         {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
-                        <span className="duration">{duration}</span>
+                        <span className="duration">{Math.floor(duration / 60000)}:{String(Math.floor((duration % 60000) / 1000)).padStart(2, '0')}</span>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ import {
   useParams
 } from 'react-router-dom';
 
-import useMusicPlayer from "./src/hooks/useMusicPlayer.js";
+// import useMusicPlayer from "./src/hooks/useMusicPlayer.js";
 
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
@@ -74,18 +74,18 @@ const Root = () => {
         </main>
 
         <aside className="main-layout__sidebar">
-          <SidebarPlayer
+          {/* <SidebarPlayer
             {...useMusicPlayer()}
-          />
+          /> */}
         </aside>
 
       </div>
 
       <FooterBar />
 
-      <Player
+      {/* <Player
         {...useMusicPlayer()}
-      />
+      /> */}
     </div>
   );
 }
