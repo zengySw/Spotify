@@ -119,7 +119,8 @@ export const getTrackById = async (id) => {
 };
 
 export const getArtistById = async (id) => {
-    const result = await spotifyApiRequest(`artists/${id.split("?")[0]}`);
+    const result = await spotifyApiRequest(`artists/${id}`);
+    console.log(result);
     return result ? mapArtist(result) : null;
 };
 
@@ -128,9 +129,17 @@ export const getAlbumById = async (id) => {
     return result ? mapAlbum(result) : null;
 };
 
-export const getRecommendations = async (max = 100, { genres = [] } = {}) => {
-    const playlist = await getPlaylistById("3f2LmvIeHgvY8UKJPUbhR9", { limit: max });
-    return playlist?.tracks || [];
+export const getRecommendations = async (playlistUrl, max = 100, offset = 0) => {
+    const id = playlistUrl;
+    const playlist = await spotifyApiRequest(`playlists/${id}/items`, {
+        limit: max,
+        offset,
+        market: "UA",
+    });
+
+    if (!playlist) return null;
+
+    return (playlist.items || []).map(({ item }) => (mapTrack(item)));
 };
 
 export const getTracksByIds = async (ids) => {
@@ -189,8 +198,6 @@ export const getMyArtists = async (limit = 50) => {
         type: "artist"
     });
 
-    console.log(result)
-
     return (result?.artists?.items || []).map(item => mapArtist(item));
 };
 
@@ -224,7 +231,7 @@ export const getAudiobookById = (id) => {
     );
 };
 
-export const getPlaylistById = async (id, { limit = 100 } = {}) => {
+export const getPlaylistById = async (id) => {
     const playlist = await spotifyApiRequest(`playlists/${id}`);
     if (!playlist) return null;
 

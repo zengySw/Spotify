@@ -1,7 +1,7 @@
 import "./Main.css";
 import { OnePList, RowList } from "../components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
-import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
+import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById, getArtistById } from "../hooks/dataHooks";
 import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
@@ -17,7 +17,7 @@ export default function Main() {
     const [topArtists, setTopArtists] = useState([]);
 
     useEffect(() => {
-        getRecommendations(8, { tracks: ["2Nti2yhOJ8iEgFAfcXPhBU"] })
+        getRecommendations("3f2LmvIeHgvY8UKJPUbhR9", data.mainPage.topMusicToday.max, data.mainPage.topMusicToday.offset)
             .then(results => setTopTracks(results));
 
         getMyAlbums(8)
@@ -25,9 +25,10 @@ export default function Main() {
 
         getMyArtists(8)
             .then(results => setTopArtists(results));
+
+        getArtistById("4MCBfE4596Uoi2O4DtmEMz").then(data => { console.log(data) });
+
     }, []);
-
-
 
     return (
         <div className="main-page">
@@ -71,7 +72,7 @@ export default function Main() {
                 <RowList
                     title={<h4>Топ ВАША <span style={{ color: '#40a2ff' }}>музика</span> сьогодні!</h4>}
                     prevCount={5}
-                    childs={topTracks.map((track) => (
+                    childs={topTracks?.map((track) => (
                         <MusicCard
                             key={track.id}
                             {...track}
@@ -84,7 +85,7 @@ export default function Main() {
                 <RowList
                     title={<h4>Нові <span style={{ color: '#40a2ff' }}>музичні</span> релізи</h4>}
                     prevCount={5}
-                    childs={newAlbums.map((album) => (
+                    childs={newAlbums?.map((album) => (
                         <MusicCard
                             key={album.id}
                             {...album}
@@ -95,7 +96,7 @@ export default function Main() {
                 <RowList
                     title={<h4>Твої улюблені <span style={{ color: '#40a2ff' }}>виконавці</span></h4>}
                     prevCount={4}
-                    childs={topArtists.map((artist) => (
+                    childs={topArtists?.map((artist) => (
                         <ArtistCard
                             key={artist.id}
                             {...artist}

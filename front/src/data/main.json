@@ -46,16 +46,10 @@
         ],
         "topMusicToday": {
             "title": "Топ ВАША музика сьогодні!",
-            "continueLink": "/media/playlist/3",
-            "tracks": [
-                "2Nti2yhOJ8iEgFAfcXPhBU",
-                "2bbda52278e5473a",
-                "2f0354d99ca94593",
-                "955a08f2dd2b47d4",
-                "436966d11d9f4dc6",
-                "76bb09f05b2d4c33",
-                "cf9ff74dc82841e3"
-            ]
+            "continueLink": "/media/playlist/3f2LmvIeHgvY8UKJPUbhR9",
+            "tracks": "3f2LmvIeHgvY8UKJPUbhR9",
+            "max": 8,
+            "offset": 374
         },
         "newMusicReleases": {
             "title": "Нові музичні релізи",
