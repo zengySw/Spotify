@@ -228,13 +228,6 @@ export const getPlaylistById = async (id, { limit = 100 } = {}) => {
     const playlist = await spotifyApiRequest(`playlists/${id}`);
     if (!playlist) return null;
 
-    const tracksRes = await spotifyApiRequest(`playlists/${id}/items`, {
-        offset: playlist.items.total ? playlist.items.total - 100 : 0,
-        limit: limit,
-        market: "EU",
-        fields: "items(added_at,item(id,name,album(name,images), duration_ms, artists(name)))"
-    });
-
     return {
         id: playlist.id,
         name: playlist.name,
@@ -245,7 +238,7 @@ export const getPlaylistById = async (id, { limit = 100 } = {}) => {
             icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
         },
 
-        tracks: (tracksRes.items || [])
+        tracks: (playlist.items.items || [])
             .filter(item => item?.item)
             .map(item => ({
                 id: item.item.id,

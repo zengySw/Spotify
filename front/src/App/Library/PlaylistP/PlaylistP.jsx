@@ -1,6 +1,6 @@
 import "./PlaylistP.css";
 import { MusicSCard } from "../../../components/Cards";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getPlaylistById } from "../../../hooks/dataHooks";
 import { useParams } from "react-router-dom";
 
@@ -18,14 +18,27 @@ export default function PlaylistP() {
         { value: "album", label: "Альбом" },
     ];
 
+    const loadedRef = useRef(null);
+
     useEffect(() => {
-        const load = async () => {
-            const data = await getPlaylistById(id);
-            if (!data) return;
-            setPlaylist(data);
+        if (!id) return;
+
+        if (loadedRef.current === id) return;
+
+        loadedRef.current = id;
+
+        let ignore = false;
+
+        getPlaylistById(id)
+            .then(data => {
+                if (!ignore) setPlaylist(data);
+            })
+            .catch(console.error);
+
+        return () => {
+            ignore = true;
         };
 
-        load();
     }, [id]);
 
     if (!playlist) return <div>Loading...</div>;
@@ -39,7 +52,7 @@ export default function PlaylistP() {
                     <img src={playlist.author.icon} alt={playlist.author.name} />
                     <span>{playlist.author.name}</span>
                     <br />
-                    <span>{playlist.tracks.length} треків</span>
+                    <span>{playlist?.tracks?.length ?? 0} треків</span>
                 </div>
             </div>
             <div className="controls">
@@ -58,7 +71,7 @@ export default function PlaylistP() {
                     <span>Час</span>
                 </div>
                 <div className="playlist-tracks-list">
-                    {playlist.tracks.map((track, index) => (
+                    {(playlist?.tracks || []).map((track, index) => (
                         <MusicSCard
                             key={track.id}
                             num={index + 1}
