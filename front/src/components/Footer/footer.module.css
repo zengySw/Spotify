@@ -6,10 +6,10 @@
 .container {
   max-width: 1498px;
   margin: 0 auto;
-  padding: 94px 0 94px;
+  padding: clamp(32px, 6vw, 94px) 16px;
   display: flex;
   flex-direction: column;
-  gap: 61px;
+  gap: clamp(24px, 4vw, 61px);
 }
 
 .topRow {
@@ -17,54 +17,54 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: clamp(16px, 3vw, 40px);
 }
 
 .logo {
-  max-width: 250px;
+  max-width: clamp(120px, 20vw, 250px);
 }
 
 .rightBlock {
   display: flex;
   flex-direction: column;
-  gap: 33px;
+  gap: clamp(12px, 3vw, 33px);
 }
 
 .address {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(8px, 2vw, 20px);
 }
 
 .address span {
   color: white;
-  font-size: 14px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
 }
 
 .phoneEmail {
   display: flex;
-  gap: 71px;
+  gap: clamp(12px, 8vw, 71px);
   flex-wrap: wrap;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(8px, 2vw, 20px);
 }
 
 .contactItem span {
   color: white;
-  font-size: 14px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
 }
 
 .socials {
   display: flex;
-  gap: 14px;
+  gap: clamp(8px, 3vw, 14px);
 }
 
 .socials img {
@@ -79,13 +79,13 @@
 .links {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: clamp(12px, 6vw, 50px);
   flex-wrap: wrap;
 }
 
 .links a {
   color: white;
-  font-size: 14px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   text-decoration: none;

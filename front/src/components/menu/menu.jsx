@@ -67,12 +67,35 @@ function Sidebar() {
           </div>
         </div>
 
+<<<<<<< Updated upstream
+        <div className="menu-subhead-row">
+          <h3 className="menu-subhead">Ваші плейлисти</h3>
+          <span className="menu-subhead-icon">☰</span>
+=======
+      <NavLink to="/playlist" className={({ isActive }) =>
+          isActive ? "menu-item Selected-item" : "menu-item"}>
+        <img src={HeartIcon} className="img-style" />
+        <h3>Улюблені треки</h3>
+      </NavLink>
+
+      <div className="menu-item ">
+        <img src={PlaylistIcon} alt="Heart" className="img-style" />
+        <h3>Створити плейлист</h3>
+      </div>
+
+      <div className="menu-item-your-playlists">
+        <h3>Ваші плейлисти</h3>
+        <img src={YourPlayListsIcon} alt="" className="img-style-your-playlists" />
+      </div>
+
+      <div id="playlist-style ">
         <div className="playlist-item-style">
-          <img src={BrunoMars} alt="Bruno Mars" />
+          <img src={Lisa} alt="Lisa" />
           <div className="playlist-text">
-            <h4>Bruno Mars</h4>
+            <h4>Lisa</h4>
             <p>Виконавець</p>
           </div>
+>>>>>>> Stashed changes
         </div>
 
         <div className="playlist-item-style">

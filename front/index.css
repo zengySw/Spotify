@@ -2,7 +2,20 @@
 :root {
   --app-header-height: 64px;
   --app-footer-height: 78px;
+  --bp-lg: 1280px;
+  --bp-md: 900px;
+  --bp-sm: 640px;
+  --sidebar-min: 200px;
+  --sidebar-max-left: 280px;
+  --sidebar-max-right: 310px;
 }
+<<<<<<< Updated upstream
+body { background: #121212; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
+input[type=range] { cursor: pointer; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+=======
 
 body {
   background: #121212;
@@ -37,7 +50,7 @@ input[type=range] {
   min-height: calc(100vh - var(--app-footer-height));
   padding: var(--app-header-height) 16px calc(var(--app-footer-height) + 16px);
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr) 310px;
+  grid-template-columns: clamp(var(--sidebar-min), 18vw, var(--sidebar-max-left)) minmax(0, 1fr) clamp(var(--sidebar-min), 20vw, var(--sidebar-max-right));
   gap: 16px;
   box-sizing: border-box;
   background-color: #01060f;
@@ -66,11 +79,13 @@ input[type=range] {
 }
 
 .main-layout__menu {
-  width: 280px;
+  max-width: var(--sidebar-max-left);
+  width: 100%;
 }
 
 .main-layout__sidebar {
-  width: 310px;
+  max-width: var(--sidebar-max-right);
+  width: 100%;
 }
 
 @media (max-width: 1280px) {
@@ -93,3 +108,4 @@ input[type=range] {
     padding: calc(var(--app-header-height) + 8px) 12px calc(var(--app-footer-height) + 8px);
   }
 }
+>>>>>>> Stashed changes
