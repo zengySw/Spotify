@@ -39,8 +39,7 @@ let tokenPromise = null;
 // ===== CACHE =====
 const cache = new Map();
 
-// ===== QUEUE (rate control) =====
-let queue = Promise.resolve();
+
 
 // ===== TOKEN =====
 export const getToken = async () => {
@@ -92,59 +91,60 @@ export const getToken = async () => {
     return tokenPromise;
 };
 
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+const runWithRetry = async (fn, retries = 5) => {
+    let delay = 2000;
+
+    for (let i = 0; i < retries; i++) {
+        const res = await fn();
+
+        if (res.ok) return res;
+
+        if (res.status === 429) {
+            const retryAfter = Number(res.headers.get("Retry-After") || 0);
+
+            const waitTime = Math.max(retryAfter * 1000, delay);
+
+            console.log(`[Spotify] cooldown ${waitTime}ms`);
+
+            await sleep(waitTime);
+
+            delay *= 2; // 🔥 exponential backoff
+            continue;
+        }
+
+        throw new Error(await res.text());
+    }
+
+    throw new Error("Spotify retry limit exceeded");
+};
+
 export const spotifyApiRequest = async (endpoint, params = {}) => {
     const key = endpoint + JSON.stringify(params);
 
-    // ===== CACHE =====
-    if (cache.has(key)) {
-        console.log("[Spotify] cache hit", endpoint);
-        return cache.get(key);
-    }
+    if (cache.has(key)) return cache.get(key);
 
-    // ===== QUEUE (1 request at a time) =====
-    queue = queue.then(async () => {
-        const token = await getToken();
+    const token = await getToken();
 
-        const url =
-            SPOTIFY_API +
-            "/" +
-            endpoint +
-            "?" +
-            new URLSearchParams(params);
+    const url =
+        `https://api.spotify.com/v1/${endpoint}?` +
+        new URLSearchParams(params);
 
-        console.log("[Spotify] request:", endpoint);
-
-        const res = await fetch(url, {
+    const res = await runWithRetry(() =>
+        fetch(url, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        });
+        })
+    );
 
-        // ===== RATE LIMIT HANDLING =====
-        if (res.status === 429) {
-            const retryAfter = Number(res.headers.get("Retry-After") || 2);
-            console.log("[Spotify] 429 wait", retryAfter);
+    const data = await res.json();
 
-            await new Promise(r => setTimeout(r, retryAfter * 1000));
+    cache.set(key, data);
+    setTimeout(() => cache.delete(key), 300000);
 
-            return spotifyApiRequest(endpoint, params);
-        }
-
-        if (!res.ok) {
-            const text = await res.text();
-            throw new Error(text);
-        }
-
-        const data = await res.json();
-
-        // cache result (5 min)
-        cache.set(key, data);
-        setTimeout(() => cache.delete(key), 5 * 60 * 1000);
-
-        return data;
-    });
-
-    return queue;
+    return data;
 };
 
 const mapTrack = (result) => ({
