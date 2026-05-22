@@ -30,7 +30,7 @@ function Sidebar() {
 
 
       <NavLink to="/media" className={({ isActive }) =>
-          isActive ? "menu-item Selected-item" : "menu-item"}>
+        isActive ? "menu-item Selected-item" : "menu-item"}>
         <img src={MyMediatekIcon} className="img-style" />
         <h3>Моя медіатека</h3>
       </NavLink>
@@ -42,7 +42,7 @@ function Sidebar() {
       </div>
 
       <NavLink to="/playlist" className={({ isActive }) =>
-          isActive ? "menu-item Selected-item" : "menu-item"}>
+        isActive ? "menu-item Selected-item" : "menu-item"}>
         <img src={HeartIcon} className="img-style" />
         <h3>Улюблені треки</h3>
       </NavLink>
@@ -67,65 +67,60 @@ function Sidebar() {
           </div>
         </div>
 
-<<<<<<< Updated upstream
-        <div className="menu-subhead-row">
-          <h3 className="menu-subhead">Ваші плейлисти</h3>
-          <span className="menu-subhead-icon">☰</span>
-=======
-      <NavLink to="/playlist" className={({ isActive }) =>
+        <NavLink to="/playlist" className={({ isActive }) =>
           isActive ? "menu-item Selected-item" : "menu-item"}>
-        <img src={HeartIcon} className="img-style" />
-        <h3>Улюблені треки</h3>
-      </NavLink>
+          <img src={HeartIcon} className="img-style" />
+          <h3>Улюблені треки</h3>
+        </NavLink>
 
-      <div className="menu-item ">
-        <img src={PlaylistIcon} alt="Heart" className="img-style" />
-        <h3>Створити плейлист</h3>
+        <div className="menu-item ">
+          <img src={PlaylistIcon} alt="Heart" className="img-style" />
+          <h3>Створити плейлист</h3>
+        </div>
+
+        <div className="menu-item-your-playlists">
+          <h3>Ваші плейлисти</h3>
+          <img src={YourPlayListsIcon} alt="" className="img-style-your-playlists" />
+        </div>
+
+        <div id="playlist-style ">
+          <div className="playlist-item-style">
+            <img src={Lisa} alt="Lisa" />
+            <div className="playlist-text">
+              <h4>Lisa</h4>
+              <p>Виконавець</p>
+            </div>
+          </div>
+
+          <div className="playlist-item-style">
+            <img src={LadyGaga} alt="Lady Gaga" />
+            <div className="playlist-text">
+              <h4>Lady Gaga</h4>
+              <p>Виконавець</p>
+            </div>
+          </div>
+
+          <div className="playlist-item-style">
+            <img src={LanaDelRey} alt="Lana Del Rey" />
+            <div className="playlist-text">
+              <h4>Lana Del Rey</h4>
+              <p>Виконавець</p>
+            </div>
+          </div>
+
+          <div className="playlist-item-style">
+            <img src={BTS} alt="BTS" />
+            <div className="playlist-text">
+              <h4>BTS</h4>
+              <p>Виконавець</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
+        <h3 id="MenuEnd">Нещодавно прослуханi</h3>
+        <img id="Stream" src={Stream} alt="" />
+        <img id="SAD" src={SAD} alt="" />
       </div>
-
-      <div className="menu-item-your-playlists">
-        <h3>Ваші плейлисти</h3>
-        <img src={YourPlayListsIcon} alt="" className="img-style-your-playlists" />
-      </div>
-
-      <div id="playlist-style ">
-        <div className="playlist-item-style">
-          <img src={Lisa} alt="Lisa" />
-          <div className="playlist-text">
-            <h4>Lisa</h4>
-            <p>Виконавець</p>
-          </div>
->>>>>>> Stashed changes
-        </div>
-
-        <div className="playlist-item-style">
-          <img src={LadyGaga} alt="Lady Gaga" />
-          <div className="playlist-text">
-            <h4>Lady Gaga</h4>
-            <p>Виконавець</p>
-          </div>
-        </div>
-
-        <div className="playlist-item-style">
-          <img src={LanaDelRey} alt="Lana Del Rey" />
-          <div className="playlist-text">
-            <h4>Lana Del Rey</h4>
-            <p>Виконавець</p>
-          </div>
-        </div>
-
-        <div className="playlist-item-style">
-          <img src={BTS} alt="BTS" />
-          <div className="playlist-text">
-            <h4>BTS</h4>
-            <p>Виконавець</p>
-          </div>
-        </div>
-      </div>
-      <div style={{ height: "1px", backgroundColor: "rgb(67, 110, 132)" }}></div>
-      <h3 id="MenuEnd">Нещодавно прослуханi</h3>
-      <img id="Stream" src={Stream} alt="" />
-      <img id="SAD" src={SAD} alt="" />
     </div>
   );
 }
