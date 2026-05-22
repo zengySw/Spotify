@@ -11,64 +11,140 @@ const API_KEY = env.VITE_API_KEY;
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const apiRequest = async (endpoint, params = {}) => {
-    const query = new URLSearchParams({
-        client_id: USER_ID,
-        format: "json",
-        limit: MAX_TRACKS,
-        ...params,
-    });
+// const apiRequest = async (endpoint, params = {}) => {
+//     const query = new URLSearchParams({
+//         client_id: USER_ID,
+//         format: "json",
+//         limit: MAX_TRACKS,
+//         ...params,
+//     });
 
-    const url = `/jamendo/${endpoint}/?${query.toString()}`;
+//     const url = `/jamendo/${endpoint}/?${query.toString()}`;
 
-    const res = await fetch(url);
+//     const res = await fetch(url);
 
-    if (!res.ok) throw new Error("Request failed");
+//     if (!res.ok) throw new Error("Request failed");
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    return data.results || [];
-};
+//     return data.results || [];
+// };
 
-let cachedToken = null;
+const SPOTIFY_API = "https://api.spotify.com/v1";
+
+let tokenCache = null;
 let tokenExpiry = 0;
+let tokenPromise = null;
 
-const getToken = async () => {
-    if (cachedToken && Date.now() < tokenExpiry) return cachedToken;
-    const res = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: "Basic " + btoa(`${import.meta.env.VITE_SPOTIFY_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_CLIENT_SECRET}`)
-        },
-        body: new URLSearchParams({
-            grant_type: "refresh_token",
-            refresh_token: import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
-        })
-    });
-    const data = await res.json();
-    cachedToken = data.access_token;
-    tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
-    return cachedToken;
-};
+// ===== CACHE =====
+const cache = new Map();
 
-const spotifyApiRequest = async (endpoint, params = {}) => {
-    const query = new URLSearchParams(params);
-    const url = `/spotify/${endpoint}?${query.toString()}`;
+// ===== QUEUE (rate control) =====
+let queue = Promise.resolve();
 
-    const res = await fetch(url, {
-        headers: {
-            Authorization: `Bearer ${await getToken()}`,
-        },
-    });
+// ===== TOKEN =====
+export const getToken = async () => {
+    const stored = sessionStorage.getItem("spotify_token");
+    const expiry = Number(sessionStorage.getItem("spotify_token_expiry"));
 
-    if (!res.ok) {
-        const text = await res.text();
-        console.error("Spotify error:", res.status, text);
-        throw new Error(text);
+    if (stored && Date.now() < expiry) {
+        return stored;
     }
 
-    return await res.json();
+    if (tokenCache && Date.now() < tokenExpiry) {
+        return tokenCache;
+    }
+
+    if (tokenPromise) return tokenPromise;
+
+    tokenPromise = (async () => {
+        console.log("[Spotify] refreshing token");
+
+        const res = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Authorization:
+                    "Basic " +
+                    btoa(
+                        `${import.meta.env.VITE_SPOTIFY_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_CLIENT_SECRET}`
+                    )
+            },
+            body: new URLSearchParams({
+                grant_type: "refresh_token",
+                refresh_token: import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
+            })
+        });
+
+        const data = await res.json();
+
+        tokenCache = data.access_token;
+        tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
+
+        sessionStorage.setItem("spotify_token", tokenCache);
+        sessionStorage.setItem("spotify_token_expiry", tokenExpiry);
+
+        tokenPromise = null;
+
+        return tokenCache;
+    })();
+
+    return tokenPromise;
+};
+
+export const spotifyApiRequest = async (endpoint, params = {}) => {
+    const key = endpoint + JSON.stringify(params);
+
+    // ===== CACHE =====
+    if (cache.has(key)) {
+        console.log("[Spotify] cache hit", endpoint);
+        return cache.get(key);
+    }
+
+    // ===== QUEUE (1 request at a time) =====
+    queue = queue.then(async () => {
+        const token = await getToken();
+
+        const url =
+            SPOTIFY_API +
+            "/" +
+            endpoint +
+            "?" +
+            new URLSearchParams(params);
+
+        console.log("[Spotify] request:", endpoint);
+
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        // ===== RATE LIMIT HANDLING =====
+        if (res.status === 429) {
+            const retryAfter = Number(res.headers.get("Retry-After") || 2);
+            console.log("[Spotify] 429 wait", retryAfter);
+
+            await new Promise(r => setTimeout(r, retryAfter * 1000));
+
+            return spotifyApiRequest(endpoint, params);
+        }
+
+        if (!res.ok) {
+            const text = await res.text();
+            throw new Error(text);
+        }
+
+        const data = await res.json();
+
+        // cache result (5 min)
+        cache.set(key, data);
+        setTimeout(() => cache.delete(key), 5 * 60 * 1000);
+
+        return data;
+    });
+
+    return queue;
 };
 
 const mapTrack = (result) => ({
@@ -95,22 +171,46 @@ const mapAlbum = (album) => ({
     groupTracks: album.total_tracks || 0
 });
 
-const getInfoByName = async (endpoint, params = {}) => {
-    const query = new URLSearchParams({
-        api_key: API_KEY,
-        method: `${endpoint}.getInfo`,
-        format: "json",
-        ...params,
-    });
+const mapPlaylist = (playlist) => ({
+    ...playlist,
+    id: playlist.id,
+    name: playlist.name,
+    icon: playlist.images?.[0]?.url || "",
 
-    const url = `/lastfm/?${query.toString()}`;
+    author: {
+        name: playlist.owner?.display_name || "Unknown",
+        icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
+    },
 
-    const res = await fetch(url);
+    tracks: (playlist.items.items || [])
+        .filter(item => item?.item)
+        .map(item => ({
+            id: item.item.id,
+            title: item.item.name,
+            icon: item.item.album?.images?.[0]?.url || "",
+            album: item.item.album?.name || "",
+            duration: item.item.duration_ms,
+            artists: (item.item.artists || []).map(a => a.name),
+            addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
+        }))
+})
 
-    if (!res.ok) throw new Error("Request failed");
+// const getInfoByName = async (endpoint, params = {}) => {
+//     const query = new URLSearchParams({
+//         api_key: API_KEY,
+//         method: `${endpoint}.getInfo`,
+//         format: "json",
+//         ...params,
+//     });
 
-    return await res.json();
-};
+//     const url = `/lastfm/?${query.toString()}`;
+
+//     const res = await fetch(url);
+
+//     if (!res.ok) throw new Error("Request failed");
+
+//     return await res.json();
+// };
 
 export const getTrackById = async (id) => {
     const cleanId = id.split("?")[0];
@@ -180,6 +280,29 @@ export const getAlbumsByIds = async (ids) => {
     }
     return results;
 };
+
+export const getLikedTracks = async (limit = 50, offset = 0) => {
+    const res = await spotifyApiRequest("me/tracks", {
+        limit: limit,
+        offset: offset,
+        market: "UA",
+    })
+
+    return (res.items || []).map(item => ({
+        ...mapTrack(item.track),
+        addDate: item.added_at
+    }));
+}
+
+export const getMyPlaylists = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/playlists", {
+        limit: limit,
+        offset: offset,
+        market: "UA",
+    });
+
+    return (result.items || []).map(item => mapPlaylist(item))
+}
 
 export const getMyAlbums = async (limit = 50, offset = 0) => {
     const result = await spotifyApiRequest("me/albums", {

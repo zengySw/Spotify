@@ -1,4 +1,4 @@
-﻿﻿import ReactDOM from 'react-dom/client';
+﻿import ReactDOM from 'react-dom/client';
 import './index.css';
 import { StrictMode, useState, useEffect, useRef } from "react";
 import {
@@ -25,9 +25,23 @@ import Main from "./src/App/Main.jsx";
 import PlaylistP from "./src/App/Library/PlaylistP/PlaylistP.jsx";
 import MediaListP from "./src/App/Library/MediaListP.jsx";
 
-import { getPlaylistById } from './src/hooks/dataHooks.js';
+import useMusicPlayer from "./src/hooks/useMusicPlayer";
 
 const Root = () => {
+  const {
+    currentTrack,
+    isPlaying,
+    currentTime,
+    duration,
+    progress,
+    volume,
+    togglePlay,
+    playPrev,
+    playNext,
+    setSeekByPercent,
+    setVolume,
+  } = useMusicPlayer();
+
 
   return (
     <div className="app">
@@ -78,7 +92,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<Root />} >
       <Route index element={<Main />} />
       <Route path='media' element={<MediaListP title="Моя медіатека" userId={0} />} />
-      <Route path="playlist" element={<PlaylistP {...getPlaylistById(1)} />} />
+      <Route path="playlist/:id" element={<PlaylistP />} />
       <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
@@ -87,4 +101,9 @@ const router = createBrowserRouter(
 
     </Route>
   )
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <RouterProvider router={router} />
 );

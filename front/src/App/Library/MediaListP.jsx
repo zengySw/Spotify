@@ -1,5 +1,7 @@
 import './MediaListP.css';
 
+import { useState, useEffect, useRef } from 'react'
+
 import {
     MusicCard,
     ArtistCard,
@@ -10,17 +12,37 @@ import {
 import { RowList } from '../../components/Lists';
 
 import {
-    getTrackById,
-    getArtistById,
-    getPodcastById,
-    getAudiobookById,
-    getAlbumById,
-    getUserById
+    // getTrackById,
+    // getArtistById,
+    // getPodcastById,
+    // getAudiobookById,
+    // getAlbumById,
+    // getUserById
+    getLikedTracks,
+    getMyPlaylists,
+    getMyAlbums,
+    getMyArtists
 } from '../../hooks/dataHooks';
 
 export default function MediaListP({ title, userId }) {
 
-    const media = getUserById(userId)?.mediaLibrary;
+    const [userTracks, setUserTracks] = useState([]);
+    const [userPlaylists, setUserPlaylists] = useState([]);
+    const [userAlbums, setUserAlbums] = useState([]);
+    const [userArtists, setUserArtists] = useState([]);
+
+    const didRun = useRef(false);
+
+    useEffect(() => {
+        if (didRun.current) return;
+        didRun.current = true;
+
+        getLikedTracks(16).then(tracks => setUserTracks(tracks));
+
+        // getMyAlbums(16).then(albums => setUserAlbums(albums));
+
+        // getMyArtists(16).then(artists => setUserArtists(artists));
+    }, []);
 
     return (
         <div className="media-list-p">
@@ -29,14 +51,11 @@ export default function MediaListP({ title, userId }) {
             <div className="media-lists">
 
                 {
-                    media?.likedTracks?.length > 0 ? (
+                    userTracks.length > 0 ? (
                         <RowList
                             title={<h4>Улюблені треки</h4>}
                             childs={
-                                media.likedTracks.map((item, index) => {
-                                    const track = getTrackById(item);
-
-                                    if (!track) return null;
+                                userTracks.map((track, index) => {
 
                                     return (
                                         <MusicCard
@@ -47,9 +66,9 @@ export default function MediaListP({ title, userId }) {
                                 })
                             }
                             prevCount={
-                                media.likedTracks.length > 7
+                                userTracks.length > 7
                                     ? 7
-                                    : media.likedTracks.length
+                                    : userTracks.length
                             }
                             continueLink="/liked-music"
                         />
@@ -57,14 +76,11 @@ export default function MediaListP({ title, userId }) {
                 }
 
                 {
-                    media?.likedAlbums?.length > 0 ? (
+                    userAlbums.length ? (
                         <RowList
                             title={<h4>Плейлисти</h4>}
                             childs={
-                                media.likedAlbums.map((item, index) => {
-                                    const album = getAlbumById(item);
-
-                                    if (!album) return null;
+                                userAlbums.map((album, index) => {
 
                                     return (
                                         <MusicCard
@@ -75,9 +91,9 @@ export default function MediaListP({ title, userId }) {
                                 })
                             }
                             prevCount={
-                                media.likedAlbums.length > 7
+                                userAlbums.length > 7
                                     ? 7
-                                    : media.likedAlbums.length
+                                    : userAlbums.length
                             }
                             continueLink="/liked-albums"
                         />
@@ -85,7 +101,7 @@ export default function MediaListP({ title, userId }) {
                 }
 
                 {
-                    media?.likedArtists?.length > 0 ? (
+                    userArtists.length > 0 ? (
                         <RowList
                             title={
                                 <h4>
@@ -96,10 +112,7 @@ export default function MediaListP({ title, userId }) {
                                 </h4>
                             }
                             childs={
-                                media.likedArtists.map((item, index) => {
-                                    const artist = getArtistById(item);
-
-                                    if (!artist) return null;
+                                userArtists.map((artist, index) => {
 
                                     return (
                                         <ArtistCard
@@ -111,16 +124,16 @@ export default function MediaListP({ title, userId }) {
                                 })
                             }
                             prevCount={
-                                media.likedArtists.length > 5
+                                userArtists.length > 5
                                     ? 5
-                                    : media.likedArtists.length
+                                    : userArtists.length
                             }
                             continueLink="/liked-artists"
                         />
                     ) : null
                 }
 
-                {
+                {/* {
                     media?.likedMixes?.length > 0 ? (
                         <RowList
                             title={
@@ -154,9 +167,9 @@ export default function MediaListP({ title, userId }) {
                             continueLink="/liked-mixes"
                         />
                     ) : null
-                }
+                } */}
 
-                {
+                {/* {
                     media?.likedPodcasts?.length > 0 ? (
                         <RowList
                             title={
@@ -188,9 +201,9 @@ export default function MediaListP({ title, userId }) {
                             }
                         />
                     ) : null
-                }
+                } */}
 
-                {
+                {/* {
                     media?.likedAudiobooks?.length > 0 ? (
                         <RowList
                             title={
@@ -223,7 +236,7 @@ export default function MediaListP({ title, userId }) {
                             flexDirection="column"
                         />
                     ) : null
-                }
+                } */}
 
             </div>
         </div>
