@@ -4,69 +4,78 @@
             {
                 "id": 1,
                 "title": "Хеппi",
-                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/9uWZmwDx2G.png"
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/9uWZmwDx2G.png",
+                "link": "/media/playlist/5"
             },
             {
                 "id": 2,
                 "title": "Меланхолія",
-                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/V9KLw2OTh0.png"
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/V9KLw2OTh0.png",
+                "link": "/media/playlist/6"
             },
             {
                 "id": 3,
                 "title": "Романтика",
-                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/rkGP1NG2sw.png"
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/rkGP1NG2sw.png",
+                "link": "/media/playlist/7"
             },
             {
                 "id": 4,
                 "title": "Драйв",
-                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/03b67rx1We.png"
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/03b67rx1We.png",
+                "link": "/media/playlist/8"
             },
             {
                 "id": 5,
                 "title": "Туса",
-                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png"
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png",
+                "link": "/media/playlist/9"
+            },
+            {
+                "id": 6,
+                "title": "Чілл",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png",
+                "link": "/media/playlist/10"
+            },
+            {
+                "id": 7,
+                "title": "Фан",
+                "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-17/pnLQZFgkXd.png",
+                "link": "/media/playlist/11"
             }
         ],
         "topMusicToday": {
             "title": "Топ ВАША музика сьогодні!",
-            "continueLink": "/top-music",
-            "tracks": [
-                101,
-                102,
-                103,
-                104,
-                105,
-                106,
-                107
-            ]
+            "continueLink": "/media/playlist/3f2LmvIeHgvY8UKJPUbhR9",
+            "tracks": "3f2LmvIeHgvY8UKJPUbhR9",
+            "max": 8,
+            "offset": 374
         },
         "newMusicReleases": {
             "title": "Нові музичні релізи",
-            "continueLink": "/new-music",
+            "continueLink": "/media/playlist/4",
             "albums": [
-                1,
-                2,
-                3,
-                4,
-                5,
-                1,
-                2,
-                3,
-                4,
-                5
+                "6ul9rF8H5L4cO2zyY6FWN8",
+                "7aPqnYaDN3HVZdvIAIXLhF",
+                "5S59FQyN8TvyRXD63fCc4j",
+                "3Mp2TOTZpTGvU1cExaHs7w",
+                "6ul9rF8H5L4cO2zyY6FWN8",
+                "7aPqnYaDN3HVZdvIAIXLhF",
+                "5S59FQyN8TvyRXD63fCc4j",
+                "3Mp2TOTZpTGvU1cExaHs7w"
             ]
         },
         "topArtists": {
             "title": "Твої улюблені виконавці",
             "artists": [
-                1,
-                2,
-                3,
-                4,
-                1,
-                2,
-                3,
-                4
+                "4MCBfE4596Uoi2O4DtmEMz",
+                "2z20q6EEfm6w6PiIKsgtb3",
+                "2ye2Wgw4gimLv2eAKyk1NB",
+                "5gL5FGeuSIhu0iNFC22UyY",
+                "4MCBfE4596Uoi2O4DtmEMz",
+                "2z20q6EEfm6w6PiIKsgtb3",
+                "2ye2Wgw4gimLv2eAKyk1NB",
+                "5gL5FGeuSIhu0iNFC22UyY"
             ]
         },
         "newPodcasts": {

@@ -1,7 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:wght@400&display=swap');
 
 .sidebar-player {
-  width: 310px;
+  max-width: var(--sidebar-max-right);
+  width: 100%;
   height: 100%;
   min-height: 0;
   background: linear-gradient(180deg, rgba(5, 21, 35, 0.82) 0%, rgba(5, 15, 27, 0.9) 100%);
@@ -16,7 +17,7 @@
   flex-shrink: 0;
   overflow-x: hidden;
   position: sticky;
-  top: 64px;
+  top: var(--app-header-height);
 }
 
 /* Шапка */
@@ -31,7 +32,7 @@
 
 .radio-title {
   color: white;
-  font-size: 17px;
+  font-size: clamp(14px, 1.6vw, 17px);
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   margin: 0;
@@ -61,14 +62,14 @@
 
 .song-title {
   color: white;
-  font-size: 20px;
+  font-size: clamp(16px, 2.2vw, 20px);
   font-family: 'Open Sans', sans-serif;
   margin: 0 0 6px 0;
 }
 
 .artist-name {
   color: #e1eef8;
-  font-size: 12px;
+  font-size: clamp(11px, 1.2vw, 12px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   margin: 0;
@@ -80,7 +81,7 @@
 }
 
 /* Карточка артиста */
-.artist-card {
+.sidebar-player .artist-card {
   background: rgba(20, 20, 20, 0.95);
   border-radius: 6px;
   display: flex;
@@ -89,26 +90,26 @@
   padding-bottom: 16px;
 }
 
-.artist-photo {
+.sidebar-player .artist-photo {
   width: 100%;
   aspect-ratio: 382 / 323;
   
   object-fit: cover;
 }
 
-.artist-details {
+.sidebar-player .artist-details {
   padding: 0 8px;
 }
 
-.artist-card-title {
+.sidebar-player .artist-card-title {
   color: white;
-  font-size: 30px;
+  font-size: clamp(20px, 3.2vw, 30px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   margin: 0 0 8px 0;
 }
 
-.artist-stats {
+.sidebar-player .artist-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,7 +118,7 @@
 
 .monthly-listeners {
   color: white;
-  font-size: 12px;
+  font-size: clamp(11px, 1.2vw, 12px);
   font-family: 'Open Sans', sans-serif;
   max-width: 180px;
 }
@@ -128,7 +129,7 @@
   border: 1px solid #87b0ce;
   border-radius: 6px;
   padding: 4px 10px;
-  font-size: 9px;
+  font-size: clamp(10px, 1vw, 12px);
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
   white-space: nowrap;
@@ -136,8 +137,8 @@
 
 /* Общие стили для иконок-заглушек */
 .icon {
-  width: 26px;
-  height: 26px;
+  width: clamp(18px, 3vw, 26px);
+  height: clamp(18px, 3vw, 26px);
   background-color: #7bafdf;
   opacity: 0.8;
 }
