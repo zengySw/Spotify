@@ -21,7 +21,8 @@ import {
     getLikedTracks,
     getMyPlaylists,
     getMyAlbums,
-    getMyArtists
+    getMyArtists,
+    getMyPodcasts
 } from '../../hooks/dataHooks';
 
 export default function MediaListP({ title, userId }) {
@@ -30,6 +31,7 @@ export default function MediaListP({ title, userId }) {
     const [userPlaylists, setUserPlaylists] = useState([]);
     const [userAlbums, setUserAlbums] = useState([]);
     const [userArtists, setUserArtists] = useState([]);
+    const [userPodcasts, setUserPodcasts] = useState([]);
 
     const didRun = useRef(false);
 
@@ -39,9 +41,13 @@ export default function MediaListP({ title, userId }) {
 
         getLikedTracks(16).then(tracks => setUserTracks(tracks));
 
+        getMyPlaylists(16).then(playlists => setUserPlaylists(playlists));
+
         // getMyAlbums(16).then(albums => setUserAlbums(albums));
 
-        // getMyArtists(16).then(artists => setUserArtists(artists));
+        getMyArtists(16).then(artists => setUserArtists(artists));
+
+        getMyPodcasts(16).then(podcasts => setUserPodcasts(podcasts))
     }, []);
 
     return (
@@ -76,24 +82,26 @@ export default function MediaListP({ title, userId }) {
                 }
 
                 {
-                    userAlbums.length ? (
+                    userPlaylists.length ? (
                         <RowList
                             title={<h4>Плейлисти</h4>}
                             childs={
-                                userAlbums.map((album, index) => {
+                                userPlaylists.map((playlist, index) => {
 
                                     return (
                                         <MusicCard
                                             key={index}
-                                            {...album}
+                                            artists={playlist.author.name.split(", ").map(s => s.trim())}
+                                            groupTracks={playlist.items.total}
+                                            {...playlist}
                                         />
                                     );
                                 })
                             }
                             prevCount={
-                                userAlbums.length > 7
+                                userPlaylists.length > 7
                                     ? 7
-                                    : userAlbums.length
+                                    : userPlaylists.length
                             }
                             continueLink="/liked-albums"
                         />
@@ -169,8 +177,8 @@ export default function MediaListP({ title, userId }) {
                     ) : null
                 } */}
 
-                {/* {
-                    media?.likedPodcasts?.length > 0 ? (
+                {
+                    userPodcasts.length > 0 ? (
                         <RowList
                             title={
                                 <h4>
@@ -181,27 +189,27 @@ export default function MediaListP({ title, userId }) {
                                 </h4>
                             }
                             childs={
-                                media.likedPodcasts.map((item, index) => {
-                                    const podcast = getPodcastById(item);
-
-                                    if (!podcast) return null;
+                                userPodcasts.map((podcast, index) => {
 
                                     return (
                                         <PodcastCard
                                             key={index}
+                                            episodeName={podcast.episodes[0]?.title}
+                                            date={podcast.episodes[0]?.date}
+                                            duration={podcast.episodes[0]?.duration}
                                             {...podcast}
                                         />
                                     );
                                 })
                             }
                             prevCount={
-                                media.likedPodcasts.length > 4
+                                userPodcasts.length > 4
                                     ? 4
-                                    : media.likedPodcasts.length
+                                    : userPodcasts.length
                             }
                         />
                     ) : null
-                } */}
+                }
 
                 {/* {
                     media?.likedAudiobooks?.length > 0 ? (

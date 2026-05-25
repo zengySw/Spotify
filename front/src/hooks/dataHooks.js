@@ -5,30 +5,7 @@ import users from "../data/users.json";
 
 const env = import.meta.env;
 
-const USER_ID = env.VITE_USER_ID;
-const MAX_TRACKS = env.VITE_MAX_TRACKS;
-const API_KEY = env.VITE_API_KEY;
-
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-// const apiRequest = async (endpoint, params = {}) => {
-//     const query = new URLSearchParams({
-//         client_id: USER_ID,
-//         format: "json",
-//         limit: MAX_TRACKS,
-//         ...params,
-//     });
-
-//     const url = `/jamendo/${endpoint}/?${query.toString()}`;
-
-//     const res = await fetch(url);
-
-//     if (!res.ok) throw new Error("Request failed");
-
-//     const data = await res.json();
-
-//     return data.results || [];
-// };
 
 const SPOTIFY_API = "https://api.spotify.com/v1";
 
@@ -36,12 +13,8 @@ let tokenCache = null;
 let tokenExpiry = 0;
 let tokenPromise = null;
 
-// ===== CACHE =====
 const cache = new Map();
 
-
-
-// ===== TOKEN =====
 export const getToken = async () => {
     const stored = sessionStorage.getItem("spotify_token");
     const expiry = Number(sessionStorage.getItem("spotify_token_expiry"));
@@ -91,39 +64,12 @@ export const getToken = async () => {
     return tokenPromise;
 };
 
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-
-const runWithRetry = async (fn, retries = 5) => {
-    let delay = 2000;
-
-    for (let i = 0; i < retries; i++) {
-        const res = await fn();
-
-        if (res.ok) return res;
-
-        if (res.status === 429) {
-            const retryAfter = Number(res.headers.get("Retry-After") || 0);
-
-            const waitTime = Math.max(retryAfter * 1000, delay);
-
-            console.log(`[Spotify] cooldown ${waitTime}ms`);
-
-            await sleep(waitTime);
-
-            delay *= 2; // 🔥 exponential backoff
-            continue;
-        }
-
-        throw new Error(await res.text());
-    }
-
-    throw new Error("Spotify retry limit exceeded");
-};
-
 export const spotifyApiRequest = async (endpoint, params = {}) => {
     const key = endpoint + JSON.stringify(params);
 
-    if (cache.has(key)) return cache.get(key);
+    if (cache.has(key)) {
+        return cache.get(key);
+    }
 
     const token = await getToken();
 
@@ -131,18 +77,41 @@ export const spotifyApiRequest = async (endpoint, params = {}) => {
         `https://api.spotify.com/v1/${endpoint}?` +
         new URLSearchParams(params);
 
-    const res = await runWithRetry(() =>
-        fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-    );
+    console.log("[Spotify] request:", endpoint);
 
-    const data = await res.json();
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    const text = await res.text();
+
+    console.log("[Spotify] status:", res.status);
+
+    if (!res.ok) {
+        console.error("[Spotify] error response:", text);
+
+        throw new Error(
+            `Spotify API Error ${res.status}: ${text}`
+        );
+    }
+
+    let data;
+
+    try {
+        data = JSON.parse(text);
+    } catch (err) {
+        console.error("[Spotify] invalid JSON:", text);
+
+        throw new Error("Spotify returned invalid JSON");
+    }
 
     cache.set(key, data);
-    setTimeout(() => cache.delete(key), 300000);
+
+    setTimeout(() => {
+        cache.delete(key);
+    }, 300000);
 
     return data;
 };
@@ -174,7 +143,7 @@ const mapAlbum = (album) => ({
 const mapPlaylist = (playlist) => ({
     ...playlist,
     id: playlist.id,
-    name: playlist.name,
+    title: playlist.name,
     icon: playlist.images?.[0]?.url || "",
 
     author: {
@@ -193,24 +162,21 @@ const mapPlaylist = (playlist) => ({
             artists: (item.item.artists || []).map(a => a.name),
             addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
         }))
-})
+});
 
-// const getInfoByName = async (endpoint, params = {}) => {
-//     const query = new URLSearchParams({
-//         api_key: API_KEY,
-//         method: `${endpoint}.getInfo`,
-//         format: "json",
-//         ...params,
-//     });
+const mapPodcast = ({ episodes = [], ...podcast }) => ({
+    ...podcast,
 
-//     const url = `/lastfm/?${query.toString()}`;
+    title: podcast.name,
+    icon: podcast.images?.[0]?.url || "",
 
-//     const res = await fetch(url);
-
-//     if (!res.ok) throw new Error("Request failed");
-
-//     return await res.json();
-// };
+    episodes: episodes.map(({ name, images = [], release_date, duration_ms }) => ({
+        title: name,
+        icon: images?.[2]?.url || "",
+        date: release_date,
+        duration: duration_ms
+    }))
+});
 
 export const getTrackById = async (id) => {
     const cleanId = id.split("?")[0];
@@ -322,6 +288,25 @@ export const getMyArtists = async (limit = 50) => {
     });
 
     return (result?.artists?.items || []).map(item => mapArtist(item));
+};
+
+export const getMyPodcasts = async (limit = 50) => {
+    const { items = [] } = await spotifyApiRequest("me/shows", {
+        limit,
+        market: "UA"
+    });
+
+    return Promise.all(
+        items.map(async ({ show }) => {
+            console.log(show);
+            const { items: episodes = [] } = await spotifyApiRequest(
+                `shows/${show.id}/episodes`,
+                { limit: 10, market: "UA" }
+            );
+
+            return mapPodcast({ ...show, episodes });
+        })
+    );
 };
 
 export const searchTracks = async (search) => {

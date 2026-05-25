@@ -92,7 +92,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<Root />} >
       <Route index element={<Main />} />
       <Route path='media' element={<MediaListP title="Моя медіатека" userId={0} />} />
-      <Route path="playlist/:id" element={<PlaylistP />} />
+      <Route path="media/playlist/:id" element={<PlaylistP />} />
       <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
