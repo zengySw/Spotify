@@ -1,0 +1,326 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bgCircles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  transform-origin: top left;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.headerFix {
+  position: relative;
+  z-index: 200;
+  background: #061420;
+  width: 100%;
+}
+.footerFix {
+  position: relative;
+  z-index: 1200;
+  width: 100%;
+  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.19);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  background: #00000099;
+  color: #e0e4f0;
+  padding: 48px 32px 32px;
+  border-top: 1px solid #6496c833;
+  box-shadow: 0 -10px 30px #0000004d;
+  box-sizing: border-box;
+  padding: 20px 40px 60px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.top_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-right: 20px;
+}
+
+.pageTitle {
+  color: white;
+  font-size: 48px;
+  font-family: 'Core Sans A 55 Medium', sans-serif;
+  font-weight: 400;
+}
+
+.accountButtons {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.accountButton {
+  padding: 11px 20px;
+  background: rgba(0, 27.81, 52.14, 0.70);
+  border-radius: 10px;
+  outline: 1px solid #93E8FF;
+  outline-offset: -1px;
+  color: #C0F6FF;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
+  text-decoration: none;
+  cursor: default;
+  border: none;
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 62px;
+  width: 100%;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sectionTitle {
+  color: white;
+  font-size: 32px;
+  font-family: 'Core Sans A 55 Medium', sans-serif;
+  font-weight: 400;
+}
+
+.settingDescription {
+  color: #93A7C4;
+  font-size: 24px;
+  font-family: 'Core Sans A 45 Regular', sans-serif;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.toggleSwitch {
+  width: 80px;
+  height: 40px;
+  padding: 4px;
+  background: rgba(62.67, 70.87, 78.05, 0.35);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.toggleSwitch[data-state="off"] {
+  justify-content: flex-start;
+}
+
+.toggleSwitch[data-state="on"] {
+  justify-content: flex-end;
+  background: rgba(82.24, 138.86, 171.63, 0.64);
+}
+
+.toggleKnob {
+  width: 32px;
+  height: 32px;
+  background: #256273;
+  border-radius: 8px;
+}
+
+.toggleSwitch[data-state="on"] .toggleKnob {
+  background: #59D3FF;
+}
+
+.select {
+  width: 250px;
+  height: 42px;
+  padding: 11px 20px;
+  background: #001527;
+  border-radius: 10px;
+  outline: 1px solid rgba(146.71, 231.54, 255, 0.50);
+  outline-offset: -1px;
+  color: #567F8D;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: default;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='11' viewBox='0 0 22 11' fill='none'%3E%3Cpath d='M1 1L11 10L21 1' stroke='%23567F8D' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+}
+
+.privacyGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 8px;
+}
+
+.privacyRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.privacyLabel {
+  color: #93A7C4;
+  font-size: 24px;
+  font-family: 'Core Sans A 45 Regular', sans-serif;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 20px 20px 40px;
+  }
+  .pageTitle {
+    font-size: 36px;
+  }
+  .sectionTitle {
+    font-size: 28px;
+  }
+  .settingDescription,
+  .privacyLabel {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 80px 16px 40px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pageTitle {
+    font-size: 28px;
+  }
+  .accountButton {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  .sectionTitle {
+    font-size: 24px;
+  }
+  .settingDescription,
+  .privacyLabel {
+    font-size: 18px;
+  }
+  .select {
+    width: 100%;
+    max-width: 250px;
+  }
+  .settingRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sidebar {
+    display: none; /* на мобильных сайдбар скрыт, можно оставить бургер-меню при желании */
+  }
+  .menuToggle {
+    display: flex;
+    position: fixed;
+    left: 16px;
+    top: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    z-index: 20;
+    color: white;
+    font-size: 24px;
+  }
+  .bgCircles .circle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 70px 12px 30px;
+  }
+  .pageTitle {
+    font-size: 24px;
+  }
+  .accountButtons {
+    gap: 12px;
+    width: 100%;
+  }
+  .accountButton {
+    font-size: 14px;
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 120px;
+  }
+  .top_text {
+    margin-bottom: 24px;
+    padding-right: 0;
+    gap: 16px;
+  }
+  .settingsSection {
+    gap: 32px;
+  }
+  .sectionTitle {
+    font-size: 20px;
+  }
+  .settingDescription,
+  .privacyLabel {
+    font-size: 14px;
+  }
+  .settingRow {
+    gap: 12px;
+  }
+  .select {
+    width: 100%;
+    max-width: 100%;
+    height: 38px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .toggleSwitch {
+    width: 60px;
+    height: 32px;
+  }
+  .toggleKnob {
+    width: 24px;
+    height: 24px;
+  }
+}

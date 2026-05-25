@@ -1,0 +1,307 @@
+.registerPage {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: black;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgCircles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  transform-origin: top left;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.19);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formContainer {
+  width: 600px;
+  max-width: calc(100% - 40px);
+  margin-top: 132px;
+  margin-bottom: 60px;
+  background: #001527;
+  border-color: #A6DAFF;
+  border-width: 0.5px;
+  border-style: solid;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.backLink {
+  position: absolute;
+  left: 38px;
+  top: 32px;
+  padding: 10px;
+  border-bottom: 1px solid #93B7FF;
+  color: #93B7FF;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 548px;
+  margin: 0 auto;
+  padding: 40px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.titleSection {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  color: #F0F0F0;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.step {
+  color: #7484A2;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.inputGroup {
+  width: 100%;
+  max-width: 408px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.passwordField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passwordLabel {
+  padding-left: 10px;
+  color: #F0F0F0;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.passwordInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.passwordInput {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 11px 40px 11px 20px;
+  background: #001527;
+  border-radius: 10px;
+  outline: 1px solid rgba(146.71, 182.80, 255, 0.50);
+  outline-offset: -1px;
+  border: none;
+  color: #56688D;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12px;
+  top: 25%;
+  width: 21px;
+  height: 20px;
+  background-image: url('./src/components/pages/Register/img/visibility_off.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.requirements {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 0;
+}
+
+.requirementText {
+  color: #F0F0F0;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+}
+
+.requirementItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkCircle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  outline: 1.5px solid #A6A6A6;
+  outline-offset: -0.75px;
+  flex-shrink: 0;
+}
+
+.requirementItem span {
+  color: #DADADA;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.nextButton {
+  width: 100%;
+  max-width: 408px;
+  padding: 10px;
+  background: #00A6FF;
+  border-radius: 10px;
+  border: none;
+  color: #000311;
+  font-size: 24px;
+  font-family: 'Core Sans A 55 Medium', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+  .formContainer {
+    margin-top: 80px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .step {
+    font-size: 18px;
+  }
+  .passwordLabel,
+  .requirementText {
+    font-size: 18px;
+  }
+  .nextButton {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    margin-top: 60px;
+    border-radius: 16px;
+  }
+  .backLink {
+    left: 20px;
+    top: 20px;
+    font-size: 14px;
+  }
+  .formWrapper {
+    padding: 60px 16px 30px;
+    gap: 12px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .step {
+    font-size: 16px;
+  }
+  .passwordLabel,
+  .requirementText {
+    font-size: 16px;
+  }
+  .passwordInput {
+    font-size: 14px;
+    height: 38px;
+    padding: 8px 36px 8px 16px;
+  }
+  .requirementItem span {
+    font-size: 14px;
+  }
+  .nextButton {
+    font-size: 18px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    margin-top: 30px;
+    border-radius: 12px;
+  }
+  .backLink {
+    left: 12px;
+    top: 12px;
+    font-size: 12px;
+  }
+  .formWrapper {
+    padding: 50px 12px 20px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .step {
+    font-size: 14px;
+  }
+  .passwordLabel,
+  .requirementText {
+    font-size: 14px;
+    padding-left: 5px;
+  }
+  .passwordInput {
+    font-size: 13px;
+    height: 36px;
+    padding: 6px 32px 6px 12px;
+  }
+  .requirementItem span {
+    font-size: 12px;
+  }
+  .nextButton {
+    font-size: 16px;
+  }
+}

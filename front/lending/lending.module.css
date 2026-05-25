@@ -1,0 +1,482 @@
+/* ---------- Общий контейнер ---------- */
+.container {
+  position: relative;
+  background: #000e1a;
+  overflow-x: hidden;
+  font-family: 'Inter', 'Open Sans', sans-serif;
+}
+
+/* ---------- Полупрозрачные фоновые круги (анимированные) ---------- */
+.backgroundCircles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundCircles::before {
+  content: '';
+  position: absolute;
+  width: 884px;
+  height: 167px;
+  left: 364px;
+  top: 963px;
+  background: #7d52f4;
+  border-radius: 9999px;
+  transform: rotate(175deg);
+  opacity: 0.4;
+  filter: blur(80px);
+  animation: float 12s infinite alternate ease-in-out;
+}
+
+.backgroundCircles::after {
+  content: '';
+  position: absolute;
+  width: 1345px;
+  height: 167px;
+  left: 751px;
+  top: 1241px;
+  background: #d8b7e6;
+  border-radius: 9999px;
+  transform: rotate(175deg);
+  opacity: 0.3;
+  filter: blur(100px);
+  animation: float 15s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: rotate(175deg) translateY(0) translateX(0); }
+  100% { transform: rotate(178deg) translateY(-30px) translateX(20px); }
+}
+
+/* ---------- Хедер ---------- */
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #061420;
+  border-bottom: 0.5px solid #a6daff;
+  padding: 0 37px;
+  min-height: 64px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.logoContainer img {
+  height: 48px;
+  width: auto;
+}
+
+.logoText {
+  color: #40ccff;
+  font-size: 24px;
+  font-family: 'Bajawa Demo', cursive;
+  font-weight: 400;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: #88bcd6;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  color: #40ccff;
+}
+
+.registerBtn {
+  background: rgba(0, 28, 52, 0.7);
+  border-radius: 10px;
+  outline: 1px solid #93e8ff;
+  outline-offset: -1px;
+  padding: 8px 20px;
+  color: #c0f6ff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+  white-space: nowrap;
+}
+
+.registerBtn:hover {
+  background: #2bd9f2;
+  color: #000311;
+  outline-color: #2bd9f2;
+}
+
+/* ---------- Hero секция ---------- */
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 5%;
+}
+
+.heroContent {
+  max-width: 700px;
+}
+
+.heroContent h1 {
+  color: #aff0f2;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.heroContent p {
+  color: rgba(154, 181, 255, 0.7);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btnOutline,
+.btnPrimary {
+  padding: 0.75rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnOutline {
+  background: #02192e;
+  border: 1px solid #2bd9f2;
+  color: #2bd9f2;
+}
+
+.btnPrimary {
+  background: #2bd9f2;
+  border: none;
+  color: #000311;
+}
+
+.btnOutline:hover,
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Статистика ---------- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 4rem 5%;
+  position: relative;
+  z-index: 2;
+}
+
+.statCard1 {
+  background: linear-gradient(149deg, rgba(0, 0, 0, 0.25) 0%, rgba(57, 102, 175, 0.25) 70%, rgba(0, 0, 0, 0.05) 100%);
+  border: 1px solid #93e8ff;
+  width: 500px;
+  height: 200px;
+  border-radius: 24px;
+  padding: 1.8rem;
+  text-align: center;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: #b0ffff;
+}
+.statCard2 {
+  background: linear-gradient(149deg, rgba(0, 0, 0, 0.25) 0%, rgba(57, 102, 175, 0.25) 70%, rgba(0, 0, 0, 0.05) 100%);
+  border: 1px solid #93e8ff;
+  border-radius: 24px;
+  padding: 1.8rem;
+  text-align: center;
+  min-width: 200px;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: #b0ffff;
+}
+.statCard3 {
+  background: linear-gradient(149deg, rgba(0, 0, 0, 0.25) 0%, rgba(57, 102, 175, 0.25) 70%, rgba(0, 0, 0, 0.05) 100%);
+  border: 1px solid #93e8ff;
+  border-radius: 24px;
+  padding: 1.8rem;
+  text-align: center;
+  min-width: 200px;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: #b0ffff;
+}
+
+.statCard span {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #baffdf;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Особливості ---------- */
+.features {
+  padding: 4rem 5%;
+  position: relative;
+  z-index: 2;
+}
+
+.features h2 {
+  color: #c8dbff;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid #93e8ff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+}
+
+.featureIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(180deg, #008bae 0%, rgba(0, 72, 147, 0.6) 91%, #009bfb 100%);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+}
+
+.featureCard h3 {
+  font-size: 1.4rem;
+  color: white;
+  margin-bottom: 0.8rem;
+}
+
+.featureCard p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ---------- Адаптивность (медиа-запросы) ---------- */
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 20px;
+  }
+  .nav {
+    gap: 30px;
+  }
+  .statCard {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+  .logoWrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  .nav {
+    justify-content: center;
+    gap: 20px;
+  }
+  .nav a {
+    font-size: 16px;
+    white-space: normal;
+  }
+  .registerBtn {
+    width: auto;
+    padding: 6px 16px;
+    font-size: 16px;
+  }
+  .hero {
+    min-height: auto;
+    padding: 40px 5%;
+    text-align: center;
+  }
+  .heroContent {
+    max-width: 100%;
+  }
+  .heroButtons {
+    justify-content: center;
+  }
+  .stats {
+    gap: 1rem;
+    padding: 2rem 5%;
+  }
+  .statCard {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem;
+  }
+  .features h2 {
+    margin-bottom: 1.5rem;
+  }
+  .featuresGrid {
+    gap: 1.2rem;
+  }
+  /* скрываем фоновые круги на мобильных */
+  .backgroundCircles::before,
+  .backgroundCircles::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .btnOutline,
+  .btnPrimary {
+    width: 100%;
+    text-align: center;
+  }
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .logoContainer img {
+    height: 40px;
+  }
+  .logoText {
+    font-size: 20px;
+  }
+}
+
+/* ---------- НОВЫЕ STAT CARDS ---------- */
+.stats {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 5%;
+  z-index: 3;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  position: relative;
+  padding: 20px 40px;
+  border-radius: 20px;
+
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: #b8f7ff;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(147, 232, 255, 0.4);
+
+  box-shadow:
+    0 0 25px rgba(64, 204, 255, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 180px;
+}
+
+.lumik{
+  position: absolute;
+  top: 122px;
+  left: 800px;
+  z-index: 100;
+}
+
+.frame{
+  z-index: 1;
+}
+
+.background{
+  position: absolute;
+  right: 0px;
+  z-index: -100;
+}
+
+.statCard:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow:
+    0 0 35px rgba(64, 204, 255, 0.45),
+    inset 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.statCard span {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #c7d9ff;
+  opacity: 0.85;
+}
+
+/* перекрытие как в дизайне */
+.statCard:nth-child(1) {
+  transform: translateX(40px);
+  z-index: 1;
+}
+
+.statCard:nth-child(2) {
+  z-index: 2;
+}
+
+.statCard:nth-child(3) {
+  transform: translateX(-40px);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .statCard {
+    transform: none !important;
+  }
+}

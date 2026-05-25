@@ -1,0 +1,463 @@
+{
+    "playlists": [
+        {
+            "id": 1,
+            "name": "Мій плейлист",
+            "description": "Улюблені треки користувача",
+            "icon": "/likes_ico.png",
+            "author": {
+                "id": 1,
+                "name": "Stealbe",
+                "icon": "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg"
+            },
+            "tracks": [
+                {
+                    "trackId": 101,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 102,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 103,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 105,
+                    "addDate": "2025-04-29"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 107,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 109,
+                    "addDate": "2025-04-02"
+                },
+                {
+                    "trackId": 110,
+                    "addDate": "2025-03-23"
+                },
+                {
+                    "trackId": 111,
+                    "addDate": "2025-03-23"
+                },
+                {
+                    "trackId": 112,
+                    "addDate": "2025-03-22"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 114,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-03-12"
+                },
+                {
+                    "trackId": 116,
+                    "addDate": "2024-03-12"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2024-02-14"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2024-02-14"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Night Drive",
+            "description": "Synthwave & chill vibes",
+            "icon": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "author": {
+                "id": 1,
+                "name": "Stealbe",
+                "icon": "https://i.pinimg.com/564x/1c/8e/0b/1c8e0b9a7d2f5a3c9e4b6c9e5f1a2b.jpg"
+            },
+            "tracks": [
+                {
+                    "trackId": 103,
+                    "addDate": "2025-04-20"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-04-18"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-04-15"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-04-14"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-04-10"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2025-04-08"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Топ ВАША музика сьогодні!",
+            "description": "Найпопулярніші треки дня",
+            "icon": "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 106,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 105,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 107,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 101,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 109,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 111,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2025-05-08"
+                },
+                {
+                    "trackId": 114,
+                    "addDate": "2025-05-07"
+                },
+                {
+                    "trackId": 102,
+                    "addDate": "2025-05-07"
+                },
+                {
+                    "trackId": 110,
+                    "addDate": "2025-05-06"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Нові музичні релізи",
+            "description": "Свіжі релізи та новинки музики",
+            "icon": "https://images.unsplash.com/photo-1501612780327-45045538702b",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 101,
+                    "addDate": "2025-05-14"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-05-14"
+                },
+                {
+                    "trackId": 112,
+                    "addDate": "2025-05-13"
+                },
+                {
+                    "trackId": 116,
+                    "addDate": "2025-05-13"
+                },
+                {
+                    "trackId": 103,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2025-05-09"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Хеппi",
+            "description": "Позитивні треки для гарного настрою",
+            "icon": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 101,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 105,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2025-05-08"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Меланхолія",
+            "description": "Спокійна та атмосферна музика",
+            "icon": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 102,
+                    "addDate": "2025-05-07"
+                },
+                {
+                    "trackId": 103,
+                    "addDate": "2025-05-06"
+                },
+                {
+                    "trackId": 107,
+                    "addDate": "2025-05-06"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-05-05"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2025-05-04"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Романтика",
+            "description": "Ліричні композиції для особливого настрою",
+            "icon": "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 106,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 107,
+                    "addDate": "2025-05-08"
+                },
+                {
+                    "trackId": 101,
+                    "addDate": "2025-05-08"
+                },
+                {
+                    "trackId": 110,
+                    "addDate": "2025-05-07"
+                },
+                {
+                    "trackId": 114,
+                    "addDate": "2025-05-06"
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Драйв",
+            "description": "Енергійні треки для тренувань та активного дня",
+            "icon": "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 105,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 111,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 112,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 115,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2025-05-08"
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Туса",
+            "description": "Треки для вечірок та компанії друзів",
+            "icon": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 105,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 106,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 111,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 116,
+                    "addDate": "2025-05-09"
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Чiлл",
+            "description": "Розслабляючі композиції для відпочинку",
+            "icon": "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 102,
+                    "addDate": "2025-05-08"
+                },
+                {
+                    "trackId": 103,
+                    "addDate": "2025-05-08"
+                },
+                {
+                    "trackId": 109,
+                    "addDate": "2025-05-07"
+                },
+                {
+                    "trackId": 113,
+                    "addDate": "2025-05-06"
+                },
+                {
+                    "trackId": 117,
+                    "addDate": "2025-05-05"
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Фан",
+            "description": "Веселі та вайбові треки на кожен день",
+            "icon": "https://images.unsplash.com/photo-1506157786151-b8491531f063",
+            "author": {
+                "id": 0,
+                "name": "VAША Music",
+                "icon": "https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            },
+            "tracks": [
+                {
+                    "trackId": 101,
+                    "addDate": "2025-05-12"
+                },
+                {
+                    "trackId": 104,
+                    "addDate": "2025-05-11"
+                },
+                {
+                    "trackId": 108,
+                    "addDate": "2025-05-10"
+                },
+                {
+                    "trackId": 110,
+                    "addDate": "2025-05-09"
+                },
+                {
+                    "trackId": 118,
+                    "addDate": "2025-05-08"
+                }
+            ]
+        }
+    ]
+}

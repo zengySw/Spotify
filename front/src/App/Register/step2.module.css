@@ -1,0 +1,359 @@
+/* RegisterStep2.module.css */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: black;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bgCircles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 9999px;
+  transform-origin: top left;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.19);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formContainer {
+  width: 600px;
+  max-width: calc(100% - 40px);
+  margin-top: 132px;
+  margin-bottom: 60px;
+  background: #001527;
+  border-color: #A6DAFF;
+  border-width: 0.5px;
+  border-style: solid;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.backLink {
+  position: absolute;
+  left: 38px;
+  top: 32px;
+  padding: 10px;
+  border-bottom: 1px solid #93B7FF;
+  color: #93B7FF;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 548px;
+  margin: 0 auto;
+  padding: 40px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.titleSection {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  color: #F0F0F0;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.step {
+  color: #7484A2;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.inputGroup {
+  width: 100%;
+  max-width: 408px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fieldLabel {
+  color: #F0F0F0;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.fieldHint {
+  color: #A6A6A6;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.fieldHintLink {
+  border-bottom: 0.5px solid #A6A6A6;
+  display: inline-block;
+  cursor: pointer;
+  color: #A6A6A6;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 4px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 11px 20px;
+  background: #001527;
+  border-radius: 10px;
+  outline: 1px solid rgba(146.71, 182.80, 255, 0.50);
+  outline-offset: -1px;
+  border: none;
+  color: #56688D;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.dateRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dateField {
+  flex: 1;
+  min-width: 80px;
+}
+
+.dateSelect {
+  width: 100%;
+  height: 42px;
+  padding: 11px 20px;
+  background: #001527;
+  border-radius: 10px;
+  outline: 1px solid rgba(146.71, 182.80, 255, 0.50);
+  outline-offset: -1px;
+  border: none;
+  color: #56688D;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='11' viewBox='0 0 22 11' fill='none'%3E%3Cpath d='M1 1L11 10L21 1' stroke='%2356688D' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* Блок региона */
+.regionRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.regionField {
+  flex: 1;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radioItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radioItem input[type="radio"] {
+  width: 12px;
+  height: 12px;
+  outline: 1.5px solid #A6A6A6;
+  outline-offset: -0.75px;
+  border-radius: 50%;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.radioItem input[type="radio"]:checked {
+  background: #00A6FF;
+  outline-color: #00A6FF;
+}
+
+.radioItem label {
+  color: #DADADA;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+}
+
+.registerButton {
+  width: 100%;
+  padding: 10px;
+  background: #00A6FF;
+  border-radius: 10px;
+  border: none;
+  color: #000311;
+  font-size: 24px;
+  font-family: 'Core Sans A 55 Medium', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+  .formContainer {
+    margin-top: 80px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .step {
+    font-size: 18px;
+  }
+  .fieldLabel,
+  .fieldHint,
+  .fieldHintLink,
+  .radioItem label {
+    font-size: 18px;
+  }
+  .registerButton {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    margin-top: 60px;
+    border-radius: 16px;
+  }
+  .backLink {
+    left: 20px;
+    top: 20px;
+    font-size: 14px;
+  }
+  .formWrapper {
+    padding: 60px 16px 30px;
+    gap: 12px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .step {
+    font-size: 16px;
+  }
+  .fieldLabel,
+  .fieldHint,
+  .fieldHintLink,
+  .radioItem label {
+    font-size: 16px;
+  }
+  .input,
+  .dateSelect {
+    font-size: 14px;
+    height: 38px;
+    padding: 8px 16px;
+  }
+  .dateSelect {
+    background-position: right 12px center;
+  }
+  .registerButton {
+    font-size: 18px;
+    padding: 8px;
+  }
+  .dateRow,
+  .regionRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    margin-top: 30px;
+    border-radius: 12px;
+  }
+  .backLink {
+    left: 12px;
+    top: 12px;
+    font-size: 12px;
+  }
+  .formWrapper {
+    padding: 50px 12px 20px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .step {
+    font-size: 14px;
+  }
+  .fieldLabel,
+  .fieldHint,
+  .fieldHintLink,
+  .radioItem label {
+    font-size: 14px;
+  }
+  .input,
+  .dateSelect {
+    font-size: 13px;
+    height: 36px;
+    padding: 6px 12px;
+  }
+  .registerButton {
+    font-size: 16px;
+  }
+}

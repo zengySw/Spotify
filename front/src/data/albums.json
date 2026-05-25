@@ -1,0 +1,59 @@
+{
+    "albums": [
+        {
+            "id": 1,
+            "title": "On The Floor",
+            "artists": [
+                "JLO"
+            ],
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/6y5vGRyAum.png",
+            "tracksCount": 19,
+            "releaseDate": "2026-04-14",
+            "genre": "Pop"
+        },
+        {
+            "id": 2,
+            "title": "Reputation",
+            "artists": [
+                "Taylor Swift"
+            ],
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/wqhKCqFkk3.png",
+            "tracksCount": 10,
+            "releaseDate": "2026-04-14",
+            "genre": "Pop"
+        },
+        {
+            "id": 3,
+            "title": "Yours Truly",
+            "artists": [
+                "Ariana Grande"
+            ],
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/7b6RVkNZTT.png",
+            "tracksCount": 5,
+            "releaseDate": "2026-04-14",
+            "genre": "R&B"
+        },
+        {
+            "id": 4,
+            "title": "Маргарита",
+            "artists": [
+                "Michelle Andrade"
+            ],
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/ndLwq4S0j7.png",
+            "tracksCount": 7,
+            "releaseDate": "2026-04-14",
+            "genre": "Pop"
+        },
+        {
+            "id": 5,
+            "title": "30 Vinyl",
+            "artists": [
+                "Adele"
+            ],
+            "icon": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/PWUvYeX7uv.png",
+            "tracksCount": 7,
+            "releaseDate": "2026-04-14",
+            "genre": "Soul"
+        }
+    ]
+}

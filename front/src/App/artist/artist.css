@@ -1,0 +1,260 @@
+.artist-page {
+    min-height: 100%;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.artist-page.loading,
+.artist-page.error {
+    justify-content: center;
+}
+
+.artist-page.loading {
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid #1DB954;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.artist-page.error {
+    text-align: center;
+}
+
+.artist-page.error h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.artist-page.error p {
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+/* Artist Header */
+.artist-header {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px;
+    max-width: 1000px;
+    width: 100%;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.artist-image-wrapper {
+    flex-shrink: 0;
+}
+
+.artist-image {
+    width: min(280px, 100%);
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.artist-image:hover {
+    transform: scale(1.05);
+}
+
+.artist-header-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.artist-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1DB954;
+    margin: 0 0 10px 0;
+}
+
+.artist-name {
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #fff, #1DB954);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    overflow-wrap: anywhere;
+}
+
+.artist-followers {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Artist Details */
+.artist-details {
+    max-width: 1000px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 30px;
+}
+
+.detail-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.detail-section:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.detail-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1DB954;
+    margin: 0 0 15px 0;
+}
+
+/* Genres */
+.genres-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.genre-tag {
+    background: linear-gradient(135deg, #1DB954, #1ed760);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.genre-tag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(29, 185, 84, 0.4);
+}
+
+/* Popularity Bar */
+.popularity-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.popularity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1DB954, #1ed760);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.popularity-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Spotify Link */
+.spotify-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1DB954, #1ed760);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.spotify-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(29, 185, 84, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .artist-header {
+        flex-direction: column;
+        gap: 30px;
+        padding: 25px;
+    }
+
+    .artist-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .artist-name {
+        font-size: 36px;
+    }
+
+    .artist-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-page {
+        padding: 20px 15px;
+    }
+
+    .artist-header {
+        padding: 20px;
+    }
+
+    .artist-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .artist-name {
+        font-size: 28px;
+    }
+
+    .artist-followers {
+        font-size: 14px;
+    }
+
+    .detail-section {
+        padding: 15px;
+    }
+}

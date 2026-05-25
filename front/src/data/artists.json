@@ -1,0 +1,51 @@
+{
+    "artists": [
+        {
+            "id": 1,
+            "name": "Lana Del Rey",
+            "followers": "4 690 563",
+            "avatar": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png",
+            "banner": "https://images.unsplash.com/photo-1501612780327-45045538702b",
+            "verified": true,
+            "genres": [
+                "Alternative",
+                "Indie Pop"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Lady Gaga",
+            "followers": "8 104 221",
+            "avatar": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/n8SOennME3.png",
+            "banner": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
+            "verified": true,
+            "genres": [
+                "Pop",
+                "Dance"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Shakira",
+            "followers": "7 332 001",
+            "avatar": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-24/aXe0vJZ72q.png",
+            "banner": "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+            "verified": true,
+            "genres": [
+                "Latin Pop"
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Jennifer Lopez",
+            "followers": "6 194 221",
+            "avatar": "https://codia-f2c.s3.us-west-1.amazonaws.com/image/2026-04-14/jJLgPEaOGQ.png",
+            "banner": "https://images.unsplash.com/photo-1516280440614-37939bbacd81",
+            "verified": true,
+            "genres": [
+                "Pop",
+                "Dance"
+            ]
+        }
+    ]
+}

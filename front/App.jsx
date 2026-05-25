@@ -47,7 +47,38 @@ export default function App() {
   const [volume, setVolume] = useState(0.8);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const audioRef = useRef(new Audio());
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1280) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen || window.innerWidth > 1280) return undefined;
+
+    const prevOverflow = document.body.style.overflow;
+    const onEsc = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onEsc);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onEsc);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     fetch(API_URL)
@@ -170,9 +201,9 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <HeaderBar />
+      <HeaderBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Main
-        menu={<Menu />}
+        menu={<Menu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />}
         sidebar={
           <SidebarPlayer
             track={currentTrack}
