@@ -1,17 +1,34 @@
 import '../PlayingVisualisator.css';
 import './MusicCard.css';
 import { useState, useEffect } from 'react';
-import React from 'react';
 
-export default function MusicCard({ id, icon, title, artists, groupTracks = null, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false }) {
-    const [playingState, setPlayingState] = useState(isPlaying);
+export default function MusicCard({
+    id,
+    icon,
+    title,
+    artists = [],
+    groupTracks = null,
+    onClick = () => { },
+    onDoubleClick = () => { },
+    isPlaying = false,
+    currentlyPlaying = null
+}) {
+    const [playingState, setPlayingState] = useState(isPlaying || currentlyPlaying === id);
 
     useEffect(() => {
-        setPlayingState(isPlaying);
-    }, [isPlaying]);
+        setPlayingState(isPlaying || currentlyPlaying === id);
+    }, [isPlaying, currentlyPlaying, id]);
+
+    const handleClick = () => {
+        onClick(id, playingState);
+    };
+
+    const handleDoubleClick = () => {
+        onDoubleClick(id, playingState);
+    };
 
     return (
-        <button className="music-card" onClick={onClick(id, playingState)} onDoubleClick={onDoubleClick(id, playingState)}>
+        <button className="music-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
             <div className="image-container">
                 {playingState ? <span className="playing-visualisator"><div className="rectangle" />
                     <div className="rectangle-one" />

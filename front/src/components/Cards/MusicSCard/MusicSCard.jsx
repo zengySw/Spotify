@@ -2,15 +2,47 @@ import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
-export default function MusicSCard({ id, num, icon, title, artists, alboum, listenCount, duration, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
-    const { playingState, setPlayingState } = useState(isPlaying);
+function formatDuration(duration) {
+    if (typeof duration === 'string') return duration;
+    if (!duration || Number.isNaN(duration)) return '0:00';
+
+    const seconds = duration > 1000 ? Math.floor(duration / 1000) : Math.floor(duration);
+    const minutes = Math.floor(seconds / 60);
+    const rest = seconds % 60;
+
+    return `${minutes}:${String(rest).padStart(2, '0')}`;
+}
+
+export default function MusicSCard({
+    id,
+    num,
+    icon,
+    title,
+    album,
+    artists = [],
+    listenCount,
+    duration,
+    onClick = () => { },
+    onDoubleClick = () => { },
+    isPlaying = false,
+    addDate = null
+}) {
+    const [playingState, setPlayingState] = useState(isPlaying);
 
     useEffect(() => {
         setPlayingState(isPlaying);
     }, [isPlaying]);
 
+    const handleClick = () => {
+        onClick(id, playingState);
+    };
+
+    const handleDoubleClick = () => {
+        onDoubleClick(id, playingState);
+    };
+
     return (
-        <button className="music-s-card" onClick={onClick(id, playingState)} onDoubleClick={onDoubleClick(id, playingState)}>
+        <button className="music-s-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
             {num && num != null ? playingState ? <span className="playing-visualisator"><div className="rectangle" />
                 <div className="rectangle-one" />
                 <div className="rectangle-two" />
@@ -31,11 +63,9 @@ export default function MusicSCard({ id, num, icon, title, artists, alboum, list
                         </span>
                     </div>
                     <div className="about">
-                        <span className="alboum">{alboum}</span>
-                        <div className="frame">
-                            {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
-                            <span className="duration">{duration}</span>
-                        </div>
+                        <span className="album">{album}</span>
+                        {addDate ? <span className="add-date">{addDate}</span> : <span className="listen-count">{listenCount}</span>}
+                        <span className="duration">{formatDuration(duration)}</span>
                     </div>
                 </div>
             </div>

@@ -95,6 +95,21 @@ const mapAlbum = (album) => ({
     groupTracks: album.total_tracks || 0
 });
 
+const mapPlaylist = (playlist) => ({
+    ...playlist,
+    title: playlist.name,
+    artists: [playlist.owner?.display_name || "Unknown"],
+    icon: playlist.images?.[0]?.url || "/default-avatar.jpg",
+    groupTracks: playlist.tracks?.total || playlist.items?.total || 0
+});
+
+const mapPodcast = (show) => ({
+    ...show,
+    title: show.name,
+    icon: show.images?.[0]?.url || "/default-avatar.jpg",
+    episodes: show.episodes?.items || []
+});
+
 const getInfoByName = async (endpoint, params = {}) => {
     const query = new URLSearchParams({
         api_key: API_KEY,
@@ -182,6 +197,35 @@ export const getMyAlbums = async (limit = 50, offset = 0) => {
     return (result.items || []).map(item => mapAlbum(item.album));
 };
 
+export const getLikedTracks = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/tracks", {
+        limit,
+        offset,
+        market: "UA",
+    });
+
+    return (result.items || []).map(item => mapTrack(item.track));
+};
+
+export const getMyPlaylists = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/playlists", {
+        limit,
+        offset,
+    });
+
+    return (result.items || []).map(mapPlaylist);
+};
+
+export const getMyPodcasts = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/shows", {
+        limit,
+        offset,
+        market: "UA",
+    });
+
+    return (result.items || []).map(item => mapPodcast(item.show));
+};
+
 export const getMyArtists = async (limit = 50) => {
     const result = await spotifyApiRequest("me/following", {
         limit: limit,
@@ -233,6 +277,7 @@ export const getPlaylistById = async (id, { limit = 100 } = {}) => {
     return {
         id: playlist.id,
         name: playlist.name,
+        title: playlist.name,
         icon: playlist.images?.[0]?.url || "",
 
         author: {

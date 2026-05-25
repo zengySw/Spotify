@@ -1,16 +1,20 @@
 import "./Main.css";
 import { OnePList, RowList } from "../components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
-import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
+import { getRecommendations, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
 import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
-import useMusicPlayer from "../hooks/useMusicPlayer.js";
 import { Banner } from "../components/Banner/Banner.jsx";
 
-export default function Main() {
+const noopPlayer = {
+    currentTrack: null,
+    playTrack: () => { },
+};
+
+export default function Main({ player: externalPlayer = null }) {
     const [selected, setSelected] = useState("Всі");
-    const player = useMusicPlayer();
+    const player = externalPlayer || noopPlayer;
 
     const [topTracks, setTopTracks] = useState([]);
     const [newAlbums, setNewAlbums] = useState([]);

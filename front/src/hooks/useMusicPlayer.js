@@ -110,7 +110,14 @@ export default function useMusicPlayer() {
       .catch(() => setIsPlaying(false));
   };
 
-  const playTrack = (idx) => {
+  const playTrack = (trackOrIndex) => {
+    const idx =
+      typeof trackOrIndex === "number"
+        ? trackOrIndex
+        : tracks.findIndex((track) => String(track.id) === String(trackOrIndex));
+
+    if (idx < 0) return;
+
     if (idx === currentIdx) {
       togglePlay();
       return;
