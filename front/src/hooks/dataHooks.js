@@ -186,7 +186,6 @@ export const getTrackById = async (id) => {
 
 export const getArtistById = async (id) => {
     const result = await spotifyApiRequest(`artists/${id}`);
-    console.log(result);
     return result ? mapArtist(result) : null;
 };
 
@@ -298,38 +297,14 @@ export const getMyPodcasts = async (limit = 50) => {
 
     return Promise.all(
         items.map(async ({ show }) => {
-            console.log(show);
             const { items: episodes = [] } = await spotifyApiRequest(
                 `shows/${show.id}/episodes`,
                 { limit: 10, market: "UA" }
             );
 
+            
             return mapPodcast({ ...show, episodes });
         })
-    );
-};
-
-export const searchTracks = async (search) => {
-    return await apiRequest("tracks", {
-        search,
-    });
-};
-
-export const searchArtists = async (search) => {
-    return await apiRequest("artists", {
-        search,
-    });
-};
-
-export const searchAlbums = async (search) => {
-    return await apiRequest("albums", {
-        search,
-    });
-};
-
-export const getPodcastById = (id) => {
-    return podcasts.podcasts.find(
-        podcast => podcast.id === Number(id)
     );
 };
 
@@ -395,64 +370,30 @@ export const getPlaylistTracks = async (playlistId) => {
     return tracks.filter(Boolean);
 };
 
-export const getUserLikedTracks = async (userId) => {
-    const user = getUserById(userId);
+export const searchMp3 = async ({ title, artist }) => {
+    const query = encodeURIComponent(`${artist} ${title}`);
 
-    if (!user) return [];
-
-    const tracks = await Promise.all(
-        user.mediaLibrary.likedTracks.map(trackId =>
-            getTrackById(trackId)
-        )
+    const res = await fetch(
+        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
     );
 
-    return tracks.filter(Boolean);
-};
+    if (!res.ok) {
+        throw new Error(`Audius error: ${res.status}`);
+    }
 
-export const getUserLikedArtists = async (userId) => {
-    const user = getUserById(userId);
+    const { data = [] } = await res.json();
 
-    if (!user) return [];
-
-    const artists = await Promise.all(
-        user.mediaLibrary.likedArtists.map(artistId =>
-            getArtistById(artistId)
-        )
+    const track = data.find(
+        t => t.access?.stream && t.stream?.url
     );
 
-    return artists.filter(Boolean);
-};
+    if (!track) return null;
 
-export const getUserLikedAlbums = async (userId) => {
-    const user = getUserById(userId);
-
-    if (!user) return [];
-
-    const albums = await Promise.all(
-        user.mediaLibrary.likedAlbums.map(albumId =>
-            getAlbumById(albumId)
-        )
-    );
-
-    return albums.filter(Boolean);
-};
-
-export const getUserLikedPodcasts = (userId) => {
-    const user = getUserById(userId);
-
-    if (!user) return [];
-
-    return user.mediaLibrary.likedPodcasts
-        .map(podcastId => getPodcastById(podcastId))
-        .filter(Boolean);
-};
-
-export const getUserLikedAudiobooks = (userId) => {
-    const user = getUserById(userId);
-
-    if (!user) return [];
-
-    return user.mediaLibrary.likedAudiobooks
-        .map(bookId => getAudiobookById(bookId))
-        .filter(Boolean);
+    return {
+        id: track.id,
+        title: track.title,
+        artist: track.user?.name,
+        artwork: track.artwork?.["480x480"] || "",
+        mp3: track.stream.url
+    };
 };

@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const env = import.meta.env;
-
-const API_URL = '' | '/spotify/tracks';
-const CLIENT_ID = env.VITE_SPOTIFY_CLIENT_ID;
+const API_URL = '/spotify/tracks';
 
 function normalizeTracks(data) {
   if (Array.isArray(data)) return data;
@@ -22,24 +19,30 @@ export default function useMusicPlayer() {
   const [error, setError] = useState(null);
   const audioRef = useRef(new Audio());
 
-  useEffect(() => {
-    const params = new URLSearchParams({
-      client_id: CLIENT_ID,
-      format: "json",
-      limit: 50,
-    });
 
-    fetch(`${API_URL}/?${params}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setTracks(normalizeTracks(data));
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Failed to load tracks.");
-        setLoading(false);
-      });
-  }, []);
+
+  // useEffect(() => {
+  //   const params = new URLSearchParams({
+  //     client_id: CLIENT_ID,
+  //     format: "json",
+  //     limit: 50,
+  //   });
+
+  //   fetch(`${API_URL}/?${params}`)
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setTracks(normalizeTracks(data));
+  //       setLoading(false);
+  //     })
+  //     .catch(() => {
+  //       setError("Failed to load tracks.");
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+
+
+
 
 
   useEffect(() => {
@@ -75,6 +78,12 @@ export default function useMusicPlayer() {
     };
   }, [tracks.length]);
 
+
+
+
+
+
+
   useEffect(() => {
     audioRef.current.volume = volume;
   }, [volume]);
@@ -89,6 +98,10 @@ export default function useMusicPlayer() {
       .then(() => setIsPlaying(true))
       .catch(() => setIsPlaying(false));
   }, [currentIdx, tracks]);
+
+
+
+
 
   useEffect(() => {
     return () => {

@@ -27,6 +27,8 @@ import MediaListP from "./src/App/Library/MediaListP.jsx";
 
 import useMusicPlayer from "./src/hooks/useMusicPlayer";
 
+import { searchMp3 } from './src/hooks/dataHooks.js';
+
 const Root = () => {
   const {
     currentTrack,
@@ -41,6 +43,13 @@ const Root = () => {
     setSeekByPercent,
     setVolume,
   } = useMusicPlayer();
+
+  useEffect(() => {
+    searchMp3({
+      title: "Gunky's Uprising",
+      artist: "3LAU"
+    }).then(track => console.log(track));
+  }, [])
 
 
   return (
@@ -97,6 +106,7 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="error" element={<Error />} />
+      <Route path="404" element={<Error />} />
       <Route path="settings" element={<Settings />} />
 
     </Route>

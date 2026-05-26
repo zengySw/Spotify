@@ -53,30 +53,10 @@
         },
         "newMusicReleases": {
             "title": "Нові музичні релізи",
-            "continueLink": "/media/playlist/4",
-            "albums": [
-                "6ul9rF8H5L4cO2zyY6FWN8",
-                "7aPqnYaDN3HVZdvIAIXLhF",
-                "5S59FQyN8TvyRXD63fCc4j",
-                "3Mp2TOTZpTGvU1cExaHs7w",
-                "6ul9rF8H5L4cO2zyY6FWN8",
-                "7aPqnYaDN3HVZdvIAIXLhF",
-                "5S59FQyN8TvyRXD63fCc4j",
-                "3Mp2TOTZpTGvU1cExaHs7w"
-            ]
+            "continueLink": "/media/playlist/4"
         },
         "topArtists": {
-            "title": "Твої улюблені виконавці",
-            "artists": [
-                "4MCBfE4596Uoi2O4DtmEMz",
-                "2z20q6EEfm6w6PiIKsgtb3",
-                "2ye2Wgw4gimLv2eAKyk1NB",
-                "5gL5FGeuSIhu0iNFC22UyY",
-                "4MCBfE4596Uoi2O4DtmEMz",
-                "2z20q6EEfm6w6PiIKsgtb3",
-                "2ye2Wgw4gimLv2eAKyk1NB",
-                "5gL5FGeuSIhu0iNFC22UyY"
-            ]
+            "title": "Твої улюблені виконавці"
         },
         "newPodcasts": {
             "title": "Нові релізи подкастів",
