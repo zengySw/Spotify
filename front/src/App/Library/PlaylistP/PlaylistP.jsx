@@ -3,6 +3,7 @@ import { MusicSCard } from "../../../components/Cards";
 import { useState, useEffect, useRef } from "react";
 import { getPlaylistById } from "../../../hooks/dataHooks";
 import { useParams } from "react-router-dom";
+import useMusicPlayer from "../../../hooks/useMusicPlayer";
 
 export default function PlaylistP() {
     const { id } = useParams();
@@ -10,6 +11,8 @@ export default function PlaylistP() {
     const [playlist, setPlaylist] = useState(null);
 
     const [sortBy, setSortBy] = useState("date");
+
+    const player = useMusicPlayer();
 
     const sortOptions = [
         { value: "date", label: "Дата додавання" },
@@ -73,9 +76,11 @@ export default function PlaylistP() {
                 <div className="playlist-tracks-list">
                     {(playlist?.tracks || []).map((track, index) => (
                         <MusicSCard
-                            key={track.id}
+                            key={index}
                             num={index + 1}
-                            {...track}
+                            track={track}
+                            onClick={() => player.play_track(track)}
+                            currentlyPlaying={player.current_track}
                         />
                     ))}
                 </div>

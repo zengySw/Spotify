@@ -2,23 +2,36 @@ import '../PlayingVisualisator.css';
 import './MusicSCard.css';
 import { useEffect, useState } from 'react';
 
-export default function MusicSCard({ id, num, icon, title, album, duration, artists = [], listenCount = null, onClick = (id, playingState) => { }, onDoubleClick = (id, playingState) => { }, isPlaying = false, addDate = null }) {
-    const [playingState, setPlayingState] = useState(isPlaying);
+export default function MusicSCard(props) {
+    const track = props.track ?? props;
+
+    const {
+        id,
+        icon,
+        album,
+        title,
+        duration,
+        artists = [],
+        listenCount = null,
+        addDate = null,
+    } = track;
+
+    const {
+        num,
+        groupTracks = null,
+        onClick = () => { },
+        onDoubleClick = () => { },
+        currentlyPlaying = null
+    } = props;
+
+    const [playingState, setPlayingState] = useState(currentlyPlaying === id);
 
     useEffect(() => {
-        setPlayingState(isPlaying);
-    }, [isPlaying]);
-
-    const handleClick = () => {
-        onClick(id, playingState);
-    };
-
-    const handleDoubleClick = () => {
-        onDoubleClick(id, playingState);
-    };
+        setPlayingState(currentlyPlaying?.id === id);
+    }, [currentlyPlaying, id]);
 
     return (
-        <button className="music-s-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
+        <button className="music-s-card" onClick={() => onClick()} onDoubleClick={() => onDoubleClick()}>
             {num && num != null ? playingState ? <span className="playing-visualisator"><div className="rectangle" />
                 <div className="rectangle-one" />
                 <div className="rectangle-two" />

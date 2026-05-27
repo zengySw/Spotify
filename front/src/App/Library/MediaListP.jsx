@@ -72,6 +72,7 @@ export default function MediaListP({ title, userId }) {
                                             key={index}
                                             track={track}
                                             onClick={() => player.play_track(track)}
+                                            currentlyPlaying={player.current_track}
                                         />
                                     );
                                 })

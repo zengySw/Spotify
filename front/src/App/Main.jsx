@@ -80,6 +80,7 @@ export default function Main() {
                             track={track}
                             onClick={() => player.play_track(track)}
                             currentlyPlaying={player.current_track}
+                            currentlyPlaying={player.current_track}
                         />
                     ))}
                     continueLink={data.mainPage.topMusicToday.continueLink}
