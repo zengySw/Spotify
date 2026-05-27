@@ -1,4 +1,4 @@
-﻿import ReactDOM from 'react-dom/client';
+﻿﻿import ReactDOM from 'react-dom/client';
 import './index.css';
 import { StrictMode, useState, useEffect, useRef } from "react";
 import {
@@ -25,32 +25,154 @@ import Main from "./src/App/Main.jsx";
 import PlaylistP from "./src/App/Library/PlaylistP/PlaylistP.jsx";
 import MediaListP from "./src/App/Library/MediaListP.jsx";
 
-import useMusicPlayer from "./src/hooks/useMusicPlayer";
+import { getPlaylistById } from './src/hooks/dataHooks.js';
 
-import { searchMp3 } from './src/hooks/dataHooks.js';
+const API_URL =
+  "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
+
+function fmt(seconds) {
+  if (!seconds || Number.isNaN(seconds)) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function MusicNote() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      style={{ opacity: 0.35 }}
+    >
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </svg>
+  );
+}
+
 
 const Root = () => {
-  const {
-    currentTrack,
-    isPlaying,
-    currentTime,
-    duration,
-    progress,
-    volume,
-    togglePlay,
-    playPrev,
-    playNext,
-    setSeekByPercent,
-    setVolume,
-  } = useMusicPlayer();
+
+  // всю логику проигрывателя надо вынести в отдельный хук
+
+  const [tracks, setTracks] = useState([]);
+  const [currentIdx, setCurrentIdx] = useState(-1);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(0.8);
+  const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    searchMp3({
-      title: "Gunky's Uprising",
-      artist: "3LAU"
-    }).then(track => console.log(track));
-  }, [])
+    const audio = audioRef.current;
 
+    const onTime = () => {
+      setCurrentTime(audio.currentTime || 0);
+      setDuration(audio.duration || 0);
+      setProgress(audio.duration ? (audio.currentTime / audio.duration) * 100 : 0);
+    };
+
+    const onLoad = () => {
+      setDuration(audio.duration || 0);
+      setProgress(audio.duration ? (audio.currentTime / audio.duration) * 100 : 0);
+    };
+
+    const onEnded = () => {
+      if (!tracks.length) {
+        setIsPlaying(false);
+        return;
+      }
+      setCurrentIdx((i) => (i + 1) % tracks.length);
+    };
+
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("loadedmetadata", onLoad);
+    audio.addEventListener("ended", onEnded);
+
+    return () => {
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("loadedmetadata", onLoad);
+      audio.removeEventListener("ended", onEnded);
+    };
+  }, [tracks.length]);
+
+  useEffect(() => {
+    audioRef.current.volume = volume;
+  }, [volume]);
+
+  useEffect(() => {
+    if (currentIdx < 0 || !tracks[currentIdx]) return;
+
+    const audio = audioRef.current;
+    const track = tracks[currentIdx];
+    audio.src = `http://localhost:3000/audio?id=${track.id}`;
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
+  }, [currentIdx, tracks]);
+
+  const togglePlay = () => {
+    if (!tracks.length) return;
+
+    if (currentIdx < 0) {
+      setCurrentIdx(0);
+      return;
+    }
+
+    const audio = audioRef.current;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+      return;
+    }
+
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
+  };
+
+  const playTrack = (idx) => {
+    if (idx === currentIdx) {
+      togglePlay();
+      return;
+    }
+    setCurrentIdx(idx);
+  };
+
+  const playPrev = () => {
+    if (!tracks.length) return;
+    setCurrentIdx((i) => (i <= 0 ? tracks.length - 1 : i - 1));
+  };
+
+  const playNext = () => {
+    if (!tracks.length) return;
+    setCurrentIdx((i) => (i + 1) % tracks.length);
+  };
+
+  const setSeekByPercent = (percent) => {
+    const audio = audioRef.current;
+    if (!audio.duration) return;
+    const safe = Math.max(0, Math.min(100, percent));
+    audio.currentTime = (safe / 100) * audio.duration;
+  };
+
+  const currentTrack = tracks[currentIdx] || null;
+
+  const getTitle = (t) => t?.title || "Unknown";
+  const getArtist = (t) => t?.owner?.username || "Unknown artist";
+  const getCover = (t) =>
+    t?.cover_image
+      ? `http://localhost:3000/image?url=${encodeURIComponent(t.cover_image)}`
+      : null;
+  const getTags = (t) => t?.tags?.slice(0, 2).map((g) => g.name).join(" | ") || "";
 
   return (
     <div className="app">
@@ -101,12 +223,11 @@ const router = createBrowserRouter(
     <Route path='/' element={<Root />} >
       <Route index element={<Main />} />
       <Route path='media' element={<MediaListP title="Моя медіатека" userId={0} />} />
-      <Route path="media/playlist/:id" element={<PlaylistP />} />
+      <Route path="playlist" element={<PlaylistP {...getPlaylistById(1)} />} />
       <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="error" element={<Error />} />
-      <Route path="404" element={<Error />} />
       <Route path="settings" element={<Settings />} />
 
     </Route>

@@ -224,3 +224,163 @@
   position: absolute;
   background: transparent;
 }
+
+@media (max-width: 768px) {
+  .errorPage {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .header {
+    padding: 0 16px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav {
+    gap: 32px;
+    display: none;
+  }
+
+  .phone {
+    gap: 12px;
+  }
+
+  .phone span {
+    font-size: 14px;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    position: relative;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    padding: 40px 20px;
+  }
+
+  .errorNumber {
+    position: relative;
+    left: 0;
+    top: 0;
+    font-size: 120px;
+    opacity: 0.08;
+    margin-bottom: 20px;
+  }
+
+  .textBlock {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: relative;
+    padding: 0;
+    gap: 32px;
+  }
+
+  .textBlock h1 {
+    font-size: 36px;
+  }
+
+  .textBlock p {
+    font-size: 18px;
+  }
+
+  .homeButton {
+    width: 100%;
+    max-width: 300px;
+    height: 48px;
+    font-size: 18px;
+    padding: 10px 16px;
+  }
+
+  .decorImage {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .bottomSpacer {
+    height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .errorPage {
+    height: auto;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .header {
+    padding: 0 12px;
+    height: 56px;
+  }
+
+  .logoIcon {
+    gap: 12px;
+    padding: 0 8px;
+  }
+
+  .glow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logoSvg {
+    width: 45px;
+    height: 40px;
+  }
+
+  .phone {
+    gap: 8px;
+  }
+
+  .phoneIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .phone span {
+    font-size: 12px;
+  }
+
+  .content {
+    padding: 24px 16px;
+    margin-top: 16px;
+  }
+
+  .errorNumber {
+    font-size: 80px;
+    margin-bottom: 16px;
+  }
+
+  .textBlock {
+    gap: 20px;
+  }
+
+  .textBlock h1 {
+    font-size: 28px;
+  }
+
+  .textBlock p {
+    font-size: 16px;
+  }
+
+  .homeButton {
+    width: 100%;
+    height: 44px;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .buttonLine {
+    width: 8px;
+    height: 16px;
+  }
+
+  .homeButton div {
+    font-size: 18px;
+  }
+}

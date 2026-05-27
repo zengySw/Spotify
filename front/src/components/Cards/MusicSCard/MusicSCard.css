@@ -86,7 +86,6 @@
     text-overflow: ellipsis;
 }
 
-/* КОЛОНКИ */
 .music-s-card .card .frame .about {
     display: grid;
     grid-template-columns: 1fr 220px 80px;
@@ -96,7 +95,6 @@
     column-gap: 40px;
 }
 
-/* альбом */
 .music-s-card .card .frame .about .album {
     color: #effaff;
     font-family: Maven Pro, sans-serif;
@@ -108,7 +106,6 @@
     text-align: left;
 }
 
-/* дата / прослушивания */
 .music-s-card .card .frame .about .add-date,
 .music-s-card .card .frame .about .listen-count {
     color: #effaff;
@@ -118,7 +115,6 @@
     white-space: nowrap;
 }
 
-/* длительность */
 .music-s-card .card .frame .about .duration {
     color: #effaff;
     font-family: Maven Pro, sans-serif;
@@ -127,8 +123,6 @@
     white-space: nowrap;
     text-align: right;
 }
-
-/* ---------- adaptive ---------- */
 
 @media (max-width: 900px) {
     .music-s-card .card {

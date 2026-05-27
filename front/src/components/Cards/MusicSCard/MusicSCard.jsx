@@ -9,8 +9,16 @@ export default function MusicSCard({ id, num, icon, title, album, duration, arti
         setPlayingState(isPlaying);
     }, [isPlaying]);
 
+    const handleClick = () => {
+        onClick(id, playingState);
+    };
+
+    const handleDoubleClick = () => {
+        onDoubleClick(id, playingState);
+    };
+
     return (
-        <button className="music-s-card" onClick={onClick(id, playingState)} onDoubleClick={onDoubleClick(id, playingState)}>
+        <button className="music-s-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
             {num && num != null ? playingState ? <span className="playing-visualisator"><div className="rectangle" />
                 <div className="rectangle-one" />
                 <div className="rectangle-two" />

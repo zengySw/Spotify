@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     gap: 78px;
-    padding: 66px;
+    padding: clamp(24px, 4vw, 66px);
     border: #A6DAFF 0.5px solid;
     border-radius: 20px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .media-list-p .media-lists {
@@ -16,5 +18,38 @@
 .media-list-p h2 {
     color: #fff;
     font-family: "Maven Pro", sans-serif;
-    font-size: 48px;
+    font-size: clamp(28px, 5vw, 48px);
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .media-list-p {
+    gap: 40px;
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+
+  .media-list-p .media-lists {
+    gap: 45px;
+  }
+
+  .media-list-p h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .media-list-p {
+    gap: 24px;
+    padding: 16px 12px;
+    border-radius: 12px;
+  }
+
+  .media-list-p .media-lists {
+    gap: 24px;
+  }
+
+  .media-list-p h2 {
+    font-size: 24px;
+  }
 }

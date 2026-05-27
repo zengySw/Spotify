@@ -1,11 +1,31 @@
 import './RowList.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import React from 'react';
 
 export default function RowList({ title, childs, prevCount, continueLink = null }) {
     const [index, setIndex] = useState(0);
-    const maxIndex = React.Children.count(childs) - prevCount;
     const listRef = useRef(null);
+    const getVisibleCount = () => {
+        if (typeof window === 'undefined') return prevCount;
+        const width = window.innerWidth;
+        if (width <= 420) return Math.min(prevCount, 1);
+        if (width <= 640) return Math.min(prevCount, 2);
+        if (width <= 900) return Math.min(prevCount, 3);
+        if (width <= 1200) return Math.min(prevCount, 4);
+        return prevCount;
+    };
+    const [visibleCount, setVisibleCount] = useState(getVisibleCount);
+    const maxIndex = Math.max(React.Children.count(childs) - visibleCount, 0);
+
+    useEffect(() => {
+        const onResize = () => setVisibleCount(getVisibleCount());
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, [prevCount]);
+
+    useEffect(() => {
+        setIndex((prev) => Math.min(prev, maxIndex));
+    }, [maxIndex]);
 
     const getStep = () => {
         if (!listRef.current) return 0;
@@ -24,6 +44,7 @@ export default function RowList({ title, childs, prevCount, continueLink = null 
                 <div className="scroll">
                     <svg onClick={() => {
                         const step = getStep();
+                        if (!step || !listRef.current) return;
                         listRef.current.scrollBy({
                             left: -step,
                             behavior: 'smooth'
@@ -35,6 +56,7 @@ export default function RowList({ title, childs, prevCount, continueLink = null 
                     </svg>
                     <svg onClick={() => {
                         const step = getStep();
+                        if (!step || !listRef.current) return;
                         listRef.current.scrollBy({
                             left: step,
                             behavior: 'smooth'
@@ -48,7 +70,7 @@ export default function RowList({ title, childs, prevCount, continueLink = null 
                 </div>
             </div>
             <div className="container">
-                <div className="list" style={{ '--count': prevCount }} ref={listRef}>
+                <div className="list" style={{ '--count': prevCount, '--visible-count': visibleCount }} ref={listRef}>
                     {childs}
                 </div>
                 {continueLink ? <a href={continueLink}><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

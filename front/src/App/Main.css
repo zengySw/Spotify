@@ -1,8 +1,168 @@
 .main-page {
   display: flex;
   flex-direction: column;
-  gap: 78px;
-  padding: 66px;
+  gap: clamp(24px, 8vw, 78px);
+  padding: clamp(12px, 3vw, 66px);
   border: #A6DAFF 0.5px solid;
-  border-radius: 20px;
+  border-radius: clamp(12px, 3vw, 20px);
+  min-width: 0;
+  overflow: hidden;
+  margin-top: clamp(60px, 12vw, 80px);
+}
+
+/* --- ИСПРАВЛЕНИЕ КНОПОК-ТАБОВ --- */
+.filter-tabs {
+  display: flex;
+  gap: clamp(8px, 2vw, 12px);
+  padding: 4px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  padding: clamp(4px, 1vw, 6px) clamp(12px, 2vw, 18px);
+  min-width: clamp(60px, 15vw, 72px);
+  height: clamp(28px, 8vw, 32px);
+  border-radius: clamp(6px, 1.5vw, 8px);
+  border: 1px solid rgba(132, 184, 220, 0.45);
+  background: rgba(33, 56, 77, 0.25);
+  color: #d8ebfb;
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn:hover {
+  background: rgba(33, 56, 77, 0.45);
+  border-color: rgba(166, 218, 255, 0.6);
+}
+
+.filter-btn.active {
+  background: rgba(33, 56, 77, 0.75);
+  border-color: #A6DAFF;
+  box-shadow: 0 0 10px rgba(166, 218, 255, 0.2);
+}
+
+/* --- ФИКС ДЛЯ КАРТОЧЕК НАСТРОЕНИЯ (сетка/ряд) --- */
+/* Убедимся, что контейнер, куда OnePList рендерит карточки, не дробит их */
+.main-page > div, 
+.main-page section {
+  max-width: 100%;
+}
+
+/* Если OnePList выстраивает дочерние элементы через flex, добавим им авто-перенос */
+.main-page [class*="List"] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Контейнер самих карточек (внутри OnePList) */
+.main-page [class*="List"] > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(12px, 3vw, 24px);
+  justify-content: flex-start;
+}
+
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 1024px) {
+  .main-page [class*="List"] > div:last-child {
+    gap: clamp(12px, 2.5vw, 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-page {
+    gap: clamp(32px, 6vw, 48px);
+    padding: clamp(16px, 3vw, 32px);
+    border-radius: clamp(12px, 2.5vw, 16px);
+    margin-top: clamp(70px, 14vw, 120px);
+  }
+  
+  .main-page [class*="List"] > div:last-child {
+    gap: clamp(12px, 2.5vw, 18px);
+  }
+}
+
+@media (max-width: 640px) {
+  .main-page {
+    gap: clamp(20px, 5vw, 32px);
+    padding: clamp(12px, 2.5vw, 20px);
+    border-radius: clamp(10px, 2vw, 14px);
+    margin-top: clamp(65px, 12vw, 100px);
+  }
+  
+  .filter-tabs {
+    gap: clamp(6px, 1.5vw, 10px);
+  }
+  
+  .filter-btn {
+    padding: clamp(3px, 0.8vw, 5px) clamp(10px, 1.8vw, 14px);
+    min-width: clamp(55px, 14vw, 65px);
+    height: clamp(26px, 7vw, 30px);
+    font-size: clamp(10px, 1.8vw, 12px);
+  }
+  
+  .main-page [class*="List"] > div:last-child {
+    gap: clamp(10px, 2vw, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .main-page {
+    gap: clamp(16px, 4vw, 24px);
+    padding: clamp(10px, 2vw, 16px);
+    border-radius: clamp(8px, 1.5vw, 12px);
+    margin-top: clamp(60px, 10vw, 80px);
+  }
+  
+  .filter-tabs {
+    gap: clamp(4px, 1vw, 8px);
+  }
+  
+  .filter-btn {
+    padding: clamp(2px, 0.6vw, 4px) clamp(8px, 1.5vw, 12px);
+    min-width: clamp(50px, 12vw, 60px);
+    height: clamp(24px, 6vw, 28px);
+    font-size: clamp(9px, 1.6vw, 11px);
+  }
+  
+  .main-page [class*="List"] > div:last-child {
+    gap: clamp(8px, 1.5vw, 12px);
+  }
+}
+
+@media (max-width: 380px) {
+  .main-page {
+    gap: clamp(12px, 3vw, 18px);
+    padding: clamp(8px, 1.5vw, 12px);
+    border-radius: 8px;
+    margin-top: clamp(55px, 9vw, 70px);
+  }
+  
+  .filter-tabs {
+    gap: 3px;
+  }
+  
+  .filter-btn {
+    padding: 2px clamp(6px, 1.2vw, 10px);
+    min-width: clamp(45px, 11vw, 55px);
+    height: clamp(22px, 5.5vw, 26px);
+    font-size: clamp(8px, 1.5vw, 10px);
+  }
+  
+  .main-page [class*="List"] > div:last-child {
+    gap: clamp(6px, 1.2vw, 10px);
+  }
 }
