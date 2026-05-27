@@ -25,6 +25,8 @@ import {
     getMyPodcasts
 } from '../../hooks/dataHooks';
 
+import useMusicPlayer from "../../hooks/useMusicPlayer.js";
+
 export default function MediaListP({ title, userId }) {
 
     const [userTracks, setUserTracks] = useState([]);
@@ -34,6 +36,8 @@ export default function MediaListP({ title, userId }) {
     const [userPodcasts, setUserPodcasts] = useState([]);
 
     const didRun = useRef(false);
+
+    const player = useMusicPlayer();
 
     useEffect(() => {
         if (didRun.current) return;
@@ -66,7 +70,8 @@ export default function MediaListP({ title, userId }) {
                                     return (
                                         <MusicCard
                                             key={index}
-                                            {...track}
+                                            track={track}
+                                            onClick={() => player.play_track(track)}
                                         />
                                     );
                                 })

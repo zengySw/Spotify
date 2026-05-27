@@ -3,39 +3,38 @@ import './MusicCard.css';
 import { useState, useEffect, use } from 'react';
 import React from 'react';
 
-export default function MusicCard({
-    id,
-    icon,
-    title,
-    artists = [],
-    groupTracks = null,
-    onClick = () => { },
-    onDoubleClick = () => { },
-    currentlyPlaying = -1
-}) {
+export default function MusicCard(props) {
+    const track = props.track ?? props;
+
+    const {
+        id,
+        icon,
+        title,
+        artists = [],
+    } = track;
+
+    const {
+        groupTracks = null,
+        onClick = () => { },
+        onDoubleClick = () => { },
+        currentlyPlaying = null
+    } = props;
+
     const [playingState, setPlayingState] = useState(currentlyPlaying === id);
 
     useEffect(() => {
-        setPlayingState(currentlyPlaying === id);
-    }, [currentlyPlaying]);
+        setPlayingState(currentlyPlaying?.id === id);
+    }, [currentlyPlaying, id]);
 
-    const handleClick = () => {
-        onClick(id);
-    };
-
-    const handleDoubleClick = () => {
-        onDoubleClick(id, playingState);
-    };
-
-    const Wrapper = groupTracks ? "a" : "div";
+    const Wrapper = groupTracks ? "a" : "button";
 
     return (
         <Wrapper
             href={groupTracks ? `media/playlist/${id}` : ""}
             className="music-card"
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            style={groupTracks ? {} : {cursor: "default"}}
+            onClick={() => onClick()}
+            onDoubleClick={() => onDoubleClick()}
+            style={groupTracks ? {} : { cursor: "default" }}
         >
             <div className="image-container">
                 {playingState ?

@@ -44,14 +44,6 @@ const Root = () => {
     setVolume,
   } = useMusicPlayer();
 
-  useEffect(() => {
-    searchMp3({
-      title: "Gunky's Uprising",
-      artist: "3LAU"
-    }).then(track => console.log(track));
-  }, [])
-
-
   return (
     <div className="app">
       <HeaderBar />

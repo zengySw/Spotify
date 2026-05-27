@@ -5,6 +5,8 @@ import users from "../data/users.json";
 
 const env = import.meta.env;
 
+const JAMENDO_ID = "2b9f1d1c";
+
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const SPOTIFY_API = "https://api.spotify.com/v1";
@@ -384,27 +386,56 @@ export const getUserById = async (id) => {
 export const searchMp3 = async ({ title, artist }) => {
     const query = encodeURIComponent(`${artist} ${title}`);
 
-    const res = await fetch(
-        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
-    );
+    // 1. Пробуем Audius
+    try {
+        const res = await fetch(
+            `https://api.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
+        );
 
-    if (!res.ok) {
-        throw new Error(`Audius error: ${res.status}`);
+        if (res.ok) {
+            const { data = [] } = await res.json();
+            console.log(data);
+            const track = data.find(t => t.access?.stream && t.stream?.url);
+
+            if (track) {
+                return {
+                    id: track.id,
+                    title: track.title,
+                    artist: track.user?.name,
+                    artwork: track.artwork?.["480x480"] || "",
+                    mp3: track.stream.url,
+                };
+            }
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Audius failed:", e.message);
     }
 
-    const { data = [] } = await res.json();
+    // 2. Фолбэк на Jamendo
+    try {
+        const res = await fetch(
+            `https://api.jamendo.com/v3.0/tracks/?client_id=${JAMENDO_ID}` +
+            `&format=json&limit=1&namesearch=${query}&audioformat=mp32`
+        );
 
-    const track = data.find(
-        t => t.access?.stream && t.stream?.url
-    );
+        if (res.ok) {
+            const { results = [] } = await res.json();
+            console.log(results);
+            const track = results[0];
 
-    if (!track) return null;
+            if (track?.audio) {
+                return {
+                    id: track.id,
+                    title: track.name,
+                    artist: track.artist_name,
+                    artwork: track.album_image || track.image || "",
+                    mp3: track.audio,
+                };
+            }
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Jamendo failed:", e.message);
+    }
 
-    return {
-        id: track.id,
-        title: track.title,
-        artist: track.user?.name,
-        artwork: track.artwork?.["480x480"] || "",
-        mp3: track.stream.url
-    };
+    return null;
 };
