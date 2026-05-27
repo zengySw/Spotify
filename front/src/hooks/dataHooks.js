@@ -389,7 +389,7 @@ export const searchMp3 = async ({ title, artist }) => {
     // 1. Пробуем Audius
     try {
         const res = await fetch(
-            `https://api.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
+            `https://api.audius.co/v1/tracks/search?query=${query}`
         );
 
         if (res.ok) {
@@ -413,6 +413,52 @@ export const searchMp3 = async ({ title, artist }) => {
         }
     } catch (e) {
         console.warn("[searchMp3] Audius failed:", e.message);
+    }
+
+    try {
+        const cleanTitle = title.replace(/\.\.\.|…/g, "").trim();
+
+        const iaQuery = encodeURIComponent(
+            `title:"${cleanTitle}" AND creator:"${artist}" AND mediatype:audio`
+        );
+
+        const res = await fetch(
+            `https://archive.org/advancedsearch.php?q=${iaQuery}&fl[]=identifier,title,creator&rows=5&output=json`
+        );
+
+        if (res.ok) {
+            const json = await res.json();
+            const docs = json?.response?.docs || [];
+
+            if (docs.length) {
+                const item = docs[0];
+
+                const metaRes = await fetch(
+                    `https://archive.org/metadata/${item.identifier}`
+                );
+
+                if (metaRes.ok) {
+                    const meta = await metaRes.json();
+                    const files = meta?.files || [];
+
+                    const mp3 = files.find(f =>
+                        f.name?.toLowerCase().endsWith(".mp3")
+                    );
+
+                    if (mp3) {
+                        return {
+                            id: item.identifier,
+                            title: item.title || title,
+                            artist: item.creator || artist,
+                            artwork: "",
+                            mp3: `https://archive.org/download/${item.identifier}/${mp3.name}`
+                        };
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("[IA] failed:", e.message);
     }
 
     // 2. Фолбэк на Jamendo
@@ -440,7 +486,39 @@ export const searchMp3 = async ({ title, artist }) => {
     } catch (e) {
         console.warn("[searchMp3] Jamendo failed:", e.message);
     }
+    try {
+        const query = encodeURIComponent(`${artist} ${title}`);
 
+        const res = await fetch(`/deezer/search?q=${query}`, {
+            headers: {
+                Accept: 'application/json'
+            },
+        });
+
+        if (res.ok) {
+            const json = await res.json();
+            const data = json?.data || [];
+
+            if (data.length) {
+                const track = data[0];
+
+                const preview = track?.preview; // 🔥 30s mp3
+
+                if (preview) {
+                    return {
+                        id: track.id,
+                        title: track.title,
+                        artist: track.artist?.name,
+                        artwork: track.album?.cover_medium || "",
+                        mp3: preview, // ⚡ 30 sec audio
+                        source: "deezer_preview"
+                    };
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Deezer failed:", e.message);
+    }
     return null;
 };
 
