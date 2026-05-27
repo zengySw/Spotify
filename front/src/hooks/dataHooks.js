@@ -395,17 +395,21 @@ export const searchMp3 = async ({ title, artist }) => {
         if (res.ok) {
             const { data = [] } = await res.json();
             console.log(data);
-            const track = data.find(t => t.access?.stream && t.stream?.url);
 
+            const track = data.find(t => t.access?.stream && t.stream?.url);
             if (track) {
-                return {
-                    id: track.id,
-                    title: track.title,
-                    artist: track.user?.name,
-                    artwork: track.artwork?.["480x480"] || "",
-                    mp3: track.stream.url,
+                const mp3 = await tryStreamUrl(track.stream.url, track.stream.mirrors ?? []);
+                if (mp3) {
+
+                    return {
+                        id: track.id,
+                        title: track.title,
+                        artist: track.user?.name,
+                        artwork: track.artwork?.["480x480"] || "",
+                        mp3,
+                    };
                 };
-            }
+            };
         }
     } catch (e) {
         console.warn("[searchMp3] Audius failed:", e.message);
@@ -439,3 +443,22 @@ export const searchMp3 = async ({ title, artist }) => {
 
     return null;
 };
+
+const tryStreamUrl = async (base_url, mirrors = []) => {
+    // Извлекаем путь из основного URL и подставляем в каждую ноду
+    const url = new URL(base_url);
+    const path = url.pathname + url.search;
+
+    const all_nodes = [base_url, ...mirrors.map(m => m + path)];
+
+    for (const node_url of all_nodes) {
+        try {
+            const res = await fetch(node_url, { method: "HEAD" });
+            if (res.ok || res.status === 206) return node_url;
+        } catch {
+            // нода недоступна, пробуем следующую
+        }
+    }
+
+    return null; // все ноды упали
+}; 
