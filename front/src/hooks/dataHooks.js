@@ -323,7 +323,7 @@ export const getPlaylistById = async (id) => {
     });
     if (!playlist) return null;
 
-    const tracks = playlist.items || await getPlaylistTracks(id) || [];
+    const tracks = playlist.items
 
     return {
         id: playlist.id,
@@ -335,7 +335,7 @@ export const getPlaylistById = async (id) => {
             icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
         },
 
-        tracks: tracks.items
+        tracks: tracks?.items
             .filter(item => item?.item)
             .map(item => ({
                 id: item.item.id,
@@ -347,26 +347,6 @@ export const getPlaylistById = async (id) => {
                 addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
             }))
     };
-};
-
-export const getPlaylistTracks = async (playlistId) => {
-    const res = await spotifyApiRequest(`playlists/${playlistId}/tracks`, {
-        market: "UA",
-    });
-
-    if (!res?.items) return [];
-
-    return res.items
-        .filter(i => i?.track)
-        .map(i => ({
-            id: i.track.id,
-            title: i.track.name,
-            icon: i.track.album?.images?.[0]?.url || "",
-            album: i.track.album?.name || "",
-            duration: i.track.duration_ms,
-            artists: (i.track.artists || []).map(a => a.name),
-            addDate: new Date(i.added_at).toLocaleDateString("eu-EU")
-        }));
 };
 
 export const getUserById = async (id) => {
@@ -441,6 +421,8 @@ export const searchMp3 = async ({ title, artist }) => {
                     const meta = await metaRes.json();
                     const files = meta?.files || [];
 
+                    console.log(files);
+
                     const mp3 = files.find(f =>
                         f.name?.toLowerCase().endsWith(".mp3")
                     );
@@ -498,6 +480,8 @@ export const searchMp3 = async ({ title, artist }) => {
         if (res.ok) {
             const json = await res.json();
             const data = json?.data || [];
+
+            console.log(data);
 
             if (data.length) {
                 const track = data[0];
