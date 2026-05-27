@@ -12,7 +12,6 @@ import LanaDelRey from "/LanaDelRey.svg";
 import BTS from "/BTS.svg";
 import SAD from "/sad.svg"
 import Stream from "/List--Streamline-Mynaui.svg.svg"
-import { NavLink } from "react-router-dom";
 
 
 const playlists = [
@@ -23,7 +22,7 @@ const playlists = [
   { title: "Lana Del Rey", meta: "Виконавець" }
 ];
 
-function Sidebar({ isOpen = false, onClose = () => {} }) {
+function Sidebar({ isOpen = false, onClose = () => { } }) {
   return (
     <>
       {/* Оверлей — только когда меню открыто на мобиле */}
