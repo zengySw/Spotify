@@ -1,1 +1,122 @@
-.search {}
+.searchWrapper {
+  flex: 1;
+  min-width: 0;
+  max-width: 645px;
+  width: 100%;
+  padding: 0 clamp(8px, 2vw, 20px);
+  display: flex;
+  align-items: center;
+}
+
+.searchBar {
+  width: 100%;
+  height: 40px;
+  padding-left: 16px;
+  background: #001c34;
+  border-radius: 10px;
+  outline: 0.5px #a6daff solid;
+  outline-offset: -0.5px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.searchInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.searchIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.searchInputWrap {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.searchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+.searchInput::placeholder {
+  color: rgba(166, 218, 255, 0.45);
+}
+
+.searchMic {
+  width: clamp(48px, 8vw, 80px);
+  height: 40px;
+  padding: 2px 6px;
+  border-left: 0.5px #a6daff solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+  background: transparent;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.searchMic:hover {
+  opacity: 0.7;
+}
+
+.searchMic img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .searchWrapper {
+    padding: 0;
+  }
+
+  .searchBar {
+    height: 38px;
+    padding-left: 12px;
+  }
+
+  .searchMic {
+    width: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchMic {
+    display: none;
+  }
+}

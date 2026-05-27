@@ -1,0 +1,229 @@
+{
+    "artists": {
+        "href": "https://api.spotify.com/v1/me/following?type=artist&limit=8&locale=ru-RU,ru;q%3D0.9,en-US;q%3D0.8,en;q%3D0.7",
+        "limit": 8,
+        "next": "https://api.spotify.com/v1/me/following?type=artist&limit=8&after=5gL5FGeuSIhu0iNFC22UyY&locale=ru-RU,ru;q%3D0.9,en-US;q%3D0.8,en;q%3D0.7",
+        "cursors": {
+            "after": "5gL5FGeuSIhu0iNFC22UyY"
+        },
+        "total": 20,
+        "items": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1QljgLVnBEZge237LSpemA"
+                },
+                "href": "https://api.spotify.com/v1/artists/1QljgLVnBEZge237LSpemA",
+                "id": "1QljgLVnBEZge237LSpemA",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb7cbe1bab825926d676273a69",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab676161000051747cbe1bab825926d676273a69",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f1787cbe1bab825926d676273a69",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "Какая Разница",
+                "type": "artist",
+                "uri": "spotify:artist:1QljgLVnBEZge237LSpemA"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4MCBfE4596Uoi2O4DtmEMz"
+                },
+                "href": "https://api.spotify.com/v1/artists/4MCBfE4596Uoi2O4DtmEMz",
+                "id": "4MCBfE4596Uoi2O4DtmEMz",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb23a60030944f7853c21565ef",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000517423a60030944f7853c21565ef",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f17823a60030944f7853c21565ef",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "Juice WRLD",
+                "type": "artist",
+                "uri": "spotify:artist:4MCBfE4596Uoi2O4DtmEMz"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2ye2Wgw4gimLv2eAKyk1NB"
+                },
+                "href": "https://api.spotify.com/v1/artists/2ye2Wgw4gimLv2eAKyk1NB",
+                "id": "2ye2Wgw4gimLv2eAKyk1NB",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb69ca98dd3083f1082d740e44",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000517469ca98dd3083f1082d740e44",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f17869ca98dd3083f1082d740e44",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "Metallica",
+                "type": "artist",
+                "uri": "spotify:artist:2ye2Wgw4gimLv2eAKyk1NB"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2z20q6EEfm6w6PiIKsgtb3"
+                },
+                "href": "https://api.spotify.com/v1/artists/2z20q6EEfm6w6PiIKsgtb3",
+                "id": "2z20q6EEfm6w6PiIKsgtb3",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb816013e6b6a4cf226883fdc2",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab67616100005174816013e6b6a4cf226883fdc2",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f178816013e6b6a4cf226883fdc2",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "FACE",
+                "type": "artist",
+                "uri": "spotify:artist:2z20q6EEfm6w6PiIKsgtb3"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/32Pxa55IN0QAmFtzWcT2w9"
+                },
+                "href": "https://api.spotify.com/v1/artists/32Pxa55IN0QAmFtzWcT2w9",
+                "id": "32Pxa55IN0QAmFtzWcT2w9",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebd6cd786333ca8b16a1d2b704",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab67616100005174d6cd786333ca8b16a1d2b704",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f178d6cd786333ca8b16a1d2b704",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "qaraqshy",
+                "type": "artist",
+                "uri": "spotify:artist:32Pxa55IN0QAmFtzWcT2w9"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0kmHgk8SFGNMBNOfkhqlco"
+                },
+                "href": "https://api.spotify.com/v1/artists/0kmHgk8SFGNMBNOfkhqlco",
+                "id": "0kmHgk8SFGNMBNOfkhqlco",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb87c42f74070d6417ba33949a",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000517487c42f74070d6417ba33949a",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f17887c42f74070d6417ba33949a",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "Idonzzz",
+                "type": "artist",
+                "uri": "spotify:artist:0kmHgk8SFGNMBNOfkhqlco"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4z3TiM4dsnvWDRcnqf3l0r"
+                },
+                "href": "https://api.spotify.com/v1/artists/4z3TiM4dsnvWDRcnqf3l0r",
+                "id": "4z3TiM4dsnvWDRcnqf3l0r",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5eb37fb6ab20c3ca6ff1d645741",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000517437fb6ab20c3ca6ff1d645741",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f17837fb6ab20c3ca6ff1d645741",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "Icegergert",
+                "type": "artist",
+                "uri": "spotify:artist:4z3TiM4dsnvWDRcnqf3l0r"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5gL5FGeuSIhu0iNFC22UyY"
+                },
+                "href": "https://api.spotify.com/v1/artists/5gL5FGeuSIhu0iNFC22UyY",
+                "id": "5gL5FGeuSIhu0iNFC22UyY",
+                "images": [
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000e5ebb0dff53ac2ffa89646db45fd",
+                        "height": 640,
+                        "width": 640
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab67616100005174b0dff53ac2ffa89646db45fd",
+                        "height": 320,
+                        "width": 320
+                    },
+                    {
+                        "url": "https://i.scdn.co/image/ab6761610000f178b0dff53ac2ffa89646db45fd",
+                        "height": 160,
+                        "width": 160
+                    }
+                ],
+                "name": "2hug",
+                "type": "artist",
+                "uri": "spotify:artist:5gL5FGeuSIhu0iNFC22UyY"
+            }
+        ]
+    }
+}

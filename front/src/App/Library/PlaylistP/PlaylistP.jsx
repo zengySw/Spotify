@@ -47,7 +47,11 @@ export default function PlaylistP() {
         <div className="playlist">
             <div className="playlist-header" style={{ backgroundImage: `url(${playlist.icon})` }}>
                 <p>Плейлист</p>
+
                 <h3>{playlist.name}</h3>
+
+                <h3>{playlist.title}</h3>
+
                 <div className="author">
                     <img src={playlist.author.icon} alt={playlist.author.name} />
                     <span>{playlist.author.name}</span>

@@ -1,38 +1,85 @@
 .footer {
   width: 100%;
-  background-color: #000;
+  background: #000;
+  border-top: 1px solid rgba(166, 218, 255, 0.2);
 }
 
 .container {
   max-width: 1498px;
   margin: 0 auto;
+
+  padding: clamp(24px, 5vw, 72px) clamp(12px, 2.5vw, 20px) calc(clamp(20px, 3.5vw, 40px) + var(--app-footer-height));
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 32px);
+
   padding: clamp(32px, 6vw, 94px) 16px;
   display: flex;
   flex-direction: column;
   gap: clamp(24px, 4vw, 61px);
+
 }
 
 .topRow {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+
   flex-wrap: wrap;
+
   gap: clamp(16px, 3vw, 40px);
 }
 
 .logo {
+
+  width: clamp(140px, 20vw, 260px);
+  height: auto;
+  flex-shrink: 0;
+
   max-width: clamp(120px, 20vw, 250px);
+
 }
 
 .rightBlock {
+  min-width: 0;
+  flex: 1;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
+
+  gap: clamp(12px, 2.2vw, 24px);
+
   gap: clamp(12px, 3vw, 33px);
+
 }
 
-.address {
-  display: flex;
+.address,
+.contactItem {
+  display: inline-flex;
   align-items: center;
+
+  gap: clamp(8px, 1.4vw, 14px);
+  min-width: 0;
+}
+
+.address img,
+.contactItem img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.address span,
+.contactItem span {
+  color: #fff;
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+
   gap: clamp(8px, 2vw, 20px);
 }
 
@@ -41,15 +88,23 @@
   font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
+
 }
 
 .phoneEmail {
   display: flex;
+
+  gap: clamp(10px, 5vw, 32px);
+
   gap: clamp(12px, 8vw, 71px);
+
   flex-wrap: wrap;
 }
 
 .contactItem {
+
+  text-decoration: none;
+
   display: flex;
   align-items: center;
   gap: clamp(8px, 2vw, 20px);
@@ -60,37 +115,111 @@
   font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
+
 }
 
 .socials {
   display: flex;
+
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(166, 218, 255, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.socials a:hover {
+  background: rgba(166, 218, 255, 0.18);
+  transform: translateY(-1px);
+
   gap: clamp(8px, 3vw, 14px);
+
 }
 
 .socials img {
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.socials img:hover {
-  opacity: 0.7;
+  width: 18px;
+  height: 18px;
 }
 
 .links {
   display: flex;
   justify-content: center;
+
+  gap: clamp(10px, 4vw, 28px);
+
   gap: clamp(12px, 6vw, 50px);
+
   flex-wrap: wrap;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .links a {
+
+  color: #fff;
+  font-size: clamp(12px, 1.1vw, 14px);
+
   color: white;
   font-size: clamp(12px, 1.2vw, 14px);
+
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .links a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .topRow {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rightBlock {
+    width: 100%;
+    max-width: 560px;
+    align-items: center;
+  }
+
+  .address,
+  .phoneEmail,
+  .contactItem {
+    justify-content: center;
+  }
+
+  .phoneEmail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .address,
+  .contactItem {
+    align-items: flex-start;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    text-align: center;
+  }
 }

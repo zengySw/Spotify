@@ -5,70 +5,115 @@ import users from "../data/users.json";
 
 const env = import.meta.env;
 
-const USER_ID = env.VITE_USER_ID;
-const MAX_TRACKS = env.VITE_MAX_TRACKS;
-const API_KEY = env.VITE_API_KEY;
-
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const apiRequest = async (endpoint, params = {}) => {
-    const query = new URLSearchParams({
-        client_id: USER_ID,
-        format: "json",
-        limit: MAX_TRACKS,
-        ...params,
-    });
+const SPOTIFY_API = "https://api.spotify.com/v1";
 
-    const url = `/jamendo/${endpoint}/?${query.toString()}`;
-
-    const res = await fetch(url);
-
-    if (!res.ok) throw new Error("Request failed");
-
-    const data = await res.json();
-
-    return data.results || [];
-};
-
-let cachedToken = null;
+let tokenCache = null;
 let tokenExpiry = 0;
+let tokenPromise = null;
 
-const getToken = async () => {
-    if (cachedToken && Date.now() < tokenExpiry) return cachedToken;
-    const res = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: "Basic " + btoa(`${import.meta.env.VITE_SPOTIFY_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_CLIENT_SECRET}`)
-        },
-        body: new URLSearchParams({
-            grant_type: "refresh_token",
-            refresh_token: import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
-        })
-    });
-    const data = await res.json();
-    cachedToken = data.access_token;
-    tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
-    return cachedToken;
+const cache = new Map();
+
+export const getToken = async () => {
+    const stored = sessionStorage.getItem("spotify_token");
+    const expiry = Number(sessionStorage.getItem("spotify_token_expiry"));
+
+    if (stored && Date.now() < expiry) {
+        return stored;
+    }
+
+    if (tokenCache && Date.now() < tokenExpiry) {
+        return tokenCache;
+    }
+
+    if (tokenPromise) return tokenPromise;
+
+    tokenPromise = (async () => {
+        console.log("[Spotify] refreshing token");
+
+        const res = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Authorization:
+                    "Basic " +
+                    btoa(
+                        `${import.meta.env.VITE_SPOTIFY_CLIENT_ID}:${import.meta.env.VITE_SPOTIFY_CLIENT_SECRET}`
+                    )
+            },
+            body: new URLSearchParams({
+                grant_type: "refresh_token",
+                refresh_token: import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
+            })
+        });
+
+        const data = await res.json();
+
+        tokenCache = data.access_token;
+        tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
+
+        sessionStorage.setItem("spotify_token", tokenCache);
+        sessionStorage.setItem("spotify_token_expiry", tokenExpiry);
+
+        tokenPromise = null;
+
+        return tokenCache;
+    })();
+
+    return tokenPromise;
 };
 
-const spotifyApiRequest = async (endpoint, params = {}) => {
-    const query = new URLSearchParams(params);
-    const url = `/spotify/${endpoint}?${query.toString()}`;
+export const spotifyApiRequest = async (endpoint, params = {}) => {
+    const key = endpoint + JSON.stringify(params);
+
+    if (cache.has(key)) {
+        return cache.get(key);
+    }
+
+    const token = await getToken();
+
+    const url =
+        `https://api.spotify.com/v1/${endpoint}?` +
+        new URLSearchParams(params);
+
+    console.log("[Spotify] request:", endpoint);
 
     const res = await fetch(url, {
         headers: {
-            Authorization: `Bearer ${await getToken()}`,
-        },
+            Authorization: `Bearer ${token}`
+        }
     });
 
+    const text = await res.text();
+
+    console.log("[Spotify] status:", res.status);
+
     if (!res.ok) {
-        const text = await res.text();
-        console.error("Spotify error:", res.status, text);
-        throw new Error(text);
+        console.error("[Spotify] error response:", text);
+
+        throw new Error(
+            `Spotify API Error ${res.status}: ${text}`
+        );
     }
 
-    return await res.json();
+    let data;
+
+    try {
+        data = JSON.parse(text);
+    } catch (err) {
+        console.error("[Spotify] invalid JSON:", text);
+
+        throw new Error("Spotify returned invalid JSON");
+    }
+
+    cache.set(key, data);
+
+    setTimeout(() => {
+        cache.delete(key);
+    }, 300000);
+
+    return data;
 };
 
 const mapTrack = (result) => ({
@@ -95,22 +140,43 @@ const mapAlbum = (album) => ({
     groupTracks: album.total_tracks || 0
 });
 
-const getInfoByName = async (endpoint, params = {}) => {
-    const query = new URLSearchParams({
-        api_key: API_KEY,
-        method: `${endpoint}.getInfo`,
-        format: "json",
-        ...params,
-    });
+const mapPlaylist = (playlist) => ({
+    ...playlist,
+    id: playlist.id,
+    title: playlist.name,
+    icon: playlist.images?.[0]?.url || "",
 
-    const url = `/lastfm/?${query.toString()}`;
+    author: {
+        name: playlist.owner?.display_name || "Unknown",
+        icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
+    },
 
-    const res = await fetch(url);
+    tracks: (playlist.items.items || [])
+        .filter(item => item?.item)
+        .map(item => ({
+            id: item.item.id,
+            title: item.item.name,
+            icon: item.item.album?.images?.[0]?.url || "",
+            album: item.item.album?.name || "",
+            duration: item.item.duration_ms,
+            artists: (item.item.artists || []).map(a => a.name),
+            addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
+        }))
+});
 
-    if (!res.ok) throw new Error("Request failed");
+const mapPodcast = ({ episodes = [], ...podcast }) => ({
+    ...podcast,
 
-    return await res.json();
-};
+    title: podcast.name,
+    icon: podcast.images?.[0]?.url || "",
+
+    episodes: episodes.map(({ name, images = [], release_date, duration_ms }) => ({
+        title: name,
+        icon: images?.[2]?.url || "",
+        date: release_date,
+        duration: duration_ms
+    }))
+});
 
 export const getTrackById = async (id) => {
     const cleanId = id.split("?")[0];
@@ -120,7 +186,6 @@ export const getTrackById = async (id) => {
 
 export const getArtistById = async (id) => {
     const result = await spotifyApiRequest(`artists/${id}`);
-    console.log(result);
     return result ? mapArtist(result) : null;
 };
 
@@ -181,6 +246,29 @@ export const getAlbumsByIds = async (ids) => {
     return results;
 };
 
+export const getLikedTracks = async (limit = 50, offset = 0) => {
+    const res = await spotifyApiRequest("me/tracks", {
+        limit: limit,
+        offset: offset,
+        market: "UA",
+    })
+
+    return (res.items || []).map(item => ({
+        ...mapTrack(item.track),
+        addDate: item.added_at
+    }));
+}
+
+export const getMyPlaylists = async (limit = 50, offset = 0) => {
+    const result = await spotifyApiRequest("me/playlists", {
+        limit: limit,
+        offset: offset,
+        market: "UA",
+    });
+
+    return (result.items || []).map(item => mapPlaylist(item))
+}
+
 export const getMyAlbums = async (limit = 50, offset = 0) => {
     const result = await spotifyApiRequest("me/albums", {
         limit,
@@ -201,27 +289,26 @@ export const getMyArtists = async (limit = 50) => {
     return (result?.artists?.items || []).map(item => mapArtist(item));
 };
 
-export const searchTracks = async (search) => {
-    return await apiRequest("tracks", {
-        search,
+export const getMyPodcasts = async (limit = 50) => {
+    const { items = [] } = await spotifyApiRequest("me/shows", {
+        limit,
+        market: "UA"
     });
-};
 
-export const searchArtists = async (search) => {
-    return await apiRequest("artists", {
-        search,
-    });
-};
+    return Promise.all(
+        items.map(async ({ show }) => {
+            const { items: episodes = [] } = await spotifyApiRequest(
+                `shows/${show.id}/episodes`,
+                { limit: 10, market: "UA" }
+            );
 
-export const searchAlbums = async (search) => {
-    return await apiRequest("albums", {
-        search,
-    });
-};
 
-export const getPodcastById = (id) => {
-    return podcasts.podcasts.find(
-        podcast => podcast.id === Number(id)
+            
+
+
+
+            return mapPodcast({ ...show, episodes });
+        })
     );
 };
 
@@ -232,8 +319,19 @@ export const getAudiobookById = (id) => {
 };
 
 export const getPlaylistById = async (id) => {
+
     const playlist = await spotifyApiRequest(`playlists/${id}`);
     if (!playlist) return null;
+
+
+    const playlist = await spotifyApiRequest(`playlists/${id}`, {
+        // fields: "items(added_by.id,track(name,href,album(name,href)))",
+        market: "UA",
+    });
+    if (!playlist) return null;
+
+    const tracks = playlist.items || await getPlaylistTracks(id) || [];
+
 
     return {
         id: playlist.id,
@@ -245,7 +343,11 @@ export const getPlaylistById = async (id) => {
             icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
         },
 
+
         tracks: (playlist.items.items || [])
+
+        tracks: tracks.items
+
             .filter(item => item?.item)
             .map(item => ({
                 id: item.item.id,
@@ -258,6 +360,7 @@ export const getPlaylistById = async (id) => {
             }))
     };
 };
+
 
 export const getUserById = async (id) => {
     const results = await apiRequest("users", {
@@ -276,7 +379,38 @@ export const getUserById = async (id) => {
 export const getPlaylistTracks = async (playlistId) => {
     const playlist = await getPlaylistById(playlistId);
 
-    if (!playlist) return [];
+export const getPlaylistTracks = async (playlistId) => {
+    const res = await spotifyApiRequest(`playlists/${playlistId}/tracks`, {
+        market: "UA",
+    });
+
+    if (!res?.items) return [];
+
+    return res.items
+        .filter(i => i?.track)
+        .map(i => ({
+            id: i.track.id,
+            title: i.track.name,
+            icon: i.track.album?.images?.[0]?.url || "",
+            album: i.track.album?.name || "",
+            duration: i.track.duration_ms,
+            artists: (i.track.artists || []).map(a => a.name),
+            addDate: new Date(i.added_at).toLocaleDateString("eu-EU")
+        }));
+};
+
+export const getUserById = async (id) => {
+    const results = await apiRequest("users", {
+        id,
+    });
+
+
+    results.map(user => {
+        user.username = user.name;
+        user.avatar = user.image;
+        user.bio = "Music lover & playlist curator";
+    });
+
 
     const tracks = await Promise.all(
         playlist.tracks.map(trackId =>
@@ -287,64 +421,44 @@ export const getPlaylistTracks = async (playlistId) => {
     return tracks.filter(Boolean);
 };
 
-export const getUserLikedTracks = async (userId) => {
-    const user = getUserById(userId);
+export const searchMp3 = async ({ title, artist }) => {
+    const query = encodeURIComponent(`${title} ${artist}`);
 
-    if (!user) return [];
+    const res = await fetch(
+        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}`
 
-    const tracks = await Promise.all(
-        user.mediaLibrary.likedTracks.map(trackId =>
-            getTrackById(trackId)
-        )
+    return results[0] || null;
+};
+
+export const searchMp3 = async ({ title, artist }) => {
+    const query = encodeURIComponent(`${artist} ${title}`);
+
+    const res = await fetch(
+        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
+
     );
 
-    return tracks.filter(Boolean);
-};
+    if (!res.ok) {
+        throw new Error(`Audius error: ${res.status}`);
+    }
 
-export const getUserLikedArtists = async (userId) => {
-    const user = getUserById(userId);
+    const { data = [] } = await res.json();
 
-    if (!user) return [];
-
-    const artists = await Promise.all(
-        user.mediaLibrary.likedArtists.map(artistId =>
-            getArtistById(artistId)
-        )
+    const track = data.find(
+        t => t.access?.stream && t.stream?.url
     );
 
-    return artists.filter(Boolean);
-};
+    if (!track) return null;
 
-export const getUserLikedAlbums = async (userId) => {
-    const user = getUserById(userId);
+    console.log(track);
 
-    if (!user) return [];
 
-    const albums = await Promise.all(
-        user.mediaLibrary.likedAlbums.map(albumId =>
-            getAlbumById(albumId)
-        )
-    );
 
-    return albums.filter(Boolean);
-};
-
-export const getUserLikedPodcasts = (userId) => {
-    const user = getUserById(userId);
-
-    if (!user) return [];
-
-    return user.mediaLibrary.likedPodcasts
-        .map(podcastId => getPodcastById(podcastId))
-        .filter(Boolean);
-};
-
-export const getUserLikedAudiobooks = (userId) => {
-    const user = getUserById(userId);
-
-    if (!user) return [];
-
-    return user.mediaLibrary.likedAudiobooks
-        .map(bookId => getAudiobookById(bookId))
-        .filter(Boolean);
+    return {
+        id: track.id,
+        title: track.title,
+        artist: track.user?.name,
+        artwork: track.artwork?.["480x480"] || "",
+        mp3: track.stream.url
+    };
 };

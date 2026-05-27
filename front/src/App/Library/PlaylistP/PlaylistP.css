@@ -1,5 +1,6 @@
 .playlist {
     width: 100%;
+    min-width: 0;
     border-radius: 20px;
     overflow: hidden;
     background: rgba(1, 11, 15, 0.25);
@@ -46,7 +47,7 @@
 }
 
 .playlist .playlist-header h3 {
-    font-size: 64px;
+    font-size: clamp(36px, 6vw, 64px);
     font-weight: 600;
     margin-bottom: 24px;
     line-height: 1;
@@ -75,14 +76,17 @@
     gap: 20px;
     padding: 30px 40px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .playlist .controls .frame {
     display: flex;
     gap: 20px;
-    padding: 30px 40px;
+    padding: 0;
     align-items: center;
     margin-left: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .playlist .controls button {
@@ -99,13 +103,14 @@
 
 .playlist .playlist-tracks {
     padding: 0 40px 40px;
+    min-width: 0;
 }
 
 .playlist .playlist-tracks-header {
     display: grid;
     grid-template-columns: 1fr 220px 80px;
     align-items: center;
-    margin-left: 480px;
+    margin-left: clamp(250px, 34vw, 480px);
     padding: 0 20px 16px 0;
     font-size: 18px;
     font-weight: 500;
@@ -122,4 +127,71 @@
     flex-direction: column;
     gap: 12px;
     margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+    .playlist {
+        gap: 40px;
+        border-radius: 16px;
+    }
+
+    .playlist .playlist-header {
+        min-height: 210px;
+        padding: 32px 24px;
+    }
+
+    .playlist .controls {
+        padding: 24px;
+    }
+
+    .playlist .controls .frame {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .playlist .playlist-tracks {
+        padding: 0 24px 32px;
+    }
+
+    .playlist .playlist-tracks-header {
+        margin-left: 0;
+        grid-template-columns: 1fr 140px 60px;
+        font-size: 15px;
+        padding-right: 8px;
+    }
+}
+
+@media (max-width: 640px) {
+    .playlist {
+        gap: 28px;
+        border-radius: 12px;
+    }
+
+    .playlist .playlist-header {
+        min-height: 180px;
+        padding: 24px 16px;
+    }
+
+    .playlist .playlist-header h3 {
+        margin-bottom: 16px;
+        overflow-wrap: anywhere;
+    }
+
+    .playlist .controls {
+        gap: 14px;
+        padding: 18px 16px;
+    }
+
+    .playlist .controls button {
+        font-size: 14px;
+    }
+
+    .playlist .playlist-tracks {
+        padding: 0 12px 24px;
+    }
+
+    .playlist .playlist-tracks-header {
+        display: none;
+    }
 }

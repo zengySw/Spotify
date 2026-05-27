@@ -1,7 +1,7 @@
 import "./Main.css";
 import { OnePList, RowList } from "../components/Lists";
 import { MusicCard, GenreCard, ArtistCard, PodcastCard, AudioBookCard } from "../components/Cards";
-import { getRecommendations, getAlbumsByIds, getArtistsByIds, getMyAlbums, getMyArtists, getPodcastById, getAudiobookById } from "../hooks/dataHooks";
+import { getRecommendations, getMyAlbums, getMyArtists, getMyPodcasts, getAudiobookById } from "../hooks/dataHooks";
 import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
@@ -15,6 +15,7 @@ export default function Main() {
     const [topTracks, setTopTracks] = useState([]);
     const [newAlbums, setNewAlbums] = useState([]);
     const [topArtists, setTopArtists] = useState([]);
+    const [newPodcasts, setNewPodcasts] = useState([]);
 
     useEffect(() => {
         getRecommendations("3f2LmvIeHgvY8UKJPUbhR9", data.mainPage.topMusicToday.max, data.mainPage.topMusicToday.offset)
@@ -25,6 +26,9 @@ export default function Main() {
 
         getMyArtists(8)
             .then(results => setTopArtists(results));
+
+        getMyPodcasts(3)
+            .then(results => setNewPodcasts(results));
 
     }, []);
 
@@ -106,12 +110,20 @@ export default function Main() {
             {(selected === "Всі" || selected === "Інше") && <>
                 <OnePList
                     title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>подкастів</span></h4>}
-                    childs={data.mainPage.newPodcasts.podcasts
-                        .map(id => getPodcastById(id))
-                        .filter(Boolean)
-                        .map((podcast) => (
-                            <PodcastCard key={podcast.id} {...podcast} />
-                        ))}
+                    childs={
+                        newPodcasts.map((podcast, index) => {
+
+                            return (
+                                <PodcastCard
+                                    key={index}
+                                    episodeName={podcast.episodes[0]?.title}
+                                    date={podcast.episodes[0]?.date}
+                                    duration={podcast.episodes[0]?.duration}
+                                    {...podcast}
+                                />
+                            );
+                        })
+                    }
                 />
                 <OnePList
                     title={<h4>Нові релізи <span style={{ color: '#40a2ff' }}>Аудиокниг</span></h4>}

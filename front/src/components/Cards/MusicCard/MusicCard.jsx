@@ -1,7 +1,11 @@
 import '../PlayingVisualisator.css';
 import './MusicCard.css';
+
+import { useState, useEffect } from 'react';
+
 import { useState, useEffect, use } from 'react';
 import React from 'react';
+
 
 export default function MusicCard({
     id,
@@ -11,6 +15,19 @@ export default function MusicCard({
     groupTracks = null,
     onClick = () => { },
     onDoubleClick = () => { },
+
+    isPlaying = false,
+    currentlyPlaying = null
+}) {
+    const [playingState, setPlayingState] = useState(isPlaying || currentlyPlaying === id);
+
+    useEffect(() => {
+        setPlayingState(isPlaying || currentlyPlaying === id);
+    }, [isPlaying, currentlyPlaying, id]);
+
+    const handleClick = () => {
+        onClick(id, playingState);
+
     currentlyPlaying = -1
 }) {
     const [playingState, setPlayingState] = useState(currentlyPlaying === id);
@@ -21,25 +38,36 @@ export default function MusicCard({
 
     const handleClick = () => {
         onClick(id);
+
     };
 
     const handleDoubleClick = () => {
         onDoubleClick(id, playingState);
     };
 
+
     return (
-        <button
+        <button className="music-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
+
+
+    const Wrapper = groupTracks ? "a" : "div";
+
+    return (
+        <Wrapper
+            href={groupTracks ? `media/playlist/${id}` : ""}
             className="music-card"
             onClick={handleClick}
             onDoubleClick={handleDoubleClick}
+            style={groupTracks ? {} : {cursor: "default"}}
         >
+
             <div className="image-container">
-                {playingState ? 
-            <span className="playing-visualisator"><div className="rectangle" />
-                    <div className="rectangle-one" />
-                    <div className="rectangle-two" />
-                    <div className="rectangle-three" />
-                </span> : null}
+                {playingState ?
+                    <span className="playing-visualisator"><div className="rectangle" />
+                        <div className="rectangle-one" />
+                        <div className="rectangle-two" />
+                        <div className="rectangle-three" />
+                    </span> : null}
                 <img src={icon} alt={title} />
             </div>
 
@@ -52,6 +80,12 @@ export default function MusicCard({
 
                 {groupTracks ? <span className="group-tracks">{groupTracks} tracks</span> : null}
             </div>
+
         </button>
+    )
+}
+
+        </Wrapper>
     );
 }
+

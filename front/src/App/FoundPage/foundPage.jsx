@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import "./foundPage.css";
-import HeaderBar from "./src/components/header/header.jsx";
-import FooterBar from "./src/components/Footer/footer.jsx";
-import Menu from "./src/components/menu/menu.jsx";
+import HeaderBar from "../../components/header/header.jsx";
+import FooterBar from "../../components/Footer/footer.jsx";
+import Menu from "../../components/menu/menu.jsx";
 
 
 

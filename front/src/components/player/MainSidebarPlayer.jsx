@@ -1,15 +1,9 @@
 import SidebarPlayer from "./sidebarPlayer.jsx";
-
-const stickySidebarStyle = {
-  width: 310,
-  flexShrink: 0,
-  position: "sticky",
-  top: 64,
-};
+import "./sidebarPlayer.css";
 
 export default function MainSidebarPlayer({ track, onTogglePlay, onPrev, onNext }) {
   return (
-    <div style={stickySidebarStyle}>
+    <div className="sidebar-container-fixed">
       <SidebarPlayer track={track} onTogglePlay={onTogglePlay} onPrev={onPrev} onNext={onNext} />
     </div>
   );

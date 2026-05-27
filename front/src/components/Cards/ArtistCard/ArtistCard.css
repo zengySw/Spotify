@@ -1,73 +1,64 @@
 .artist-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: nowrap;
-    position: relative;
-    width: 20%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
 }
 
 .artist-card .image-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background: #f0f0f0;
-    z-index: 3;
-    overflow: hidden;
-    border-radius: 200px;
-    contain: layout;
+  position: relative;
+  width: min(100%, 200px);
+  aspect-ratio: 1 / 1;
+  background: #f0f0f0;
+  overflow: hidden;
+  border-radius: 50%;
+  contain: layout;
 }
 
 .artist-card .image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 4;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .artist-card .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    gap: 2px;
-    position: relative;
-    width: 100%;
-    margin: 11px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .artist-card .footer .artist-name {
-    align-self: stretch;
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    min-width: 0;
-    height: 25.807px;
-    color: #f0f0f0;
-    font-family: Open Sans, var(--default-font-family);
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 25.807px;
-    text-align: center;
-    white-space: nowrap;
-    z-index: 1;
+  width: 100%;
+  min-width: 0;
+  color: #f0f0f0;
+  font-family: Open Sans, var(--default-font-family);
+  font-size: clamp(14px, 1.6vw, 20px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artist-card .footer .followers {
-    align-self: stretch;
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    min-width: 0;
-    height: 19px;
-    color: #91bde7;
-    font-family: Open Sans, var(--default-font-family);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19px;
-    text-align: center;
-    white-space: nowrap;
-    z-index: 2;
+  width: 100%;
+  min-width: 0;
+  color: #91bde7;
+  font-family: Open Sans, var(--default-font-family);
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
