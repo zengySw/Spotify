@@ -57,7 +57,8 @@
     z-index: 4;
 }
 
-.music-card .footer .artists {
+.music-card .footer .artists,
+.music-card .footer .group-tracks {
     align-self: stretch;
     flex-shrink: 0;
     flex-basis: auto;

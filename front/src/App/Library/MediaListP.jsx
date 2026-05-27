@@ -76,7 +76,7 @@ export default function MediaListP({ title, userId }) {
                                     ? 7
                                     : userTracks.length
                             }
-                            continueLink="/liked-music"
+                            continueLink="/media/playlist/7f8GHAXGwZLefZ0Zq0cHgx"
                         />
                     ) : null
                 }
@@ -103,7 +103,7 @@ export default function MediaListP({ title, userId }) {
                                     ? 7
                                     : userPlaylists.length
                             }
-                            continueLink="/liked-albums"
+                            continueLink="/"
                         />
                     ) : null
                 }

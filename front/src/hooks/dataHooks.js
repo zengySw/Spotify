@@ -302,7 +302,7 @@ export const getMyPodcasts = async (limit = 50) => {
                 { limit: 10, market: "UA" }
             );
 
-            
+
             return mapPodcast({ ...show, episodes });
         })
     );
@@ -315,8 +315,13 @@ export const getAudiobookById = (id) => {
 };
 
 export const getPlaylistById = async (id) => {
-    const playlist = await spotifyApiRequest(`playlists/${id}`);
+    const playlist = await spotifyApiRequest(`playlists/${id}`, {
+        // fields: "items(added_by.id,track(name,href,album(name,href)))",
+        market: "UA",
+    });
     if (!playlist) return null;
+
+    const tracks = playlist.items || await getPlaylistTracks(id) || [];
 
     return {
         id: playlist.id,
@@ -328,7 +333,7 @@ export const getPlaylistById = async (id) => {
             icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
         },
 
-        tracks: (playlist.items.items || [])
+        tracks: tracks.items
             .filter(item => item?.item)
             .map(item => ({
                 id: item.item.id,
@@ -340,6 +345,26 @@ export const getPlaylistById = async (id) => {
                 addDate: String(new Date(item.added_at).toLocaleDateString("eu-EU"))
             }))
     };
+};
+
+export const getPlaylistTracks = async (playlistId) => {
+    const res = await spotifyApiRequest(`playlists/${playlistId}/tracks`, {
+        market: "UA",
+    });
+
+    if (!res?.items) return [];
+
+    return res.items
+        .filter(i => i?.track)
+        .map(i => ({
+            id: i.track.id,
+            title: i.track.name,
+            icon: i.track.album?.images?.[0]?.url || "",
+            album: i.track.album?.name || "",
+            duration: i.track.duration_ms,
+            artists: (i.track.artists || []).map(a => a.name),
+            addDate: new Date(i.added_at).toLocaleDateString("eu-EU")
+        }));
 };
 
 export const getUserById = async (id) => {
@@ -354,20 +379,6 @@ export const getUserById = async (id) => {
     });
 
     return results[0] || null;
-};
-
-export const getPlaylistTracks = async (playlistId) => {
-    const playlist = await getPlaylistById(playlistId);
-
-    if (!playlist) return [];
-
-    const tracks = await Promise.all(
-        playlist.tracks.map(trackId =>
-            getTrackById(trackId)
-        )
-    );
-
-    return tracks.filter(Boolean);
 };
 
 export const searchMp3 = async ({ title, artist }) => {

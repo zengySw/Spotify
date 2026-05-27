@@ -41,7 +41,7 @@ function Sidebar() {
         <h4 >Плейлисти</h4>
       </div>
 
-      <NavLink to="/playlist" className={({ isActive }) =>
+      <NavLink to="/media/playlist/7f8GHAXGwZLefZ0Zq0cHgx" className={({ isActive }) =>
         isActive ? "menu-item Selected-item" : "menu-item"}>
         <img src={HeartIcon} className="img-style" />
         <h3>Улюблені треки</h3>

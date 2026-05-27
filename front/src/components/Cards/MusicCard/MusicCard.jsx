@@ -27,19 +27,23 @@ export default function MusicCard({
         onDoubleClick(id, playingState);
     };
 
+    const Wrapper = groupTracks ? "a" : "div";
+
     return (
-        <button
+        <Wrapper
+            href={groupTracks ? `media/playlist/${id}` : ""}
             className="music-card"
             onClick={handleClick}
             onDoubleClick={handleDoubleClick}
+            style={groupTracks ? {} : {cursor: "default"}}
         >
             <div className="image-container">
-                {playingState ? 
-            <span className="playing-visualisator"><div className="rectangle" />
-                    <div className="rectangle-one" />
-                    <div className="rectangle-two" />
-                    <div className="rectangle-three" />
-                </span> : null}
+                {playingState ?
+                    <span className="playing-visualisator"><div className="rectangle" />
+                        <div className="rectangle-one" />
+                        <div className="rectangle-two" />
+                        <div className="rectangle-three" />
+                    </span> : null}
                 <img src={icon} alt={title} />
             </div>
 
@@ -52,6 +56,6 @@ export default function MusicCard({
 
                 {groupTracks ? <span className="group-tracks">{groupTracks} tracks</span> : null}
             </div>
-        </button>
+        </Wrapper>
     );
 }
