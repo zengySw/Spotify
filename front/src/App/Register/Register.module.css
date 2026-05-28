@@ -199,7 +199,6 @@
   text-decoration: none;
 }
 
-/* Адаптив */
 @media (max-width: 1024px) {
   .formContainer {
     margin-top: 80px;

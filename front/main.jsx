@@ -1,16 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
-import "./index.css";
-
-
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
+﻿import ReactDOM from 'react-dom/client';
+import './index.css';
+import { StrictMode, useState, useEffect, useRef } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+  Outlet
+} from 'react-router-dom';
 
 import HeaderBar from "./src/components/header/header.jsx";
 import FooterBar from "./src/components/Footer/footer.jsx";
@@ -18,51 +15,47 @@ import Menu from "./src/components/menu/menu.jsx";
 import SidebarPlayer from "./src/components/player/sidebarPlayer.jsx";
 import Player from "./src/components/player/player.jsx";
 
-// profile
 import Profile from "./src/App/Profile/Profile.jsx";
 import Register from "./src/App/Register/Register.jsx";
+import Step1 from "./src/App/Register/step1.jsx";
+import Step2 from "./src/App/Register/step2.jsx";
 import Login from "./src/App/Login/Login.jsx";
 import Error from "./src/App/error404/Error.jsx";
 import Settings from "./src/App/Settings/Settings.jsx";
 import Main from "./src/App/Main.jsx";
 import PlaylistP from "./src/App/Library/PlaylistP/PlaylistP.jsx";
 import MediaListP from "./src/App/Library/MediaListP.jsx";
+import Artist from "./src/App/Artist/Artist.jsx";
 
-import useMusicPlayer from "./src/hooks/useMusicPlayer";
+import useMusicPlayer, { MusicPlayerProvider } from "./src/hooks/useMusicPlayer";
 
 import { searchMp3 } from './src/hooks/dataHooks.js';
 
 const Root = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {
-    currentTrack,
-    isPlaying,
-    currentTime,
+    current_track: currentTrack,
+    is_playing: isPlaying,
+    current_time: currentTime,
     duration,
     progress,
     volume,
-    togglePlay,
-    playPrev,
-    playNext,
-    setSeekByPercent,
-    setVolume,
+    toggle_play: togglePlay,
+    play_prev: playPrev,
+    play_next: playNext,
+    seek_by_percent: setSeekByPercent,
+    set_volume: setVolume,
   } = useMusicPlayer();
-
-  useEffect(() => {
-    searchMp3({
-      title: "Gunky's Uprising",
-      artist: "3LAU"
-    }).then(track => console.log(track));
-  }, [])
-
 
   return (
     <div className="app">
-      <HeaderBar />
+      <HeaderBar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
       <div className="main-layout">
-
         <aside className="main-layout__menu">
-          <Menu />
+          
+          
+          <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
         </aside>
 
         <main className="main-layout__content">
@@ -77,7 +70,6 @@ const Root = () => {
             onNext={playNext}
           />
         </aside>
-
       </div>
 
       <FooterBar />
@@ -107,12 +99,20 @@ const router = createBrowserRouter(
       <Route path="media/playlist/:id" element={<PlaylistP />} />
       <Route path="profile" element={<Profile />} />
       <Route path="register" element={<Register />} />
+      <Route path="step1" element={<Step1 />} />
+      <Route path="step2" element={<Step2 />} />
       <Route path="login" element={<Login />} />
-      <Route path="error" element={<Error />} />
-      <Route path="404" element={<Error />} />
+      <Route path="*" element={<Error />} />
       <Route path="settings" element={<Settings />} />
+      <Route path="artist/:id" element={<Artist />} />
 
     </Route>
   )
+);
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <MusicPlayerProvider>
+    <RouterProvider router={router} />
+  </MusicPlayerProvider>
 );

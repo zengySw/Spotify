@@ -1,0 +1,105 @@
+.profile-page {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(18px, 4vw, 42px);
+  border: 1px solid rgba(166, 218, 255, 0.42);
+  border-radius: clamp(12px, 2vw, 20px);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(82, 185, 244, 0.22), transparent 34%),
+    linear-gradient(180deg, rgba(4, 20, 45, 0.72), rgba(0, 6, 16, 0.92));
+  overflow: hidden;
+}
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 4vw, 32px);
+  min-width: 0;
+}
+
+.profile-avatar {
+  flex: 0 0 auto;
+  width: clamp(72px, 18vw, 148px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #001527;
+  background: linear-gradient(135deg, #aff0f2, #52b9f4);
+  font-size: clamp(24px, 5vw, 46px);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.profile-heading {
+  min-width: 0;
+}
+
+.profile-kicker {
+  margin: 0 0 8px;
+  color: #91d8ec;
+  font-size: clamp(12px, 2vw, 14px);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.profile-heading h1 {
+  margin: 0;
+  color: #effaff;
+  font-size: clamp(28px, 6vw, 54px);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.profile-heading p:last-child {
+  max-width: 720px;
+  margin: 14px 0 0;
+  color: #93a7c4;
+  font-size: clamp(15px, 2.4vw, 20px);
+  line-height: 1.45;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 18px);
+  margin-top: clamp(24px, 5vw, 44px);
+}
+
+.profile-panel {
+  min-width: 0;
+  padding: clamp(14px, 3vw, 24px);
+  border: 1px solid rgba(147, 232, 255, 0.32);
+  border-radius: 12px;
+  background: rgba(0, 21, 39, 0.62);
+}
+
+.profile-panel__value,
+.profile-panel__label {
+  display: block;
+}
+
+.profile-panel__value {
+  color: #aff0f2;
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.profile-panel__label {
+  margin-top: 8px;
+  color: #c0f6ff;
+  font-size: clamp(13px, 2vw, 16px);
+  line-height: 1.3;
+}
+
+@media (max-width: 640px) {
+  .profile-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

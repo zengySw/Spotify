@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 import data from "../data/main.json";
 
-import useMusicPlayer from "../hooks/useMusicPlayer.js";
+import useMusicPlayer from "../hooks/useMusicPlayer";
 
 export default function Main() {
     const [selected, setSelected] = useState("Всі");
@@ -74,12 +74,12 @@ export default function Main() {
                 <RowList
                     title={<h4>Топ ВАША <span style={{ color: '#40a2ff' }}>музика</span> сьогодні!</h4>}
                     prevCount={5}
-                    childs={topTracks?.map((track) => (
+                    childs={topTracks?.map((track, index) => (
                         <MusicCard
-                            key={track.id}
-                            {...track}
-                            onClick={(id) => player.playTrack(id)}
-                            currentlyPlaying={player.currentTrack?.id}
+                            key={index}
+                            track={track}
+                            onClick={() => player.play_track(track)}
+                            currentlyPlaying={player.current_track}
                         />
                     ))}
                     continueLink={data.mainPage.topMusicToday.continueLink}
@@ -87,10 +87,11 @@ export default function Main() {
                 <RowList
                     title={<h4>Нові <span style={{ color: '#40a2ff' }}>музичні</span> релізи</h4>}
                     prevCount={5}
-                    childs={newAlbums?.map((album) => (
+                    childs={newAlbums?.map((album, index) => (
                         <MusicCard
-                            key={album.id}
+                            key={index}
                             {...album}
+                            groupTracks={album.groupTracks}
                         />
                     ))}
                     continueLink={data.mainPage.newMusicReleases.continueLink}
@@ -98,9 +99,9 @@ export default function Main() {
                 <RowList
                     title={<h4>Твої улюблені <span style={{ color: '#40a2ff' }}>виконавці</span></h4>}
                     prevCount={4}
-                    childs={topArtists?.map((artist) => (
+                    childs={topArtists?.map((artist, index) => (
                         <ArtistCard
-                            key={artist.id}
+                            key={index}
                             {...artist}
                         />
                     ))}

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styles from './header.module.css';
 import React, { useState } from 'react';
 import SearchBar from './search';
@@ -5,6 +6,7 @@ import logoIcon from './img/logo.svg';
 import searchIcon from './img/find.svg';
 import msgIcon from './img/msg.svg';
 import userIcon from './img/user.svg';
+
 
 export const Header_bar = ({ menuOpen, setMenuOpen }) => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -77,9 +79,9 @@ export const Header_bar = ({ menuOpen, setMenuOpen }) => {
           <img src={msgIcon} alt="" className={styles.header_icon} />
         </button>
 
-        <button className={styles.icon_button} type="button" aria-label="Profile">
+        <NavLink className={styles.icon_button} to="/register" aria-label="Profile">
           <img src={userIcon} alt="" className={styles.header_icon} />
-        </button>
+        </NavLink>
       </div>
 
       {searchOpen && (

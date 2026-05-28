@@ -4,7 +4,6 @@ import Header_bar from "../../components/header/header";
 import Footer_bar from "../../components/Footer/footer";
 
 export const Seting = () => {
-  // Состояния для переключателей
   const [offline, setOffline] = useState(false);
   const [notifications, setNotifications] = useState(false);
   const [mature, setMature] = useState(true);
@@ -18,7 +17,7 @@ export const Seting = () => {
 
   return (
     <div className={styles.page}>
-      {/* Все декоративные круги */}
+      {}
       <div className={styles.bgCircles}>
         <div className={styles.circle} style={{ width: 286, height: 286, left: 288.09, top: 1953.89, transform: 'rotate(165deg)', background: '#04142D' }} />
         <div className={styles.circle} style={{ width: 286, height: 286, left: 35.58, top: 1873.51, transform: 'rotate(165deg)', background: '#52B9F4' }} />
@@ -61,7 +60,7 @@ export const Seting = () => {
         </div>
 
         <div className={styles.settingsSection}>
-          {/* Акаунт */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Акаунт</div>
@@ -72,7 +71,7 @@ export const Seting = () => {
             </div>
           </div>
 
-          {/* Офлайн-Режим */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Офлайн-Режим</div>
@@ -87,7 +86,7 @@ export const Seting = () => {
             <div className={styles.settingDescription}>Слухайте музику без підключення до інтернету.</div>
           </div>
 
-          {/* Мова */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Мова</div>
@@ -103,7 +102,7 @@ export const Seting = () => {
             <div className={styles.settingDescription}>Оберіть мову платформи. Після цього зробіть перезапуск.</div>
           </div>
 
-          {/* Сповіщення */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Сповіщення</div>
@@ -118,7 +117,7 @@ export const Seting = () => {
             <div className={styles.settingDescription}>Контролюйте ваші сповіщення.</div>
           </div>
 
-          {/* Контент для дорослих */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Контент для дорослих (Mature)</div>
@@ -133,7 +132,7 @@ export const Seting = () => {
             <div className={styles.settingDescription}>Дозволити контент для дорослих (М). Контент позначений значком М. На налаштування може піти деякий час!</div>
           </div>
 
-          {/* Приватність */}
+          {}
           <div>
             <div className={styles.sectionTitle}>Приватність</div>
             <div className={styles.settingDescription}>Керуйте тим, хто може бачити ваші плейлисти, підписки та активність у додатку.</div>
@@ -171,7 +170,7 @@ export const Seting = () => {
             </div>
           </div>
 
-          {/* Моя медіатека */}
+          {}
           <div>
             <div className={styles.sectionTitle}>Моя медіатека</div>
             <div className={styles.settingDescription}>Слухайте музику з вашого пристрою!</div>
@@ -199,7 +198,7 @@ export const Seting = () => {
             </div>
           </div>
 
-          {/* Колір системи */}
+          {}
           <div>
             <div className={styles.settingRow}>
               <div className={styles.sectionTitle}>Колір системи</div>

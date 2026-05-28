@@ -5,6 +5,8 @@ import users from "../data/users.json";
 
 const env = import.meta.env;
 
+const JAMENDO_ID = "2b9f1d1c";
+
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const SPOTIFY_API = "https://api.spotify.com/v1";
@@ -303,10 +305,6 @@ export const getMyPodcasts = async (limit = 50) => {
             );
 
 
-            
-
-
-
             return mapPodcast({ ...show, episodes });
         })
     );
@@ -319,19 +317,13 @@ export const getAudiobookById = (id) => {
 };
 
 export const getPlaylistById = async (id) => {
-
-    const playlist = await spotifyApiRequest(`playlists/${id}`);
-    if (!playlist) return null;
-
-
     const playlist = await spotifyApiRequest(`playlists/${id}`, {
         // fields: "items(added_by.id,track(name,href,album(name,href)))",
         market: "UA",
     });
     if (!playlist) return null;
 
-    const tracks = playlist.items || await getPlaylistTracks(id) || [];
-
+    const tracks = playlist.items
 
     return {
         id: playlist.id,
@@ -343,11 +335,7 @@ export const getPlaylistById = async (id) => {
             icon: playlist.owner?.images?.[0]?.url || "/default-avatar.jpg",
         },
 
-
-        tracks: (playlist.items.items || [])
-
-        tracks: tracks.items
-
+        tracks: tracks?.items
             .filter(item => item?.item)
             .map(item => ({
                 id: item.item.id,
@@ -361,7 +349,6 @@ export const getPlaylistById = async (id) => {
     };
 };
 
-
 export const getUserById = async (id) => {
     const results = await apiRequest("users", {
         id,
@@ -372,60 +359,6 @@ export const getUserById = async (id) => {
         user.avatar = user.image;
         user.bio = "Music lover & playlist curator";
     });
-
-    return results[0] || null;
-};
-
-export const getPlaylistTracks = async (playlistId) => {
-    const playlist = await getPlaylistById(playlistId);
-
-export const getPlaylistTracks = async (playlistId) => {
-    const res = await spotifyApiRequest(`playlists/${playlistId}/tracks`, {
-        market: "UA",
-    });
-
-    if (!res?.items) return [];
-
-    return res.items
-        .filter(i => i?.track)
-        .map(i => ({
-            id: i.track.id,
-            title: i.track.name,
-            icon: i.track.album?.images?.[0]?.url || "",
-            album: i.track.album?.name || "",
-            duration: i.track.duration_ms,
-            artists: (i.track.artists || []).map(a => a.name),
-            addDate: new Date(i.added_at).toLocaleDateString("eu-EU")
-        }));
-};
-
-export const getUserById = async (id) => {
-    const results = await apiRequest("users", {
-        id,
-    });
-
-
-    results.map(user => {
-        user.username = user.name;
-        user.avatar = user.image;
-        user.bio = "Music lover & playlist curator";
-    });
-
-
-    const tracks = await Promise.all(
-        playlist.tracks.map(trackId =>
-            getTrackById(trackId)
-        )
-    );
-
-    return tracks.filter(Boolean);
-};
-
-export const searchMp3 = async ({ title, artist }) => {
-    const query = encodeURIComponent(`${title} ${artist}`);
-
-    const res = await fetch(
-        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}`
 
     return results[0] || null;
 };
@@ -433,32 +366,161 @@ export const searchMp3 = async ({ title, artist }) => {
 export const searchMp3 = async ({ title, artist }) => {
     const query = encodeURIComponent(`${artist} ${title}`);
 
-    const res = await fetch(
-        `https://discoveryprovider.audius.co/v1/tracks/search?query=${query}&app_name=my_app`
+    // 1. Пробуем Audius
+    try {
+        const res = await fetch(
+            `https://api.audius.co/v1/tracks/search?query=${query}`
+        );
 
-    );
+        if (res.ok) {
+            const { data = [] } = await res.json();
+            console.log(data);
 
-    if (!res.ok) {
-        throw new Error(`Audius error: ${res.status}`);
+            const track = data.find(t => t.access?.stream && t.stream?.url);
+            if (track) {
+                const mp3 = await tryStreamUrl(track.stream.url, track.stream.mirrors ?? []);
+                if (mp3) {
+
+                    return {
+                        id: track.id,
+                        title: track.title,
+                        artist: track.user?.name,
+                        artwork: track.artwork?.["480x480"] || "",
+                        mp3,
+                    };
+                };
+            };
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Audius failed:", e.message);
     }
 
-    const { data = [] } = await res.json();
+    try {
+        const cleanTitle = title.replace(/\.\.\.|…/g, "").trim();
 
-    const track = data.find(
-        t => t.access?.stream && t.stream?.url
-    );
+        const iaQuery = encodeURIComponent(
+            `title:"${cleanTitle}" AND creator:"${artist}" AND mediatype:audio`
+        );
 
-    if (!track) return null;
+        const res = await fetch(
+            `https://archive.org/advancedsearch.php?q=${iaQuery}&fl[]=identifier,title,creator&rows=5&output=json`
+        );
 
-    console.log(track);
+        if (res.ok) {
+            const json = await res.json();
+            const docs = json?.response?.docs || [];
 
+            if (docs.length) {
+                const item = docs[0];
 
+                const metaRes = await fetch(
+                    `https://archive.org/metadata/${item.identifier}`
+                );
 
-    return {
-        id: track.id,
-        title: track.title,
-        artist: track.user?.name,
-        artwork: track.artwork?.["480x480"] || "",
-        mp3: track.stream.url
-    };
+                if (metaRes.ok) {
+                    const meta = await metaRes.json();
+                    const files = meta?.files || [];
+
+                    console.log(files);
+
+                    const mp3 = files.find(f =>
+                        f.name?.toLowerCase().endsWith(".mp3")
+                    );
+
+                    if (mp3) {
+                        return {
+                            id: item.identifier,
+                            title: item.title || title,
+                            artist: item.creator || artist,
+                            artwork: "",
+                            mp3: `https://archive.org/download/${item.identifier}/${mp3.name}`
+                        };
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("[IA] failed:", e.message);
+    }
+
+    // 2. Фолбэк на Jamendo
+    try {
+        const res = await fetch(
+            `https://api.jamendo.com/v3.0/tracks/?client_id=${JAMENDO_ID}` +
+            `&format=json&limit=1&namesearch=${query}&audioformat=mp32`
+        );
+
+        if (res.ok) {
+            const { results = [] } = await res.json();
+            console.log(results);
+            const track = results[0];
+
+            if (track?.audio) {
+                return {
+                    id: track.id,
+                    title: track.name,
+                    artist: track.artist_name,
+                    artwork: track.album_image || track.image || "",
+                    mp3: track.audio,
+                };
+            }
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Jamendo failed:", e.message);
+    }
+    try {
+        const query = encodeURIComponent(`${artist} ${title}`);
+
+        const res = await fetch(`/deezer/search?q=${query}`, {
+            headers: {
+                Accept: 'application/json'
+            },
+        });
+
+        if (res.ok) {
+            const json = await res.json();
+            const data = json?.data || [];
+
+            console.log(data);
+
+            if (data.length) {
+                const track = data[0];
+
+                const preview = track?.preview; // 🔥 30s mp3
+
+                if (preview) {
+                    return {
+                        id: track.id,
+                        title: track.title,
+                        artist: track.artist?.name,
+                        artwork: track.album?.cover_medium || "",
+                        mp3: preview, // ⚡ 30 sec audio
+                        source: "deezer_preview"
+                    };
+                }
+            }
+        }
+    } catch (e) {
+        console.warn("[searchMp3] Deezer failed:", e.message);
+    }
+    return null;
 };
+
+const tryStreamUrl = async (base_url, mirrors = []) => {
+    // Извлекаем путь из основного URL и подставляем в каждую ноду
+    const url = new URL(base_url);
+    const path = url.pathname + url.search;
+
+    const all_nodes = [base_url, ...mirrors.map(m => m + path)];
+
+    for (const node_url of all_nodes) {
+        try {
+            const res = await fetch(node_url, { method: "HEAD" });
+            if (res.ok || res.status === 206) return node_url;
+        } catch {
+            // нода недоступна, пробуем следующую
+        }
+    }
+
+    return null; // все ноды упали
+}; 

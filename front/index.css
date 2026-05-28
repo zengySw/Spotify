@@ -124,6 +124,10 @@ input[type=range] {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --app-footer-height: 132px;
+  }
+
   .main-layout {
     padding-left: 8px;
     padding-right: 8px;
@@ -133,4 +137,3 @@ input[type=range] {
     display: none;
   }
 }
-

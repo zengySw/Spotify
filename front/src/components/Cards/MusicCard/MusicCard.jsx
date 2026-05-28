@@ -1,66 +1,41 @@
 import '../PlayingVisualisator.css';
 import './MusicCard.css';
-
-import { useState, useEffect } from 'react';
-
 import { useState, useEffect, use } from 'react';
 import React from 'react';
 
+export default function MusicCard(props) {
+    const track = props.track ?? props;
 
-export default function MusicCard({
-    id,
-    icon,
-    title,
-    artists = [],
-    groupTracks = null,
-    onClick = () => { },
-    onDoubleClick = () => { },
+    const {
+        id,
+        icon,
+        title,
+        artists = [],
+    } = track;
 
-    isPlaying = false,
-    currentlyPlaying = null
-}) {
-    const [playingState, setPlayingState] = useState(isPlaying || currentlyPlaying === id);
+    const {
+        groupTracks = null,
+        onClick = () => { },
+        onDoubleClick = () => { },
+        currentlyPlaying = null
+    } = props;
 
-    useEffect(() => {
-        setPlayingState(isPlaying || currentlyPlaying === id);
-    }, [isPlaying, currentlyPlaying, id]);
-
-    const handleClick = () => {
-        onClick(id, playingState);
-
-    currentlyPlaying = -1
-}) {
     const [playingState, setPlayingState] = useState(currentlyPlaying === id);
 
     useEffect(() => {
-        setPlayingState(currentlyPlaying === id);
-    }, [currentlyPlaying]);
+        setPlayingState(currentlyPlaying?.id === id);
+    }, [currentlyPlaying, id]);
 
-    const handleClick = () => {
-        onClick(id);
-
-    };
-
-    const handleDoubleClick = () => {
-        onDoubleClick(id, playingState);
-    };
-
-
-    return (
-        <button className="music-card" onClick={handleClick} onDoubleClick={handleDoubleClick}>
-
-
-    const Wrapper = groupTracks ? "a" : "div";
+    const Wrapper = groupTracks ? "a" : "button";
 
     return (
         <Wrapper
             href={groupTracks ? `media/playlist/${id}` : ""}
             className="music-card"
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            style={groupTracks ? {} : {cursor: "default"}}
+            onClick={() => onClick()}
+            onDoubleClick={() => onDoubleClick()}
+            style={groupTracks ? {} : { cursor: "default" }}
         >
-
             <div className="image-container">
                 {playingState ?
                     <span className="playing-visualisator"><div className="rectangle" />
@@ -80,12 +55,6 @@ export default function MusicCard({
 
                 {groupTracks ? <span className="group-tracks">{groupTracks} tracks</span> : null}
             </div>
-
-        </button>
-    )
-}
-
         </Wrapper>
     );
 }
-

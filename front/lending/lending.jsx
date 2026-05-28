@@ -1,6 +1,11 @@
 import React from 'react';
 import styles from './lending.module.css';
-import Footer_bar from "../Footer/footer.jsx";
+import Footer_bar from "../src/components/Footer/footer.jsx";
+import logo from "../src/components/header/img/logo.svg";
+import lumituneLogo from "./img/lumitune_002.svg";
+import background from "./img/background.svg";
+import lumik from "./img/Lumik_3.svg";
+import frame from "./img/Frame.svg";
 
 export const Lending = () => {
     return (
@@ -10,7 +15,7 @@ export const Lending = () => {
             <header className={styles.header}>
                 <div className={styles.logoWrapper}>
                     <div className={styles.logoContainer}>
-                        <img src="././src/components/header/img/logo.svg" alt="logo" />
+                        <img src={logo} alt="logo" />
                     </div>
                     <div className={styles.logoText}>LumiTune</div>
                 </div>
@@ -24,7 +29,7 @@ export const Lending = () => {
 
             <section className={styles.hero}>
                 <div className={styles.heroContent}>
-                    <img src="./src/components/lending/img/lumitune_002.svg" alt="" />
+                    <img src={lumituneLogo} alt="" />
                     <h1>Закортілося чогось новенького у рутині?</h1>
                     <p>Мерщій приєднуйся до шабашу музик! Тут звучать ритми, історії!</p>
                     <div className={styles.heroButtons}>
@@ -32,12 +37,12 @@ export const Lending = () => {
                         <button className={styles.btnPrimary}>Зареєструватися</button>
                     </div>
                 </div>
-                <img className={styles.background} src="./src/components/lending/img/background.svg" alt="" />
+                <img className={styles.background} src={background} alt="" />
             </section>
-            <img className={styles.lumik} src="./src/components/lending/img/lumik_3.svg" alt="" />
-            <img className={styles.frame} src="./src/components/lending/img/Frame.svg" alt="" />
+            <img className={styles.lumik} src={lumik} alt="" />
+            <img className={styles.frame} src={frame} alt="" />
 
-            {/* 🔥 ОБНОВЛЕННЫЕ СТАТЫ */}
+            
             <section className={styles.stats}>
                 <div className={styles.statCard}>
                     100m+

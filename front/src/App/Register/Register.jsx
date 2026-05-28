@@ -58,15 +58,15 @@ export const Register = () => {
 
           <div className={styles.socialButtons}>
             <button className={styles.socialBtn}>
-              <img src="./src/components/pages/Login/img/Facebook.svg" alt="Facebook" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/250px-Facebook_icon_2013.svg.png?utm_source=commons.wikimedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Facebook" />
               <span>Увійти з Facebook</span>
             </button>
             <button className={styles.socialBtn}>
-              <img src="./src/components/pages/Login/img/Google.svg" alt="Google" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Google_Favicon_2025.svg/250px-Google_Favicon_2025.svg.png" alt="Google" />
               <span>Увійти з Google</span>
             </button>
             <button className={styles.socialBtn}>
-              <img src="./src/components/pages/Login/img/Apple.svg" alt="Apple" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
               <span>Увійти з Apple</span>
             </button>
           </div>

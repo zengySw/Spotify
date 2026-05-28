@@ -35,7 +35,7 @@
   position: relative;
   z-index: 1200;
   width: 100%;
-  
+
 }
 
 .overlay {
@@ -250,7 +250,7 @@
     align-items: flex-start;
   }
   .sidebar {
-    display: none; /* на мобильных сайдбар скрыт, можно оставить бургер-меню при желании */
+    display: none;
   }
   .menuToggle {
     display: flex;

@@ -1,5 +1,3 @@
-/* NewPass.module.css */
-
 .page {
   width: 100%;
   min-height: 100vh;
@@ -228,7 +226,6 @@
   cursor: pointer;
 }
 
-/* Адаптив */
 @media (max-width: 1024px) {
   .formContainer {
     margin-top: 80px;
@@ -280,7 +277,6 @@
   .loginLinkRow a {
     font-size: 12px;
   }
-  /* Скрываем круги на мобильных */
   .bgCircles .circle {
     display: none;
   }

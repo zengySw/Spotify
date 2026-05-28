@@ -1,5 +1,3 @@
-/* RegisterStep2.module.css */
-
 .page {
   width: 100%;
   min-height: 100vh;
@@ -190,7 +188,6 @@
   background-position: right 12px center;
 }
 
-/* Блок региона */
 .regionRow {
   display: flex;
   justify-content: space-between;

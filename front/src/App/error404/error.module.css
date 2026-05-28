@@ -1,18 +1,14 @@
 .errorPage {
-  width: 100%;
-  height: 1246px;
   position: relative;
-  background: black;
-  overflow: hidden;
-}
-
-.circlesContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
+  min-height: calc(100vh - var(--app-header-height) - var(--app-footer-height));
+  overflow: hidden;
+  background: #000;
+  border: 1px solid rgba(166, 218, 255, 0.32);
+  border-radius: clamp(12px, 2vw, 20px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  isolation: isolate;
 }
 
 .circle {
@@ -21,366 +17,247 @@
   transform-origin: top left;
   filter: blur(60px);
   pointer-events: none;
+  opacity: 0.72;
+  z-index: -2;
 }
 
 .overlay {
-  width: 100%;
-  height: 1246px;
-  left: 0;
-  top: 0;
   position: absolute;
-  background: rgba(0, 0, 0, 0.19);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
   pointer-events: none;
+  z-index: -1;
 }
 
 .header {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 64px;
-  padding: 0 37px;
-  left: 0;
-  top: 0;
-  position: absolute;
+  min-height: 64px;
+  padding: 10px clamp(14px, 3vw, 37px);
   background: #061420;
-  border-bottom: 0.5px solid #A6DAFF;
+  border-bottom: 0.5px solid #a6daff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logoArea {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logoIcon {
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: clamp(12px, 3vw, 40px);
   flex-wrap: wrap;
-  align-content: center;
-  position: relative;
 }
 
-.glow {
-  width: 50.38px;
-  height: 50.38px;
-  background: rgba(0, 174.25, 255, 0.14);
-  box-shadow: 24px 24px 24px;
-  border-radius: 9999px;
-  filter: blur(12px);
-  position: absolute;
-}
-
-.logoSvg {
-  width: 62px;
-  height: 56.19px;
-  position: relative;
-  overflow: hidden;
+.header img:first-child {
+  width: clamp(42px, 8vw, 62px);
+  height: auto;
+  flex: 0 0 auto;
 }
 
 .logoText {
-  margin-left: -500px;
+  width: clamp(120px, 24vw, 190px);
+  max-width: 42vw;
+  height: auto;
 }
 
 .nav {
   display: flex;
-  gap: 96px;
+  align-items: center;
+  gap: clamp(18px, 5vw, 72px);
+  flex-wrap: wrap;
 }
 
 .nav a {
-  color: #88BCD6;
-  font-size: 20px;
-  font-family: 'Inter', sans-serif;
+  color: #88bcd6;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-family: "Inter", sans-serif;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.35;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .phone {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(8px, 2vw, 20px);
+  min-width: 0;
 }
 
-.phoneIcon {
-  width: 24px;
-  height: 24px;
-  background: #88BCD6;
+.phone img {
+  width: clamp(18px, 3vw, 24px);
+  height: clamp(18px, 3vw, 24px);
 }
 
 .phone span {
-  color: #88BCD6;
-  font-size: 16px;
-  font-family: 'Inter', sans-serif;
+  color: #88bcd6;
+  font-size: clamp(12px, 1.6vw, 16px);
+  font-family: "Inter", sans-serif;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .content {
-  width: 944px;
-  height: 944px;
-  left: 30px;
-  top: 168px;
-  position: absolute;
-  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  width: min(100%, 960px);
+  min-height: clamp(420px, 62vh, 760px);
+  padding: clamp(36px, 8vw, 96px) clamp(18px, 6vw, 96px);
+  display: flex;
+  align-items: center;
 }
 
 .errorNumber {
-  left: 107px;
-  top: 227px;
   position: absolute;
-  opacity: 0.10;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #23F8F8;
-  font-size: 404px;
-  font-family: 'Inter', sans-serif;
+  left: clamp(16px, 5vw, 80px);
+  top: clamp(18px, 8vw, 90px);
+  opacity: 0.1;
+  color: #23f8f8;
+  font-size: clamp(96px, 28vw, 360px);
+  font-family: "Inter", sans-serif;
   font-weight: 400;
+  line-height: 0.85;
+  pointer-events: none;
 }
 
 .textBlock {
-  width: 720px;
-  padding: 24px 0;
-  left: 112px;
-  top: 237px;
-  position: absolute;
+  position: relative;
+  width: min(100%, 720px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 79px;
+  gap: clamp(22px, 5vw, 68px);
 }
 
 .textBlock h1 {
   margin: 0;
-  color: #AFF0F2;
-  font-size: 60px;
-  font-family: 'Inter', sans-serif;
+  color: #aff0f2;
+  font-size: clamp(30px, 6vw, 60px);
+  font-family: "Inter", sans-serif;
   font-weight: 700;
+  line-height: 1.05;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .textBlock p {
   margin: 0;
-  color: #73ADC4;
-  font-size: 32px;
-  font-family: 'Open Sans', sans-serif;
+  color: #73adc4;
+  font-size: clamp(16px, 3vw, 32px);
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .homeButton {
-  width: 310px;
-  height: 68px;
+  width: min(100%, 310px);
+  min-height: 56px;
   padding: 10px 24px;
-  background: rgba(0, 27.81, 52.14, 0.20);
+  background: rgba(0, 28, 52, 0.2);
   border-radius: 10px;
-  outline: 1.5px solid rgba(145, 208.70, 236, 0.58);
+  outline: 1.5px solid rgba(145, 209, 236, 0.58);
   outline-offset: -1.5px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
   border: none;
   cursor: pointer;
-  color: #73ADC4;
-  font-size: 24px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
-}
-
-.buttonLine {
-  width: 10px;
-  height: 20px;
-  background: #91D8EC;
-  border-radius: 1px;
-  outline: 3px solid #91D8EC;
-  outline-offset: -1.5px;
-}
-
-.homeButton div {
-  color: #91D8EC;
-  font-size: 24px;
-  font-family: 'Inter', sans-serif;
+  color: #91d8ec;
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
 
-/* Декоративное изображение справа */
+.homeButton img {
+  width: clamp(18px, 3vw, 24px);
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.homeButton span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .decorImage {
-  width: 1100px;
-  height: 1188px;
-  left: 991px;
-  top: 108px;
   position: absolute;
+  z-index: 0;
+  right: clamp(-260px, -14vw, -80px);
+  bottom: clamp(-120px, -6vw, -40px);
+  width: min(54vw, 760px);
+  max-width: 100%;
+  height: auto;
   mix-blend-mode: lighten;
   pointer-events: none;
+  opacity: 0.85;
 }
 
 .bottomSpacer {
-  width: 1920px;
-  height: 80px;
-  left: 0;
-  top: 1167px;
-  position: absolute;
-  background: transparent;
+  display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .errorPage {
-    height: auto;
-    min-height: 100vh;
-    padding: 20px;
+    border-radius: 14px;
   }
 
   .header {
-    padding: 0 16px;
-    flex-wrap: wrap;
-    gap: 16px;
+    justify-content: center;
   }
 
   .nav {
-    gap: 32px;
-    display: none;
-  }
-
-  .phone {
-    gap: 12px;
-  }
-
-  .phone span {
-    font-size: 14px;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
   }
 
   .content {
-    width: 100%;
-    height: auto;
-    position: relative;
-    left: 0;
-    top: 0;
-    border-radius: 12px;
-    padding: 40px 20px;
-  }
-
-  .errorNumber {
-    position: relative;
-    left: 0;
-    top: 0;
-    font-size: 120px;
-    opacity: 0.08;
-    margin-bottom: 20px;
-  }
-
-  .textBlock {
-    width: 100%;
-    left: 0;
-    top: 0;
-    position: relative;
-    padding: 0;
-    gap: 32px;
-  }
-
-  .textBlock h1 {
-    font-size: 36px;
-  }
-
-  .textBlock p {
-    font-size: 18px;
-  }
-
-  .homeButton {
-    width: 100%;
-    max-width: 300px;
-    height: 48px;
-    font-size: 18px;
-    padding: 10px 16px;
+    min-height: auto;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .decorImage {
-    width: 0;
-    height: 0;
-    display: none;
-  }
-
-  .bottomSpacer {
-    height: 0;
+    width: 48vw;
+    opacity: 0.35;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .errorPage {
-    height: auto;
-    min-height: 100vh;
-    padding: 16px;
+    min-height: calc(100vh - var(--app-header-height) - var(--app-footer-height));
   }
 
   .header {
-    padding: 0 12px;
-    height: 56px;
+    align-items: center;
+    padding: 10px 12px;
   }
 
-  .logoIcon {
-    gap: 12px;
-    padding: 0 8px;
+  .logoText {
+    max-width: 34vw;
   }
 
-  .glow {
-    width: 35px;
-    height: 35px;
-  }
-
-  .logoSvg {
-    width: 45px;
-    height: 40px;
-  }
-
-  .phone {
-    gap: 8px;
-  }
-
-  .phoneIcon {
-    width: 18px;
-    height: 18px;
+  .nav {
+    display: none;
   }
 
   .phone span {
-    font-size: 12px;
+    white-space: normal;
   }
 
   .content {
-    padding: 24px 16px;
-    margin-top: 16px;
-  }
-
-  .errorNumber {
-    font-size: 80px;
-    margin-bottom: 16px;
+    padding: 44px 16px 54px;
   }
 
   .textBlock {
     gap: 20px;
   }
 
-  .textBlock h1 {
-    font-size: 28px;
-  }
-
-  .textBlock p {
-    font-size: 16px;
-  }
-
   .homeButton {
-    width: 100%;
-    height: 44px;
-    font-size: 16px;
-    padding: 8px 12px;
+    min-height: 46px;
+    padding: 8px 14px;
   }
 
-  .buttonLine {
-    width: 8px;
-    height: 16px;
-  }
-
-  .homeButton div {
-    font-size: 18px;
+  .decorImage {
+    display: none;
   }
 }

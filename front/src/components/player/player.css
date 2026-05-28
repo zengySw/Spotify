@@ -2,145 +2,176 @@
 
 :root {
   --player-bg: #000e1c;
-  --player-border: rgba(64, 210, 255, 0.3);
+  --player-border: rgba(64, 210, 255, 0.25);
   --player-accent: #93d3e7;
   --player-muted: #598d9d;
   --player-track: #1a2633;
   --player-text: #ffffff;
 }
 
+/* ========== ОСНОВНАЯ ПАНЕЛЬ ========== */
 .player-bar {
   position: fixed;
   left: 0;
-  right: 0;
   bottom: 0;
   z-index: 1100;
   width: 100%;
-  min-height: 62px;
-  padding: 8px 14px;
+  height: 72px;
+  padding: 0 20px;
   background: var(--player-bg);
-  border-top: 2px solid var(--player-border);
+  border-top: 1px solid var(--player-border);
   box-sizing: border-box;
 }
 
 .player-container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ========== ЛЕВАЯ ЧАСТЬ: трек ========== */
+.track-left {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 0 0 280px;
+  min-width: 0;
 }
 
-.track-info {
-  min-width: 200px;
-  max-width: 350px;
-  flex: 1 1 240px;
+.cover-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--player-track);
+  border: 1.5px solid var(--player-border);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.no-cover-icon {
+  font-size: 18px;
+  color: var(--player-muted);
+}
+
+.track-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.track-title {
+  color: var(--player-text);
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.artist-name {
+  color: var(--player-muted);
+  font-family: "Open Sans", sans-serif;
+  font-size: 11px;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ========== КНОПКИ (общие) ========== */
+.icon-btn {
+  border: 0;
+  background: transparent;
+  color: var(--player-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 16px;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.icon-btn:hover,
+.icon-btn.active {
+  color: var(--player-accent);
+}
+
+.icon-btn.secondary {
+  font-size: 15px;
+  color: var(--player-muted);
+}
+
+.icon-btn.secondary:hover,
+.icon-btn.secondary.active {
+  color: var(--player-accent);
+}
+
+.play-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--player-accent);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--player-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+.play-button:hover {
+  background: rgba(147, 211, 231, 0.15);
+  transform: scale(1.06);
+}
+
+/* ========== ЦЕНТРАЛЬНАЯ ЧАСТЬ: управление + прогресс ========== */
+.controls-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 20px;
+}
+
+.ctrl-buttons {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.album-art {
-  width: 42px;
-  height: 42px;
-  border-radius: 6px;
-  object-fit: cover;
-  background: #24323f;
-  flex-shrink: 0;
-}
-
-.album-art-placeholder {
-  background: linear-gradient(135deg, #24323f, #2f4354);
-}
-
-.track-details {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.track-title {
-  color: var(--player-text);
-  font-size: 12px;
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.artist-name {
-  color: #d8edf3;
-  font-size: 10px;
-  font-family: "Open Sans", sans-serif;
-  margin: 2px 0 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.controls-section {
-  flex: 2 1 580px;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.buttons-row {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.icon-placeholder {
-  border: 0;
-  background: transparent;
-  color: var(--player-accent);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-}
-
-.icon-placeholder.secondary {
-  width: 24px;
-  height: 24px;
-  font-size: 13px;
-  opacity: 0.75;
-}
-
-.icon-placeholder.secondary:hover {
-  opacity: 1;
-}
-
-.play-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--player-accent);
-  background: rgba(0, 0, 0, 0.25);
-  color: var(--player-accent);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 13px;
-  line-height: 1;
-}
-
-.play-button:hover {
-  background: rgba(147, 211, 231, 0.12);
-}
-
-.progress-container {
+.progress-row {
   width: 100%;
+  max-width: 620px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -149,94 +180,139 @@
 .progress-bar-bg {
   flex: 1;
   height: 4px;
-  background: var(--player-track);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  transition: height 0.15s;
+}
+
+.progress-bar-bg:hover {
+  height: 6px;
 }
 
 .progress-bar-fill {
   height: 100%;
   background: var(--player-accent);
   border-radius: inherit;
+  transition: width 0.1s linear;
 }
 
 .time {
-  width: 34px;
-  text-align: center;
   font-family: "Poppins", sans-serif;
-  font-size: 10px;
+  font-size: 11px;
+  flex-shrink: 0;
+  width: 30px;
+  text-align: center;
 }
 
 .time.current {
-  color: var(--player-accent);
+  color: #e0f0f5;
 }
 
 .time.total {
   color: var(--player-muted);
 }
 
-.utility-section {
-  min-width: 90px;
-  flex: 0 0 auto;
+/* ========== ПРАВАЯ ЧАСТЬ: громкость ========== */
+.utility-right {
   display: flex;
   align-items: center;
+  gap: 8px;
+  flex: 0 0 160px;
   justify-content: flex-end;
 }
 
-.volume-slider {
-  width: 90px;
-  accent-color: var(--player-accent);
+.vol-icon {
+  font-size: 14px;
+  color: var(--player-muted);
+  flex-shrink: 0;
 }
 
+.volume-slider {
+  width: 80px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--player-accent) 0%,
+    var(--player-accent) var(--vol-pct, 75%),
+    rgba(255, 255, 255, 0.1) var(--vol-pct, 75%),
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--player-accent);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--player-accent);
+  border: none;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: transparent;
+}
+
+/* ========== АДАПТИВ ========== */
 @media (max-width: 900px) {
-  .player-bar {
-    padding: 10px 12px;
+  .track-left {
+    flex: 0 0 auto;
+    max-width: 200px;
   }
-
-  .player-container {
-    gap: 10px;
+  .time {
+    display: none;
   }
-
-  .track-info {
-    min-width: 150px;
-    flex-basis: 160px;
-  }
-
-  .track-title {
-    font-size: 13px;
-  }
-
-  .artist-name {
-    font-size: 11px;
-  }
-
-  .buttons-row {
-    gap: 14px;
+  .utility-right {
+    flex: 0 0 auto;
   }
 }
 
 @media (max-width: 640px) {
+  .player-bar {
+    height: auto;
+    padding: 10px 14px;
+  }
   .player-container {
     flex-wrap: wrap;
-    row-gap: 8px;
+    gap: 10px;
+    padding: 4px 0;
   }
-
-  .track-info {
+  .track-left {
     order: 1;
-    max-width: none;
-    flex-basis: 100%;
+    flex: 1 1 100%;
+    max-width: 100%;
+    justify-content: space-between;
   }
-
-  .controls-section {
-    order: 3;
-    flex-basis: 100%;
-    min-width: 0;
-  }
-
-  .utility-section {
+  .controls-center {
     order: 2;
-    margin-left: auto;
+    flex: 1 1 100%;
+    padding: 0;
+  }
+  .utility-right {
+    display: none;
   }
 }

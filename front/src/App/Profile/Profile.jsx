@@ -1,40 +1,34 @@
-import { useState, useEffect, useRef } from "react";
-import HeaderBar from "../../components/header/header";
-import FooterBar from "../../components/Footer/footer";
-import Menu from "../../components/menu/menu.jsx";
-import Player from "../../components/player/player.jsx";
+import "./Profile.css";
 
-const API_URL =
-  "https://uwupad.me/music/api/music?limit=50&offset=0&sort_by=fyp&period=all_time&geo=global";
+export default function Profile() {
+  return (
+    <section className="profile-page" aria-labelledby="profile-title">
+      <div className="profile-hero">
+        <div className="profile-avatar" aria-hidden="true">LT</div>
+        <div className="profile-heading">
+          <p className="profile-kicker">Профіль</p>
+          <h1 id="profile-title">Мій простір LumiTune</h1>
+          <p>
+            Тут буде інформація про користувача, його плейлісти,
+            улюблені треки та персональні налаштування.
+          </p>
+        </div>
+      </div>
 
-function fmt(seconds) {
-  if (!seconds || Number.isNaN(seconds)) return "0:00";
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  return `${m}:${String(s).padStart(2, "0")}`;
-}
-
-export default function App() {
-
-  <div>
-    <HeaderBar />
-    <Menu />
-
-
-
-    <FooterBar />
-    <Player
-      track={currentTrack}
-      isPlaying={isPlaying}
-      currentTime={currentTime}
-      duration={duration}
-      progress={progress}
-      volume={volume}
-      onTogglePlay={togglePlay}
-      onPrev={playPrev}
-      onNext={playNext}
-      onSeekPercent={setSeekByPercent}
-      onVolumeChange={setVolume}
-    />
-  </div>
+      <div className="profile-grid">
+        <article className="profile-panel">
+          <span className="profile-panel__value">0</span>
+          <span className="profile-panel__label">Плейлістів</span>
+        </article>
+        <article className="profile-panel">
+          <span className="profile-panel__value">0</span>
+          <span className="profile-panel__label">Улюблених треків</span>
+        </article>
+        <article className="profile-panel">
+          <span className="profile-panel__value">0</span>
+          <span className="profile-panel__label">Підписок</span>
+        </article>
+      </div>
+    </section>
+  );
 }

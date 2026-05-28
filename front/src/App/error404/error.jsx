@@ -1,5 +1,10 @@
 import React from 'react';
 import styles from './error.module.css';
+import logo from './img/logo.svg';
+import logoText from './img/LumiTune.svg';
+import phone from './img/Phone.svg';
+import backIcon from './img/back_yes.svg';
+import decor from './img/man_in_error.svg';
 
 export const Error = () => {
     return (
@@ -37,15 +42,15 @@ export const Error = () => {
             <div className={styles.overlay} />
 
             <header className={styles.header}>
-                <img src="./src/components/pages/error404/img/logo.svg" alt="logo" />
-                <img className={styles.logoText} src="./src/components/pages/error404/img/LumiTune.svg" alt="LumiTune" />
+                <img src={logo} alt="logo" />
+                <img className={styles.logoText} src={logoText} alt="LumiTune" />
                 <nav className={styles.nav}>
                     <a href="#">О нас</a>
                     <a href="#">Підтримка</a>
                     <a href="#">Контакти</a>
                 </nav>
                 <div className={styles.phone}>
-                    <img src="./src/components/pages/error404/img/Phone.svg" alt="phone" />
+                    <img src={phone} alt="phone" />
                     <span>(380) 00-000-00-00</span>
                 </div>
             </header>
@@ -56,13 +61,13 @@ export const Error = () => {
                     <h1>Упс..Ти натрапив на міжтрекову тишу...</h1>
                     <p>Тиша — не кінець. Це пауза перед наступним вибухом ритму.</p>
                     <a href="/" className={styles.homeButton} style={{ textDecoration: 'none' }}>
-                        <img src="./src/components/pages/error404/img/back_yes.svg" alt="" />
+                        <img src={backIcon} alt="" />
                         <span>На головну</span>
                     </a>
                 </div>
             </div>
 
-            <img className={styles.decorImage} src="./src/components/pages/error404/img/man_in_error.svg" alt="decor" />
+            <img className={styles.decorImage} src={decor} alt="decor" />
 
             <div className={styles.bottomSpacer} />
         </div>

@@ -168,7 +168,7 @@ export const RegisterStep2 = () => {
               </div>
             </div>
 
-            {/* Регіон проживання */}
+            {}
             <div className={styles.field}>
               <label className={styles.fieldLabel}>Регіон проживання</label>
               <div className={styles.regionRow}>
